@@ -1,0 +1,22 @@
+{
+  "name": "ducky-hoster",
+  "version": "1.0.0",
+  "description": "Malware system that uses an Arduino USB to open a reverse shell to download and execute malicious scripts from the host Node server",
+  "main": "server.js",
+  "scripts": {
+    "test": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NotReallyJustin/Ducky-Hoster.git"
+  },
+  "author": "Justin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/NotReallyJustin/Ducky-Hoster/issues"
+  },
+  "homepage": "https://github.com/NotReallyJustin/Ducky-Hoster#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
