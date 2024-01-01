@@ -13,7 +13,6 @@ server.all("*", (request, response, next) => {
     console.log(`Request Host: ${request.headers.host}`)
 
     // console.log(`Request Cookies: ${request.headers.cookie}`)
-    // console.log(`Request Origin: ${request.headers.origin}`)
     // console.log(`Request Location: ${request.headers.location}`)
     // console.log(`Request Auth: ${request.headers.authorization}`)
 

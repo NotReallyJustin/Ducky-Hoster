@@ -8,14 +8,24 @@
  * @returns {String} Intended ASCII string
  */
 module.exports.genAsciiStr = (length) => {
-    // Only 32 (32 + 0) - 126 (32 + 94) are valid to print out
+    // Only 32 to 126 are valid to print out
 
     let print_str = "";
 
-    for (i = 0; i < length; i++)
+    for (var i = 0; i < length; i++)
     {
-        print_str += String.fromCharCode(32 + Math.floor(Math.random() * 95));
+        print_str = print_str + String.fromCharCode(this.random(32, 126));
     }
 
     return print_str;
 }
+
+/**
+ * Generates a random integer between low and high
+ * @param {Number} low Lower bound
+ * @param {Number} high Upper bound
+ * @returns {Number} A random integer from within the bounds
+ */
+module.exports.random = (low, high) => Math.round(Math.random() * (high - low)) + low;
+
+console.log(this.genAsciiStr(128));
