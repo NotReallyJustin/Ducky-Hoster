@@ -1,5 +1,5 @@
 const express = require('express');
-const EXE_PATHS = require("./exe_paths.js");
+const EXE_DATAS = require("./exe_datas.js");
 const Auth = require("./auth.js");
 const { genAsciiStr } = require("./util.js");
 

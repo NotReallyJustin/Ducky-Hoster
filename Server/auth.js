@@ -7,7 +7,7 @@
 const crypto = require("crypto");
 const fs = require("fs");
 const path = require("path");
-const exePath = require("./exePaths.js");
+const EXEData = require("./exeDatas.js");
 
 /**
  * A class that structures the get and post keys.
@@ -49,8 +49,8 @@ module.exports.Keys = new class
          * What this key is used for. For example, "ENUMERATE" links to the key for uploading file enmumerations in Base64.
          * @type {String}
          */
-        if (exePath[usage] == null) console.error(`WARNING: Declared usage for ${key} with IP ${ip} is invalid.`);
-        this.usage = exePath[usage] || usage == "GET" ? usage : "";
+        if (EXEData[usage] == null) console.error(`WARNING: Declared usage for ${key} with IP ${ip} is invalid.`);
+        this.usage = EXEData[usage] || usage == "GET" ? usage : "";
 
         /**
          * Path to store the key information in the event of a server restart
