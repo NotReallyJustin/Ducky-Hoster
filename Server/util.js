@@ -27,4 +27,4 @@ module.exports.genAsciiStr = (length) => {
  */
 module.exports.random = (low, high) => Math.round(Math.random() * (high - low)) + low;
 
-console.log(this.genAsciiStr(128));
+//console.log(this.genAsciiStr(128));

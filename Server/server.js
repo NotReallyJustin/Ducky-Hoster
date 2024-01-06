@@ -7,10 +7,11 @@ const malwareData = require("./post_req.js");
 
 // Log incoming traffic info
 server.all("*", (request, response, next) => {
-    console.log("\n");
+    console.log("");
     console.log(`Connection established with ${request.ip} via port ${request.socket.remotePort}.`);
     console.log(`Request Type: ${request.method}`);
     console.log(`Request Host: ${request.headers.host}`)
+    console.log(`Auth Key: ${request.headers.authorization}`)
 
     // console.log(`Request Cookies: ${request.headers.cookie}`)
     // console.log(`Request Location: ${request.headers.location}`)
