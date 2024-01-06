@@ -8,13 +8,12 @@
  * @returns {String} Intended ASCII string
  */
 module.exports.genAsciiStr = (length) => {
-    // Only 32 to 126 are valid to print out
 
     let print_str = "";
 
     for (var i = 0; i < length; i++)
     {
-        print_str = print_str + String.fromCharCode(this.random(32, 126));
+        print_str = print_str + String.fromCharCode(this.random(48, 126)).replace(/\\/gm, "&");      // @see ASCII table 48-126. \ breaks things so we will ignore it
     }
 
     return print_str;

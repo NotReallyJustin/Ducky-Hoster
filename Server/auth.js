@@ -7,31 +7,32 @@
 const crypto = require("crypto");
 const fs = require("fs");
 const path = require("path");
-const EXEData = require("./exeDatas.js");
+const EXEData = require("./exe_datas.js");
 
 /**
  * A class that structures the get and post keys.
  * We'll go more in depth about how the keys are intended to work
  */
-module.exports.Keys = new class
+module.exports.Keys = class
 {
     /**
      * Creates a `Key` object. These keys are stored as `SHA-512` hashes and referenced by their IP.
      * These hashes **will** be saved in a text file by their IP addresses when they're first created.
      * If you're modifying this code yourself, it might make more sense to use a SQL/noSQL database, but I feel it's unnecessary for the scope of this malware server and 
      * only creates more security vulnerabilities (also because MongoDB Atlas is lowkey kind of expensive to keep up and running).
-     * @param {String} key Intended Password/Key.
+     * @param {String} key Intended Password/Key. Ideally, these have a length of 512
      * @param {String} ip Ideally, an IP address goes here so we can track who is generating (and hence, using) the key.
      * @param {Boolean} singleUse Whether or not the key is single use
      * @param {String} usage Use case of the key (ie. ENUMERATE --> Key to upload enumerated directory data). This must match a valid EXE parameter from `./exe_paths.js`
+     * @param {String} hash Directly set `this.hash`. This will overwrite the `key` parameter.
      */
-    constructor(key, ip, singleUse, usage)
+    constructor(key, ip, singleUse, usage, hash)
     {
         /**
          * Hash of the password/key. This is stored as hex.
          * @type {String}
          */
-        this.hash = crypto.createHash("sha512").update(key).digest("hex");
+        this.hash = hash || crypto.createHash("sha512").update(key).digest("hex");
 
         /**
          * IP that generated the key.
@@ -49,7 +50,7 @@ module.exports.Keys = new class
          * What this key is used for. For example, "ENUMERATE" links to the key for uploading file enmumerations in Base64.
          * @type {String}
          */
-        if (EXEData[usage] == null) console.error(`WARNING: Declared usage for ${key} with IP ${ip} is invalid.`);
+        if (EXEData[usage] == null && usage != "GET") console.error(`WARNING: Declared usage for ${key} with IP ${ip} is invalid.`);
         this.usage = EXEData[usage] || usage == "GET" ? usage : "";
 
         /**
@@ -106,9 +107,7 @@ module.exports.Keys = new class
 
         var hash = path.basename(pathName);
 
-        let new_key = new this(hash, read_str[0], read_str[1] == "true", read_str[2]);
-        // Overwriting the hash since the file name is already the hash.
-        new_key.hash = hash;
+        let new_key = new this(undefined, read_str[0], read_str[1] == "true", read_str[2], hash);
 
         return new_key;
     }
@@ -118,7 +117,7 @@ module.exports.Keys = new class
  * Basically, a hash map to store authentication keys. (Auth Key Hash) => Auth Key prototype object.
  * For all intents and purposes, treat this like a hash map that allows you to also work with hashes
  */
-const AuthKeyContainer = new class extends Map
+const AuthKeyContainer = class extends Map
 {
     /**
      * Adds an entry in the AuthKeyContainer map. This function will automatically do the hashing for you
@@ -171,10 +170,10 @@ fs.readdir(path.resolve(__dirname, "./Keys/"), {
     }
     else
     {
-        console.log("✔️ Retrieved all keys in ./Keys/");
+        console.log("✅ Retrieved all keys in ./Keys/");
 
         files.forEach(file => {
-            var filePath = path.resolve(__dirname, "./Keys/", file.name);
+            var filePath = path.resolve(__dirname, "./Keys/", file);
             let generatedKey = this.Keys.create_from_file(filePath);
 
             // Recall that only getKeys could have 'GET' as their usage
@@ -190,6 +189,11 @@ fs.readdir(path.resolve(__dirname, "./Keys/"), {
             }
         });
 
-        console.log("✔️ getKeys and postKeys directory loaded");
+        console.log("✅ getKeys and postKeys directory loaded");
+
+        console.dir(this.getKeys)
+        console.dir(this.postKeys)
     }
 });
+
+//new this.Keys(require("./util.js").genAsciiStr(512), "127.0.0.1", false, "GET");
