@@ -8,6 +8,7 @@ const crypto = require("crypto");
 const fs = require("fs");
 const path = require("path");
 const EXEData = require("./exe_datas.js");
+const logging = require("./logging.js");
 
 /**
  * A class that structures the get and post keys.
@@ -50,7 +51,7 @@ module.exports.Keys = class
          * What this key is used for. For example, "ENUMERATE" links to the key for uploading file enmumerations in Base64.
          * @type {String}
          */
-        if (EXEData[usage] == null && usage != "GET") console.error(`WARNING: Declared usage for ${key} with IP ${ip} is invalid.`);
+        if (EXEData[usage] == null && usage != "GET") logging.error(`WARNING: Declared usage for ${key} with IP ${ip} is invalid.`);
         this.usage = EXEData[usage] || usage == "GET" ? usage : "";
 
         /**
@@ -90,7 +91,7 @@ module.exports.Keys = class
         }
         catch(err)
         {
-            console.error(`ERROR: cannot remove key file ${key} with IP ${ip}.`)
+            logging.error(`ERROR: cannot remove key file ${key} with IP ${ip}.`);
         }
     }
 
@@ -166,11 +167,11 @@ fs.readdir(path.resolve(__dirname, "./Keys/"), {
 }, (err, files) => {
     if (err)
     {
-        console.error("🚨 STARTUP ERROR: Failed to load getKeys and postKeys upon startup");
+        logging.error("🚨 STARTUP ERROR: Failed to load getKeys and postKeys upon startup");
     }
     else
     {
-        console.log("✅ Retrieved all keys in ./Keys/");
+        logging.log("✅ Retrieved all keys in ./Keys/", true);
 
         files.forEach(file => {
             var filePath = path.resolve(__dirname, "./Keys/", file);
@@ -189,7 +190,7 @@ fs.readdir(path.resolve(__dirname, "./Keys/"), {
             }
         });
 
-        console.log("✅ getKeys and postKeys directory loaded");
+        logging.log("✅ getKeys and postKeys directory loaded", true);
 
         console.dir(this.getKeys)
         console.dir(this.postKeys)

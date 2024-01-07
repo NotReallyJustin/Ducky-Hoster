@@ -1,21 +1,22 @@
 const express = require("express");
 const server = express();
 
+const logging = require("./logging.js");
 const util = require("./util.js");
 const malwareReqs = require("./get_req.js");
 const malwareData = require("./post_req.js");
 
 // Log incoming traffic info
 server.all("*", (request, response, next) => {
-    console.log("");
-    console.log(`Connection established with ${request.ip} via port ${request.socket.remotePort}.`);
-    console.log(`Request Type: ${request.method}`);
-    console.log(`Request Host: ${request.headers.host}`)
-    console.log(`Auth Key: ${request.headers.authorization}`)
+    logging.log("");
+    logging.log(`Connection established with ${request.ip} via port ${request.socket.remotePort}.`);
+    logging.log(`Request Type: ${request.method}`);
+    logging.log(`Request Host: ${request.headers.host}`)
+    logging.log(`Auth Key: ${request.headers.authorization}`)
 
-    // console.log(`Request Cookies: ${request.headers.cookie}`)
-    // console.log(`Request Location: ${request.headers.location}`)
-    // console.log(`Request Auth: ${request.headers.authorization}`)
+    // logging.log(`Request Cookies: ${request.headers.cookie}`)
+    // logging.log(`Request Location: ${request.headers.location}`)
+    // logging.log(`Request Auth: ${request.headers.authorization}`)
 
     next();
 });
@@ -31,5 +32,5 @@ server.all("*", (request, response) => {
 
 const PORT = 80;
 server.listen(PORT, () => {
-    console.log(`Server launched on port ${PORT}.`);
+    logging.log(`Server launched on port ${PORT}.`, true);
 });

@@ -9,7 +9,7 @@ const fs = require("fs");
 
 // Declare path of log files
 TRACE_PATH = path.resolve(__dirname, "./Logs/trace");
-INFO_PATH = path.resolve(__dirname, "./Logs/info");
+INFO_PATH = path.resolve(__dirname, "./Logs/info");             // To do: traffic info
 STDOUT_PATH = path.resolve(__dirname, "./Logs/stdout");
 STDERR_PATH = path.resolve(__dirname, "./Logs/stderr");
 
@@ -26,14 +26,33 @@ const getDateTime = () => {
  * Logs a given information in `./Logs/trace`.
  * The trace file should give you a general idea of what's happening on the network
  * @param {String} text Text to log
+ * @param {Boolean} print2Console Optional parameter - denotes whether you also want to console.log() the instance.
  */
-module.exports.log = function(text) {
+module.exports.log = function(text, print2Console) {
     fs.appendFile(TRACE_PATH, `${getDateTime()} -\t${text}`, {encoding: "utf-8"}, (err) => {
         if (err)
         {
             console.error(`🚨 Logging to trace path with text ${text} failed. Error: ${err}`);
         }
+        else
+        {
+            if (print2Console)
+            {
+                console.log(text);
+            }
+        }
     })
 }
 
-this.log("Hello World!");
+module.exports.error = function(text) {
+    fs.appendFile(TRACE_PATH, `${getDateTime()} -\t${text}`, {encoding: "utf-8"}, (err) => {
+        if (err)
+        {
+            console.error(`🚨 Logging to trace path with text ${text} failed. Error: ${err}`);
+        }
+        else
+        {
+            console.error(text);
+        }
+    });
+}
