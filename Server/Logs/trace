@@ -1,0 +1,20 @@
+2024/1/7 2:6:18 -	✅ Server launched on port 80.
+2024/1/7 2:6:18 -	✅ Retrieved all keys in ./Keys/
+2024/1/7 2:6:18 -	✅ getKeys and postKeys directory loaded
+2024/1/7 2:6:22 -	
+2024/1/7 2:6:22 -	Connection established with ::ffff:127.0.0.1 via port 63294.
+2024/1/7 2:6:22 -	Request Type: GET
+2024/1/7 2:6:22 -	Request Host: 127.0.0.1
+2024/1/7 2:6:22 -	Auth Key: SI>?zOkqd5@LMsXmZ[;Q8D2Tnr?P_QzmRmz`[ZZaHi7|t_{HM5d<t2DfXdM[`=^>R0CWUv^StjaDABJGI2l`OvANPwy2KF6Q@4GPpN@XmwCa?^F4z<5<?d_Dd:?IGcnz_T4^[pX|=]uUxOq]ysxf;@nPhoCE]cM]dAY1uIs6Vt{jJMkNmtlM7xGFeh|V[LxeYPS;<sW1`g=WS5MF5DoQ7vD4HLvAGmnokXJ77[7qil95KJiXQUw1Ort4Ae{^K?hpzcCfwX6Xf2JsX2lhb>ml2_CSR8TZ57q=_jP9[Sw[Wa}3zarVe6I&qR1HHEv1LIN6vI^Tt3wUa1{oW7BzTylh@qMMeWCot]<zrBKRdF^`4KkQ}uP^lm5bev|7=:zj3M0Y5]?a[FhQiL|UCIwI1ZJy28<Aa<&aiqdDh}8lI21b=rN_=8slea}[79JyHIJxb7Izx2Rq2?mR{tJiJ8Y0wOcE`eHfgSHQonSZhz35A=tBKb^};h_VDpvchVk2zQ_~555x
+2024/1/7 2:6:22 -	C file C:\Users\Justi\Desktop\Code\Ducky-Hoster\Server\Executables\Enumerator\ls_read.c from ::ffff:127.0.0.1 compiled!
+2024/1/7 2:6:22 -	🔨 EXE file C:\Users\Justi\Desktop\Code\Ducky-Hoster\Server\Executables\Enumerator\RemoteCode.exe sent to ::ffff:127.0.0.1.
+2024/1/7 2:16:35 -	✅ Server launched on port 80.
+2024/1/7 2:16:35 -	✅ Retrieved all keys in ./Keys/
+2024/1/7 2:16:35 -	✅ getKeys and postKeys directory loaded
+2024/1/7 2:16:47 -	
+2024/1/7 2:16:47 -	Connection established with ::ffff:127.0.0.1 via port 63430.
+2024/1/7 2:16:47 -	Request Type: GET
+2024/1/7 2:16:47 -	Request Host: 127.0.0.1
+2024/1/7 2:16:47 -	Auth Key: SI>?zOkqd5@LMsXmZ[;Q8D2Tnr?P_QzmRmz`[ZZaHi7|t_{HM5d<t2DfXdM[`=^>R0CWUv^StjaDABJGI2l`OvANPwy2KF6Q@4GPpN@XmwCa?^F4z<5<?d_Dd:?IGcnz_T4^[pX|=]uUxOq]ysxf;@nPhoCE]cM]dAY1uIs6Vt{jJMkNmtlM7xGFeh|V[LxeYPS;<sW1`g=WS5MF5DoQ7vD4HLvAGmnokXJ77[7qil95KJiXQUw1Ort4Ae{^K?hpzcCfwX6Xf2JsX2lhb>ml2_CSR8TZ57q=_jP9[Sw[Wa}3zarVe6I&qR1HHEv1LIN6vI^Tt3wUa1{oW7BzTylh@qMMeWCot]<zrBKRdF^`4KkQ}uP^lm5bev|7=:zj3M0Y5]?a[FhQiL|UCIwI1ZJy28<Aa<&aiqdDh}8lI21b=rN_=8slea}[79JyHIJxb7Izx2Rq2?mR{tJiJ8Y0wOcE`eHfgSHQonSZhz35A=tBKb^};h_VDpvchVk2zQ_~555x
+2024/1/7 2:16:47 -	C file C:\Users\Justi\Desktop\Code\Ducky-Hoster\Server\Executables\Enumerator\ls_read.c from ::ffff:127.0.0.1 compiled!
+2024/1/7 2:16:47 -	🔨 EXE file C:\Users\Justi\Desktop\Code\Ducky-Hoster\Server\Executables\Enumerator\RemoteCode.exe sent to ::ffff:127.0.0.1.

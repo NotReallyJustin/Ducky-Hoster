@@ -29,30 +29,29 @@ const getDateTime = () => {
  * @param {Boolean} print2Console Optional parameter - denotes whether you also want to console.log() the instance.
  */
 module.exports.log = function(text, print2Console) {
-    fs.appendFile(TRACE_PATH, `${getDateTime()} -\t${text}`, {encoding: "utf-8"}, (err) => {
-        if (err)
-        {
-            console.error(`🚨 Logging to trace path with text ${text} failed. Error: ${err}`);
-        }
-        else
-        {
-            if (print2Console)
-            {
-                console.log(text);
-            }
-        }
-    })
+
+    try
+    {
+        fs.appendFileSync(TRACE_PATH, `${getDateTime()} -\t${text}\n`, {encoding: "utf-8"});
+    }
+    catch(err)
+    {
+        console.error(`🚨 Logging to trace path with text ${text} failed. Error: ${err}`);
+    }
+
+    if (print2Console)
+    {
+        console.log(text);
+    }
 }
 
 module.exports.error = function(text) {
-    fs.appendFile(TRACE_PATH, `${getDateTime()} -\t${text}`, {encoding: "utf-8"}, (err) => {
-        if (err)
-        {
-            console.error(`🚨 Logging to trace path with text ${text} failed. Error: ${err}`);
-        }
-        else
-        {
-            console.error(text);
-        }
-    });
+    try
+    {
+        fs.appendFileSync(TRACE_PATH, `${getDateTime()} -\t${text}\n`, {encoding: "utf-8"});
+    }
+    catch(err)
+    {
+        console.error(`🚨 Sending error to trace path with text ${text} failed. Error: ${err}`);
+    }
 }

