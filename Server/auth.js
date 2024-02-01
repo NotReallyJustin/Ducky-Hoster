@@ -51,8 +51,8 @@ module.exports.Keys = class
          * What this key is used for. For example, "ENUMERATE" links to the key for uploading file enmumerations in Base64.
          * @type {String}
          */
-        if (EXEData[usage] == null && usage != "GET") logging.error(`WARNING: Declared usage for ${key} with IP ${ip} is invalid.`);
-        this.usage = EXEData[usage] || usage == "GET" ? usage : "";
+        if (EXEData[usage] == null && usage != "GET") logging.error(`WARNING: Declared usage ${usage} for ${key} with IP ${ip} is invalid.`);
+        this.usage = usage || usage == "GET" ? usage : "";
 
         /**
          * Path to store the key information in the event of a server restart

@@ -6,8 +6,9 @@ const path = require("path");
  * @param {String} cPath Path to the C file (that we will compile upon request). This should be relative.
  * @param {Boolean} usesAuthKey Whether this EXE requires an POST request AuthKey to be generated (usually for exfiltration)
  * @param {Boolean} singleUse Whether the auth key should be single use
+ * @param {Function} postFunction {Optional} (postRequest) => {}  A function that processes an incoming POST request associated with the EXE String. DO NOT HANDLE REQUEST ITSELF.
  */
-const EXEData = function(cPath, usesAuthKey, singleUse) {
+const EXEData = function(cPath, usesAuthKey, singleUse, postFunction) {
 
     /**
      * Absolute path to the EXE file
@@ -26,6 +27,13 @@ const EXEData = function(cPath, usesAuthKey, singleUse) {
      * @type {Boolean}
      */
     this.singleUse = singleUse || false;
+
+    /**
+     * The function that processes an incoming POST Request associated with this EXE.
+     * If no function is provided, this is set to a function that does nothing.
+     * @type {Function}
+     */
+    this.postFunction = postFunction || function() {};
 }
 
 /**
@@ -34,6 +42,6 @@ const EXEData = function(cPath, usesAuthKey, singleUse) {
  * Not the most efficient way of doing things, but this is the most secure way of allowing user file retrieval
  */
 module.exports = {
-    enumerator: new EXEData("./Executables/Enumerator/ls_read.c", false, false),
-    enumeratorRecursive: new EXEData("./Executables/EnumeratorRecursive/ls_read_rec.c", true, true)
+    enumerator: new EXEData("./Executables/Enumerator/ls_read.c", true, true),
+    //enumeratorRecursive: new EXEData("./Executables/EnumeratorRecursive/ls_read_rec.c", true, true)
 };
