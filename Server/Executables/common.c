@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
 
 // Tell C to ignore the gibberish about implicit function declarations because I know what I'm doing
 #pragma GCC diagnostic ignored "-Wimplicit-function-declaration"
@@ -113,6 +114,88 @@ long get_file_size(FILE* file)
     }
 }
 
+/**
+ * Converts a character into an 8 bit binary and chucks the result in binary_output
+ * @param ascii_char ASCII character
+ * @param binary_output {Outbound} String to store the 8 bit binary number in. Allocate 9 bytes so we can put a \0
+*/
+void char_to_binary(char ascii_char, char* binary_output)
+{
+    int BYTE_SIZE = 8;
+    int curr_str_idx = 0;           // Tracker to see what binary_output string index we are at right now
+
+    // We'll perform a bit shift here to isolate each char and put them in the binary_output.
+    // ie.          10010101 (ASCII char)
+    //            & 10000000 (1 << 7)
+    //         ==   10000000 ( Now we will >> 7)                --> We start from BYTE_SIZE - 1 to 0
+    //              1        ( Put this in binary_output )
+
+    for (int i = BYTE_SIZE - 1; i >= 0; i--)
+    {
+        // Grab the isolated binary digit
+        int isolated_bin_digit = (ascii_char & (1 << i)) >> i;
+
+        // Chuck it as a number
+        binary_output[curr_str_idx] = isolated_bin_digit == 1 ? '1' : '0';
+
+        // Increment curr_str_idx
+        curr_str_idx++;
+    }
+
+    // Add null byte
+    binary_output[curr_str_idx] = '\0';
+}
+
+/**
+ * Converts a binary string into base 10.
+ * @param binary_str The binary string to convert
+ * @param size Size of the binary string. This is just a standard for C, but exclude the \0 at the end
+ * @param intended_size Intended size of the binary string. This is mainly used for operations such as base64. \n
+ * Zero padding would occur at the end of the binary string until $size == $intended_size. If you don't wish to use this, set this to $size. \n
+ * Exclude \0
+*/
+int binary_to_base10(char* binary_str, int size, int intended_size)
+{
+    // Allocate a string up to $intended_size + 1 null byte
+    char* intended_bin_str = malloc(intended_size + 1);
+
+    // Populate intended_bin_str. It'll copy $size characters from the address in $binary_str, and then pad the rest with zeroes
+    for (int i = 0; i < intended_size; i++)
+    {
+        if (i < size)
+        {
+            intended_bin_str[i] = binary_str[i];
+        }
+        else
+        {
+            intended_bin_str[i] = '0';
+        }
+    }
+
+    // Add a null byte at the end.
+    intended_bin_str[intended_size] = '\0';
+
+    // Now, convert the binary string into base 10
+    // We'll use bit shifting for this. Take for example:
+    // ie.  1010101         (intended_bin_str)
+    //      Curr bit = 1
+    //      Binary value = 1000000         ( Curr Bit << [intended_bin_str_size - 1] )
+    //      Add that to $value
+
+    int value = 0;  
+    for (int i = intended_size - 1, str_idx = 0; str_idx < intended_size; i--, str_idx++)
+    {
+        // Bits can either be 1 or 0
+        int curr_bit = intended_bin_str[str_idx] == '1' ? 1 : 0;
+
+        value += curr_bit << i;
+    }
+
+    // Garbage collection go brrrr
+    free(intended_bin_str);
+
+    return value;
+}
 
 /**
  * Prints all contents of a string array (char**)
@@ -125,4 +208,81 @@ void print_str_arr(char** str_arr, int size)
     {
         puts(str_arr[i]);
     }
+}
+
+/**
+ * Given the length of a normal binary string, determine the size of its base64 string
+ * @param char_str_size The size of the binary string
+ * @returns The size of its base64 string
+*/
+int base64_size(int char_str_size)
+{
+    // Base64 takes in multiples of 3 * 8 (24) bits. If there's less than that, it'll pad it with zeroes
+    // Each multiple (group) will then be converted to 4 base64 chars
+    
+    // Hence, the formula is ceil(n * 8 / 24) * 4
+    // The *8 exists because chars are in bytes
+    return ceil(char_str_size * 8 / 24) * 4;
+}
+
+/**
+ * Finds the base64 of a given string
+ * @param str String to find the base64 of
+ * @param size Size of the string to convert to base64 - Exclude \0
+ * @param base64_str {Outbound} String to store the base64 output. Malloc base64_size() + 1 null byte
+*/
+void base64(char* str, int size, char* base64_str)
+{
+    int BYTE_SIZE = 8;
+
+    // ⭐ Step 1: Convert each character of the string into 1 byte ASCII binary number
+
+    // Each character in str is going to be an 8 bit binary. Hence, malloc $size * 8 bytes.
+    // However, when we malloc, we'll add 1 extra byte for the null byte at the end
+    int binary_str_size = BYTE_SIZE * size;
+    char* binary_str = malloc(binary_str_size + 1);
+    
+    // For each char in $str, convert it to a binary and chuck it inside $binary_str
+    // Technically, char_to_binary takes in 9 bytes. However, we're going to overwrite the null byte either way so we can multiply by $BYTE_SIZE
+    for (int i = 0; i < size; i++)
+    {
+        char_to_binary(str[i], binary_str + i * BYTE_SIZE);
+    }
+
+    // ⭐ Step 2: Split the binary string into chunks of 6 bits. Then, it would convert to them to a base64 string.
+    char* base_64_table = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+    int base64_str_idx = 0;             // Track where on the base64 string we are at
+
+    for (int i = 0; i < binary_str_size; i += 6)
+    {
+        // Calculate the current chunk size.
+        // If everything fits from base_64_str[0] to base_64_str[5], our chunk size is 6
+        // If it doesn't fit, then all we're dealing with is the extra binary characters from size
+
+        // ie. Let's say i = 30 and bin_str_size = 31.
+        // base_64_str[30] to base_64_str[35] is not possible. So, the current chunk size is not 6
+        // Hence, we take the max binary string size (31). 31 % 6 = 1. And it turns out we do only have 1 extra bit.
+        // And that 1 isolated bit is going to be our current chunk size
+        int curr_chunk_size = (i + 5 < binary_str_size) ? 6 : (binary_str_size % 6);
+
+        // Grab the value of the chunk of 6 bits. To make indexing easier, this is in base 10
+        int binary_num = binary_to_base10(binary_str + i, curr_chunk_size, 6);
+
+        // Go on the base64 table and grab the corresponding base64 character. Add that to base_64_str
+        base64_str[base64_str_idx] = base_64_table[binary_num];
+        base64_str_idx++;
+    }
+
+    // If we can't make it to a 3 byte sequence (basically, binary_str_size is not divisible by 3), add = at the end
+    for (int i = 0; i < (binary_str_size % 3); i++)
+    {
+        base64_str[base64_str_idx] = '=';
+        base64_str_idx++;
+    }
+
+    // Add 1 null byte at the end
+    base64_str[base64_str_idx] = '\0';
+
+    // ⭐ Garbage collection
+    free(binary_str);
 }
