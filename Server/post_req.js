@@ -13,7 +13,15 @@ const postReqRouter = express.Router({
 // Create a middleware that checks for authentication.
 // This is the same setup as get_req.js
 postReqRouter.post("*", (request, response, next) => {
-    
+
+    // For standardization, obfuscation, and security purposes, we're only going to take plain text requests
+    if (request.headers['content-type'] != "text/plain")
+    {
+        response.status(400);
+        next();
+        return;
+    }
+
     let authKey = Auth.postKeys.getWithHash(request.headers.authorization);
     
     if (authKey != null)
@@ -25,6 +33,7 @@ postReqRouter.post("*", (request, response, next) => {
             // @see ./exe_datas.js
             
             EXE_DATAS[authKey.usage].postFunction(request);
+            logging.log(`🔨 POST Function finished executing.`);
         }
         else
         {
