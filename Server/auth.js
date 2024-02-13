@@ -192,11 +192,12 @@ fs.readdir(path.resolve(__dirname, "./Keys/"), {
 
         logging.log("✅ getKeys and postKeys directory loaded", true);
 
-        console.dir(this.getKeys)
-        console.dir(this.postKeys)
+        // console.dir(this.getKeys)
+        // console.dir(this.postKeys)
     }
 });
 
+// For test uses only
 // let ascii_str = require("./util.js").genAsciiStr(512);
 // console.log(ascii_str)
 // new this.Keys(ascii_str, "127.0.0.1", false, "GET");

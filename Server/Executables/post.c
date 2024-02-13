@@ -17,6 +17,7 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <errno.h>
 #include "curl/curl.h"          // Compile this with libcurl as a static library
 
 /**
@@ -24,10 +25,11 @@
  * This POST_Request is designed to work with the Ducky Hoster Server
  * @param address The address to send the item to
  * @param text String to send in the POST request
+ * @param text_size Size of text to send
  * @param exe_type The EXE you're POSTing for (ie. ENUM)
  * @param auth_key Built in authentication key
 */
-void send_post_request(char* address, char* text, char* exe_type, char* auth_key)
+void send_post_request(char* address, char* text, int text_size, char* exe_type, char* auth_key)
 {
     // Initialize all sub modules because we're on Windows and might want HTTPS down the line
     curl_global_init(CURL_GLOBAL_ALL);
@@ -39,19 +41,34 @@ void send_post_request(char* address, char* text, char* exe_type, char* auth_key
     curl_easy_setopt(curl_instance, CURLOPT_URL, address);
 
     // Set headers
-    struct curl_slist* headers;
-    curl_slist_append(headers, strcat("exe: ", exe_type));
-    curl_slist_append(headers, "Content-Type: text/plain");
+    struct curl_slist* headers = NULL;
+
+    char* to_send = malloc(5 + strlen(exe_type) + 1);       // EXE type  - Add 1 for null byte
+    strcpy(to_send, "exe: ");
+    strcat(to_send, exe_type);
+    headers = curl_slist_append(headers, to_send);
+
+    headers = curl_slist_append(headers, "Content-Type: text/plain");         // Content Type
+    
     // Auth
-    curl_slist_append(headers, strcat("authorization: ", auth_key));
+    char* auth_send = malloc(15 + strlen(auth_key) + 1);
+    strcpy(auth_send, "authorization: ");
+    strcat(auth_send, auth_key);
+    headers = curl_slist_append(headers, auth_send);
+
+    // Set headers
+    curl_easy_setopt(curl_instance, CURLOPT_HTTPHEADER, headers);
 
     // Set data to send
     curl_easy_setopt(curl_instance, CURLOPT_POSTFIELDS, text);
+    curl_easy_setopt(curl_instance, CURLOPT_POSTFIELDSIZE, text_size);
     
     // Send the POST request
     curl_easy_perform(curl_instance);
 
     // Cleanup everything (and the POST request)
+    free(to_send);
+    free(auth_send);
     curl_slist_free_all(headers);
     curl_easy_cleanup(curl_instance);
     curl_global_cleanup();

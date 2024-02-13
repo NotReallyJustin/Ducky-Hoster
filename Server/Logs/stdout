@@ -1,0 +1,120 @@
+2024/2/13 1:2:45 -	✅ Server launched on port 80.
+2024/2/13 1:2:45 -	✅ Retrieved all keys in ./Keys/
+2024/2/13 1:2:45 -	✅ getKeys and postKeys directory loaded
+2024/2/13 1:3:5 -	
+2024/2/13 1:3:5 -	Connection established with ::ffff:127.0.0.1 via port 54546.
+2024/2/13 1:3:5 -	Request Type: GET
+2024/2/13 1:3:5 -	Request Host: 127.0.0.1
+2024/2/13 1:3:5 -	Auth Key: h0K40Dmn;pXtc@j;]`ydPM`fYP&rXESSGXK=@`2TXQ1rFVJYPfC}&rc=3vI^5kcK@&E4;z1Nfb1=Qk1x;fD4>u{XT@`<@<ek67pYo>GP[LJR8=245pu33JE9ZS44fCLWHpy1S9qSzhT_j@9vx2rSyqQwUqJ<7:ggbF}6TolGN4to3c0KAqbjaOGAi=zM1lj~ma6?Ej8ECgk[^qWIFYzA;6TS>pDn:{?P3[y;z&LFSE^exmGXya?A{:XjdEiDRi3_OPT}giuCrZDu2nUoVr[K9svE>Y}g=:7FVr@KcQcI=fgcF>x}^OO4r=etzaETRaD`_|07QG8ZTVSO=faUjMOBp8~8H1d9St:t4^K&Dm3n|&bUQXJ^G@PYW&;ix{HXK_|uxrG6^M8>BmOBdniDq3T9;o9W}CO`DgWP<nuyC<dV|]S4f[}08uteBh7XurdzgVowMk{N8ZcErIpd@DW{4cpj;MGf}]o=tQB=S5HVK]6K?91BAOYK:0E[|RCZRdh5a^;
+2024/2/13 1:3:5 -	🔨 GET request denied for IP ::ffff:127.0.0.1 due to invalid auth key 'h0K40Dmn;pXtc@j;]`ydPM`fYP&rXESSGXK=@`2TXQ1rFVJYPfC}&rc=3vI^5kcK@&E4;z1Nfb1=Qk1x;fD4>u{XT@`<@<ek67pYo>GP[LJR8=245pu33JE9ZS44fCLWHpy1S9qSzhT_j@9vx2rSyqQwUqJ<7:ggbF}6TolGN4to3c0KAqbjaOGAi=zM1lj~ma6?Ej8ECgk[^qWIFYzA;6TS>pDn:{?P3[y;z&LFSE^exmGXya?A{:XjdEiDRi3_OPT}giuCrZDu2nUoVr[K9svE>Y}g=:7FVr@KcQcI=fgcF>x}^OO4r=etzaETRaD`_|07QG8ZTVSO=faUjMOBp8~8H1d9St:t4^K&Dm3n|&bUQXJ^G@PYW&;ix{HXK_|uxrG6^M8>BmOBdniDq3T9;o9W}CO`DgWP<nuyC<dV|]S4f[}08uteBh7XurdzgVowMk{N8ZcErIpd@DW{4cpj;MGf}]o=tQB=S5HVK]6K?91BAOYK:0E[|RCZRdh5a^;'.
+2024/2/13 1:5:22 -	✅ Server launched on port 80.
+2024/2/13 1:5:22 -	✅ Retrieved all keys in ./Keys/
+2024/2/13 1:5:22 -	✅ getKeys and postKeys directory loaded
+2024/2/13 1:6:5 -	
+2024/2/13 1:6:5 -	Connection established with ::ffff:127.0.0.1 via port 54590.
+2024/2/13 1:6:5 -	Request Type: GET
+2024/2/13 1:6:5 -	Request Host: 127.0.0.1
+2024/2/13 1:6:5 -	Auth Key: |zHud=_y<^P3}V>vse8b[Ogl61vh14XOLbrRk>8J2HAg^=Zg}J3Z?a_YW&1ne9NLSUzhtuoE?b}B`zVwy6|XBi>GwmU;x2^jGP[ztR[paMTM<MhUtm&]9fMo3m7TTdr>e?5w_j`1=J~YWpeo?RUj^MyO2u:oc_^ttYwitEnFtjPZkz5^]H&Jgnz2r|g03mx}lLt{L4;gPXuF_veyYA&yn`YK;spi5T2b:KKCct7FZH_[jH4TI`qK5]B@r8XD&i_k@il];O2]a=EV{kv_LPQVoWPIx|WYROIYq_5zAYG}{yMqCXA]T}a}3:j&A=;P_=uNqnCwGT<Ky<:Z|4Uz1C>t}LWfNk:Ciotjim&G{{3=x4qC_n2eCw6phZj;^M56Qrli5qyh7>pRjPPiKDA{nk8i=^2iYITjQ[Id`JHhTpTx@^FzW_6tv{2KdEJVweNBQmpQ5UMrA>yJ3W8{G@SpS@}d=A^twsKF]4O;LMSBWU1le{rp@kkk2uO0TU{PAGN];bWQ
+2024/2/13 1:6:5 -	🔨 GET request denied for IP ::ffff:127.0.0.1 due to invalid auth key '|zHud=_y<^P3}V>vse8b[Ogl61vh14XOLbrRk>8J2HAg^=Zg}J3Z?a_YW&1ne9NLSUzhtuoE?b}B`zVwy6|XBi>GwmU;x2^jGP[ztR[paMTM<MhUtm&]9fMo3m7TTdr>e?5w_j`1=J~YWpeo?RUj^MyO2u:oc_^ttYwitEnFtjPZkz5^]H&Jgnz2r|g03mx}lLt{L4;gPXuF_veyYA&yn`YK;spi5T2b:KKCct7FZH_[jH4TI`qK5]B@r8XD&i_k@il];O2]a=EV{kv_LPQVoWPIx|WYROIYq_5zAYG}{yMqCXA]T}a}3:j&A=;P_=uNqnCwGT<Ky<:Z|4Uz1C>t}LWfNk:Ciotjim&G{{3=x4qC_n2eCw6phZj;^M56Qrli5qyh7>pRjPPiKDA{nk8i=^2iYITjQ[Id`JHhTpTx@^FzW_6tv{2KdEJVweNBQmpQ5UMrA>yJ3W8{G@SpS@}d=A^twsKF]4O;LMSBWU1le{rp@kkk2uO0TU{PAGN];bWQ'.
+2024/2/13 1:6:21 -	✅ Server launched on port 80.
+2024/2/13 1:6:21 -	✅ Retrieved all keys in ./Keys/
+2024/2/13 1:6:21 -	✅ getKeys and postKeys directory loaded
+2024/2/13 1:6:26 -	
+2024/2/13 1:6:26 -	Connection established with ::ffff:127.0.0.1 via port 54594.
+2024/2/13 1:6:26 -	Request Type: GET
+2024/2/13 1:6:26 -	Request Host: 127.0.0.1
+2024/2/13 1:6:26 -	Auth Key: |zHud=_y<^P3}V>vse8b[Ogl61vh14XOLbrRk>8J2HAg^=Zg}J3Z?a_YW&1ne9NLSUzhtuoE?b}B`zVwy6|XBi>GwmU;x2^jGP[ztR[paMTM<MhUtm&]9fMo3m7TTdr>e?5w_j`1=J~YWpeo?RUj^MyO2u:oc_^ttYwitEnFtjPZkz5^]H&Jgnz2r|g03mx}lLt{L4;gPXuF_veyYA&yn`YK;spi5T2b:KKCct7FZH_[jH4TI`qK5]B@r8XD&i_k@il];O2]a=EV{kv_LPQVoWPIx|WYROIYq_5zAYG}{yMqCXA]T}a}3:j&A=;P_=uNqnCwGT<Ky<:Z|4Uz1C>t}LWfNk:Ciotjim&G{{3=x4qC_n2eCw6phZj;^M56Qrli5qyh7>pRjPPiKDA{nk8i=^2iYITjQ[Id`JHhTpTx@^FzW_6tv{2KdEJVweNBQmpQ5UMrA>yJ3W8{G@SpS@}d=A^twsKF]4O;LMSBWU1le{rp@kkk2uO0TU{PAGN];bWQ
+2024/2/13 1:7:28 -	✅ Server launched on port 80.
+2024/2/13 1:7:28 -	✅ Retrieved all keys in ./Keys/
+2024/2/13 1:7:28 -	✅ getKeys and postKeys directory loaded
+2024/2/13 1:7:31 -	
+2024/2/13 1:7:31 -	Connection established with ::ffff:127.0.0.1 via port 54611.
+2024/2/13 1:7:31 -	Request Type: GET
+2024/2/13 1:7:31 -	Request Host: 127.0.0.1
+2024/2/13 1:7:31 -	Auth Key: |zHud=_y<^P3}V>vse8b[Ogl61vh14XOLbrRk>8J2HAg^=Zg}J3Z?a_YW&1ne9NLSUzhtuoE?b}B`zVwy6|XBi>GwmU;x2^jGP[ztR[paMTM<MhUtm&]9fMo3m7TTdr>e?5w_j`1=J~YWpeo?RUj^MyO2u:oc_^ttYwitEnFtjPZkz5^]H&Jgnz2r|g03mx}lLt{L4;gPXuF_veyYA&yn`YK;spi5T2b:KKCct7FZH_[jH4TI`qK5]B@r8XD&i_k@il];O2]a=EV{kv_LPQVoWPIx|WYROIYq_5zAYG}{yMqCXA]T}a}3:j&A=;P_=uNqnCwGT<Ky<:Z|4Uz1C>t}LWfNk:Ciotjim&G{{3=x4qC_n2eCw6phZj;^M56Qrli5qyh7>pRjPPiKDA{nk8i=^2iYITjQ[Id`JHhTpTx@^FzW_6tv{2KdEJVweNBQmpQ5UMrA>yJ3W8{G@SpS@}d=A^twsKF]4O;LMSBWU1le{rp@kkk2uO0TU{PAGN];bWQ
+2024/2/13 1:8:20 -	✅ Server launched on port 80.
+2024/2/13 1:8:20 -	✅ Retrieved all keys in ./Keys/
+2024/2/13 1:8:20 -	✅ getKeys and postKeys directory loaded
+2024/2/13 1:8:22 -	
+2024/2/13 1:8:22 -	Connection established with ::ffff:127.0.0.1 via port 54616.
+2024/2/13 1:8:22 -	Request Type: GET
+2024/2/13 1:8:22 -	Request Host: 127.0.0.1
+2024/2/13 1:8:22 -	Auth Key: |zHud=_y<^P3}V>vse8b[Ogl61vh14XOLbrRk>8J2HAg^=Zg}J3Z?a_YW&1ne9NLSUzhtuoE?b}B`zVwy6|XBi>GwmU;x2^jGP[ztR[paMTM<MhUtm&]9fMo3m7TTdr>e?5w_j`1=J~YWpeo?RUj^MyO2u:oc_^ttYwitEnFtjPZkz5^]H&Jgnz2r|g03mx}lLt{L4;gPXuF_veyYA&yn`YK;spi5T2b:KKCct7FZH_[jH4TI`qK5]B@r8XD&i_k@il];O2]a=EV{kv_LPQVoWPIx|WYROIYq_5zAYG}{yMqCXA]T}a}3:j&A=;P_=uNqnCwGT<Ky<:Z|4Uz1C>t}LWfNk:Ciotjim&G{{3=x4qC_n2eCw6phZj;^M56Qrli5qyh7>pRjPPiKDA{nk8i=^2iYITjQ[Id`JHhTpTx@^FzW_6tv{2KdEJVweNBQmpQ5UMrA>yJ3W8{G@SpS@}d=A^twsKF]4O;LMSBWU1le{rp@kkk2uO0TU{PAGN];bWQ
+2024/2/13 1:9:16 -	✅ Server launched on port 80.
+2024/2/13 1:9:16 -	✅ Retrieved all keys in ./Keys/
+2024/2/13 1:9:16 -	✅ getKeys and postKeys directory loaded
+2024/2/13 1:9:22 -	
+2024/2/13 1:9:22 -	Connection established with ::ffff:127.0.0.1 via port 54620.
+2024/2/13 1:9:22 -	Request Type: GET
+2024/2/13 1:9:22 -	Request Host: 127.0.0.1
+2024/2/13 1:9:22 -	Auth Key: |zHud=_y<^P3}V>vse8b[Ogl61vh14XOLbrRk>8J2HAg^=Zg}J3Z?a_YW&1ne9NLSUzhtuoE?b}B`zVwy6|XBi>GwmU;x2^jGP[ztR[paMTM<MhUtm&]9fMo3m7TTdr>e?5w_j`1=J~YWpeo?RUj^MyO2u:oc_^ttYwitEnFtjPZkz5^]H&Jgnz2r|g03mx}lLt{L4;gPXuF_veyYA&yn`YK;spi5T2b:KKCct7FZH_[jH4TI`qK5]B@r8XD&i_k@il];O2]a=EV{kv_LPQVoWPIx|WYROIYq_5zAYG}{yMqCXA]T}a}3:j&A=;P_=uNqnCwGT<Ky<:Z|4Uz1C>t}LWfNk:Ciotjim&G{{3=x4qC_n2eCw6phZj;^M56Qrli5qyh7>pRjPPiKDA{nk8i=^2iYITjQ[Id`JHhTpTx@^FzW_6tv{2KdEJVweNBQmpQ5UMrA>yJ3W8{G@SpS@}d=A^twsKF]4O;LMSBWU1le{rp@kkk2uO0TU{PAGN];bWQ
+2024/2/13 1:11:32 -	✅ Server launched on port 80.
+2024/2/13 1:11:32 -	✅ Retrieved all keys in ./Keys/
+2024/2/13 1:11:32 -	✅ getKeys and postKeys directory loaded
+2024/2/13 1:11:35 -	
+2024/2/13 1:11:35 -	Connection established with ::ffff:127.0.0.1 via port 50452.
+2024/2/13 1:11:35 -	Request Type: GET
+2024/2/13 1:11:35 -	Request Host: 127.0.0.1
+2024/2/13 1:11:35 -	Auth Key: |zHud=_y<^P3}V>vse8b[Ogl61vh14XOLbrRk>8J2HAg^=Zg}J3Z?a_YW&1ne9NLSUzhtuoE?b}B`zVwy6|XBi>GwmU;x2^jGP[ztR[paMTM<MhUtm&]9fMo3m7TTdr>e?5w_j`1=J~YWpeo?RUj^MyO2u:oc_^ttYwitEnFtjPZkz5^]H&Jgnz2r|g03mx}lLt{L4;gPXuF_veyYA&yn`YK;spi5T2b:KKCct7FZH_[jH4TI`qK5]B@r8XD&i_k@il];O2]a=EV{kv_LPQVoWPIx|WYROIYq_5zAYG}{yMqCXA]T}a}3:j&A=;P_=uNqnCwGT<Ky<:Z|4Uz1C>t}LWfNk:Ciotjim&G{{3=x4qC_n2eCw6phZj;^M56Qrli5qyh7>pRjPPiKDA{nk8i=^2iYITjQ[Id`JHhTpTx@^FzW_6tv{2KdEJVweNBQmpQ5UMrA>yJ3W8{G@SpS@}d=A^twsKF]4O;LMSBWU1le{rp@kkk2uO0TU{PAGN];bWQ
+2024/2/13 1:12:24 -	✅ Server launched on port 80.
+2024/2/13 1:12:24 -	✅ Retrieved all keys in ./Keys/
+2024/2/13 1:12:24 -	✅ getKeys and postKeys directory loaded
+2024/2/13 1:12:29 -	
+2024/2/13 1:12:29 -	Connection established with ::ffff:127.0.0.1 via port 50459.
+2024/2/13 1:12:29 -	Request Type: GET
+2024/2/13 1:12:29 -	Request Host: 127.0.0.1
+2024/2/13 1:12:29 -	Auth Key: |zHud=_y<^P3}V>vse8b[Ogl61vh14XOLbrRk>8J2HAg^=Zg}J3Z?a_YW&1ne9NLSUzhtuoE?b}B`zVwy6|XBi>GwmU;x2^jGP[ztR[paMTM<MhUtm&]9fMo3m7TTdr>e?5w_j`1=J~YWpeo?RUj^MyO2u:oc_^ttYwitEnFtjPZkz5^]H&Jgnz2r|g03mx}lLt{L4;gPXuF_veyYA&yn`YK;spi5T2b:KKCct7FZH_[jH4TI`qK5]B@r8XD&i_k@il];O2]a=EV{kv_LPQVoWPIx|WYROIYq_5zAYG}{yMqCXA]T}a}3:j&A=;P_=uNqnCwGT<Ky<:Z|4Uz1C>t}LWfNk:Ciotjim&G{{3=x4qC_n2eCw6phZj;^M56Qrli5qyh7>pRjPPiKDA{nk8i=^2iYITjQ[Id`JHhTpTx@^FzW_6tv{2KdEJVweNBQmpQ5UMrA>yJ3W8{G@SpS@}d=A^twsKF]4O;LMSBWU1le{rp@kkk2uO0TU{PAGN];bWQ
+2024/2/13 1:23:32 -	✅ Server launched on port 80.
+2024/2/13 1:23:32 -	✅ Retrieved all keys in ./Keys/
+2024/2/13 1:23:32 -	✅ getKeys and postKeys directory loaded
+2024/2/13 1:23:43 -	
+2024/2/13 1:23:43 -	Connection established with ::ffff:127.0.0.1 via port 61621.
+2024/2/13 1:23:43 -	Request Type: GET
+2024/2/13 1:23:43 -	Request Host: 127.0.0.1
+2024/2/13 1:23:43 -	Auth Key: |zHud=_y<^P3}V>vse8b[Ogl61vh14XOLbrRk>8J2HAg^=Zg}J3Z?a_YW&1ne9NLSUzhtuoE?b}B`zVwy6|XBi>GwmU;x2^jGP[ztR[paMTM<MhUtm&]9fMo3m7TTdr>e?5w_j`1=J~YWpeo?RUj^MyO2u:oc_^ttYwitEnFtjPZkz5^]H&Jgnz2r|g03mx}lLt{L4;gPXuF_veyYA&yn`YK;spi5T2b:KKCct7FZH_[jH4TI`qK5]B@r8XD&i_k@il];O2]a=EV{kv_LPQVoWPIx|WYROIYq_5zAYG}{yMqCXA]T}a}3:j&A=;P_=uNqnCwGT<Ky<:Z|4Uz1C>t}LWfNk:Ciotjim&G{{3=x4qC_n2eCw6phZj;^M56Qrli5qyh7>pRjPPiKDA{nk8i=^2iYITjQ[Id`JHhTpTx@^FzW_6tv{2KdEJVweNBQmpQ5UMrA>yJ3W8{G@SpS@}d=A^twsKF]4O;LMSBWU1le{rp@kkk2uO0TU{PAGN];bWQ
+2024/2/13 1:24:51 -	✅ Server launched on port 80.
+2024/2/13 1:24:51 -	✅ Retrieved all keys in ./Keys/
+2024/2/13 1:24:51 -	✅ getKeys and postKeys directory loaded
+2024/2/13 1:24:54 -	
+2024/2/13 1:24:54 -	Connection established with ::ffff:127.0.0.1 via port 61635.
+2024/2/13 1:24:54 -	Request Type: GET
+2024/2/13 1:24:54 -	Request Host: 127.0.0.1
+2024/2/13 1:24:54 -	Auth Key: |zHud=_y<^P3}V>vse8b[Ogl61vh14XOLbrRk>8J2HAg^=Zg}J3Z?a_YW&1ne9NLSUzhtuoE?b}B`zVwy6|XBi>GwmU;x2^jGP[ztR[paMTM<MhUtm&]9fMo3m7TTdr>e?5w_j`1=J~YWpeo?RUj^MyO2u:oc_^ttYwitEnFtjPZkz5^]H&Jgnz2r|g03mx}lLt{L4;gPXuF_veyYA&yn`YK;spi5T2b:KKCct7FZH_[jH4TI`qK5]B@r8XD&i_k@il];O2]a=EV{kv_LPQVoWPIx|WYROIYq_5zAYG}{yMqCXA]T}a}3:j&A=;P_=uNqnCwGT<Ky<:Z|4Uz1C>t}LWfNk:Ciotjim&G{{3=x4qC_n2eCw6phZj;^M56Qrli5qyh7>pRjPPiKDA{nk8i=^2iYITjQ[Id`JHhTpTx@^FzW_6tv{2KdEJVweNBQmpQ5UMrA>yJ3W8{G@SpS@}d=A^twsKF]4O;LMSBWU1le{rp@kkk2uO0TU{PAGN];bWQ
+2024/2/13 1:51:27 -	✅ Server launched on port 80.
+2024/2/13 1:51:27 -	✅ Retrieved all keys in ./Keys/
+2024/2/13 1:51:27 -	✅ getKeys and postKeys directory loaded
+2024/2/13 1:51:46 -	
+2024/2/13 1:51:46 -	Connection established with ::ffff:127.0.0.1 via port 56082.
+2024/2/13 1:51:46 -	Request Type: GET
+2024/2/13 1:51:46 -	Request Host: 127.0.0.1
+2024/2/13 1:51:46 -	Auth Key: |zHud=_y<^P3}V>vse8b[Ogl61vh14XOLbrRk>8J2HAg^=Zg}J3Z?a_YW&1ne9NLSUzhtuoE?b}B`zVwy6|XBi>GwmU;x2^jGP[ztR[paMTM<MhUtm&]9fMo3m7TTdr>e?5w_j`1=J~YWpeo?RUj^MyO2u:oc_^ttYwitEnFtjPZkz5^]H&Jgnz2r|g03mx}lLt{L4;gPXuF_veyYA&yn`YK;spi5T2b:KKCct7FZH_[jH4TI`qK5]B@r8XD&i_k@il];O2]a=EV{kv_LPQVoWPIx|WYROIYq_5zAYG}{yMqCXA]T}a}3:j&A=;P_=uNqnCwGT<Ky<:Z|4Uz1C>t}LWfNk:Ciotjim&G{{3=x4qC_n2eCw6phZj;^M56Qrli5qyh7>pRjPPiKDA{nk8i=^2iYITjQ[Id`JHhTpTx@^FzW_6tv{2KdEJVweNBQmpQ5UMrA>yJ3W8{G@SpS@}d=A^twsKF]4O;LMSBWU1le{rp@kkk2uO0TU{PAGN];bWQ
+2024/2/13 1:53:59 -	✅ Server launched on port 80.
+2024/2/13 1:53:59 -	✅ Retrieved all keys in ./Keys/
+2024/2/13 1:53:59 -	✅ getKeys and postKeys directory loaded
+2024/2/13 1:54:2 -	
+2024/2/13 1:54:2 -	Connection established with ::ffff:127.0.0.1 via port 56122.
+2024/2/13 1:54:2 -	Request Type: GET
+2024/2/13 1:54:2 -	Request Host: 127.0.0.1
+2024/2/13 1:54:2 -	Auth Key: |zHud=_y<^P3}V>vse8b[Ogl61vh14XOLbrRk>8J2HAg^=Zg}J3Z?a_YW&1ne9NLSUzhtuoE?b}B`zVwy6|XBi>GwmU;x2^jGP[ztR[paMTM<MhUtm&]9fMo3m7TTdr>e?5w_j`1=J~YWpeo?RUj^MyO2u:oc_^ttYwitEnFtjPZkz5^]H&Jgnz2r|g03mx}lLt{L4;gPXuF_veyYA&yn`YK;spi5T2b:KKCct7FZH_[jH4TI`qK5]B@r8XD&i_k@il];O2]a=EV{kv_LPQVoWPIx|WYROIYq_5zAYG}{yMqCXA]T}a}3:j&A=;P_=uNqnCwGT<Ky<:Z|4Uz1C>t}LWfNk:Ciotjim&G{{3=x4qC_n2eCw6phZj;^M56Qrli5qyh7>pRjPPiKDA{nk8i=^2iYITjQ[Id`JHhTpTx@^FzW_6tv{2KdEJVweNBQmpQ5UMrA>yJ3W8{G@SpS@}d=A^twsKF]4O;LMSBWU1le{rp@kkk2uO0TU{PAGN];bWQ
+2024/2/13 1:54:2 -	🔨 GET request denied for IP ::ffff:127.0.0.1 due to invalid auth key '|zHud=_y<^P3}V>vse8b[Ogl61vh14XOLbrRk>8J2HAg^=Zg}J3Z?a_YW&1ne9NLSUzhtuoE?b}B`zVwy6|XBi>GwmU;x2^jGP[ztR[paMTM<MhUtm&]9fMo3m7TTdr>e?5w_j`1=J~YWpeo?RUj^MyO2u:oc_^ttYwitEnFtjPZkz5^]H&Jgnz2r|g03mx}lLt{L4;gPXuF_veyYA&yn`YK;spi5T2b:KKCct7FZH_[jH4TI`qK5]B@r8XD&i_k@il];O2]a=EV{kv_LPQVoWPIx|WYROIYq_5zAYG}{yMqCXA]T}a}3:j&A=;P_=uNqnCwGT<Ky<:Z|4Uz1C>t}LWfNk:Ciotjim&G{{3=x4qC_n2eCw6phZj;^M56Qrli5qyh7>pRjPPiKDA{nk8i=^2iYITjQ[Id`JHhTpTx@^FzW_6tv{2KdEJVweNBQmpQ5UMrA>yJ3W8{G@SpS@}d=A^twsKF]4O;LMSBWU1le{rp@kkk2uO0TU{PAGN];bWQ'.
+2024/2/13 1:54:33 -	✅ Server launched on port 80.
+2024/2/13 1:54:33 -	✅ Retrieved all keys in ./Keys/
+2024/2/13 1:54:33 -	✅ getKeys and postKeys directory loaded
+2024/2/13 1:55:4 -	✅ Server launched on port 80.
+2024/2/13 1:55:4 -	✅ Retrieved all keys in ./Keys/
+2024/2/13 1:55:4 -	✅ getKeys and postKeys directory loaded
+2024/2/13 1:55:7 -	
+2024/2/13 1:55:7 -	Connection established with ::ffff:127.0.0.1 via port 56155.
+2024/2/13 1:55:7 -	Request Type: GET
+2024/2/13 1:55:7 -	Request Host: 127.0.0.1
+2024/2/13 1:55:7 -	Auth Key: zNBc:[wKWEwComu<bQ[e>rTzPTpcJII<JDP1RZQ1H3W1XyOf8d=CjH]F}S;jU7wM>xC9eDsN>9aUz;T&&1=oqji{0zRnrYN9liaw<Db[fRGr;i4WpAP9F7g4&5f;tSX`O7H0gn>QA9scgdx}X5[eKcV[nRPc:dQ[99w&h{M{_c1AZZnyYe267c{{rUgwICBGeE:?Ev9dPAngKUgLSM1eTf&@Ok_dD7hWdp21v97J@{P:A:|R2Jq=Lc^cPH6[pFaQjLnOaY;&h3QzkXeF58mVjqyHrDC[<BOiHT1MAb8Tg5jSC]lGz`l<h9pHC9?@;pP[h9l<KtBlfM=@NTyWLgq2{{<rs7^7ikT;6Hc6HwVPybne@TfR7|&6<V@vpID57=G7ADkPJ{;7576VNPT_GlaWWOv[;ZC?Q8Gze>[Pu6G84BOGupUIYxrkTPQ9Zvx=fpAnK|tDooy&7h|VLBg445N&F|=mDHv}54W`I5wX_m}Qa55dkJM=u[=}nJzFQdcitG7r
+2024/2/13 2:2:4 -	✅ Server launched on port 80.
+2024/2/13 2:2:4 -	✅ Retrieved all keys in ./Keys/
+2024/2/13 2:2:4 -	✅ getKeys and postKeys directory loaded
+2024/2/13 2:2:6 -	
+2024/2/13 2:2:6 -	Connection established with ::ffff:127.0.0.1 via port 49683.
+2024/2/13 2:2:6 -	Request Type: GET
+2024/2/13 2:2:6 -	Request Host: 127.0.0.1
+2024/2/13 2:2:6 -	Auth Key: zNBc:[wKWEwComu<bQ[e>rTzPTpcJII<JDP1RZQ1H3W1XyOf8d=CjH]F}S;jU7wM>xC9eDsN>9aUz;T&&1=oqji{0zRnrYN9liaw<Db[fRGr;i4WpAP9F7g4&5f;tSX`O7H0gn>QA9scgdx}X5[eKcV[nRPc:dQ[99w&h{M{_c1AZZnyYe267c{{rUgwICBGeE:?Ev9dPAngKUgLSM1eTf&@Ok_dD7hWdp21v97J@{P:A:|R2Jq=Lc^cPH6[pFaQjLnOaY;&h3QzkXeF58mVjqyHrDC[<BOiHT1MAb8Tg5jSC]lGz`l<h9pHC9?@;pP[h9l<KtBlfM=@NTyWLgq2{{<rs7^7ikT;6Hc6HwVPybne@TfR7|&6<V@vpID57=G7ADkPJ{;7576VNPT_GlaWWOv[;ZC?Q8Gze>[Pu6G84BOGupUIYxrkTPQ9Zvx=fpAnK|tDooy&7h|VLBg445N&F|=mDHv}54W`I5wX_m}Qa55dkJM=u[=}nJzFQdcitG7r
+2024/2/13 2:2:7 -	C file C:\Users\Justi\OneDrive\Desktop\Code\Ducky-Hoster\Server\Executables\Enumerator\ls_read.c from ::ffff:127.0.0.1 compiled!
+2024/2/13 2:2:7 -	🔨 EXE file C:\Users\Justi\OneDrive\Desktop\Code\Ducky-Hoster\Server\Executables\Enumerator\RemoteCode.exe sent to ::ffff:127.0.0.1.

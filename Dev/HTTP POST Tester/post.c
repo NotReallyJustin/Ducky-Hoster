@@ -18,6 +18,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <errno.h>
+//#include "libcurl.a"
 #include "curl/curl.h"          // Compile this with libcurl as a static library
 
 /**

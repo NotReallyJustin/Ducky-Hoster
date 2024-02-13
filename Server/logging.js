@@ -33,6 +33,7 @@ module.exports.log = function(text, print2Console) {
     try
     {
         fs.appendFileSync(TRACE_PATH, `${getDateTime()} -\t${text}\n`, {encoding: "utf-8"});
+        fs.appendFileSync(STDOUT_PATH, `${getDateTime()} -\t${text}\n`, {encoding: "utf-8"});
     }
     catch(err)
     {
@@ -49,6 +50,7 @@ module.exports.error = function(text) {
     try
     {
         fs.appendFileSync(TRACE_PATH, `${getDateTime()} -\t${text}\n`, {encoding: "utf-8"});
+        fs.appendFileSync(STDERR_PATH, `${getDateTime()} -\t${text}\n`, {encoding: "utf-8"});
     }
     catch(err)
     {

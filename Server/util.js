@@ -31,7 +31,7 @@ module.exports.random = (low, high) => Math.round(Math.random() * (high - low)) 
  * Gets the current timestamp (YYYY-MM-DD Hour:Month:Minute:Second)
  * @returns {String} Current timestamp, in UTC and 24 hour format
  */
-module.exports.getTimestamp() = () => {
+module.exports.getTimestamp = () => {
     let curr_date = new Date();
 
     return `${curr_date.getUTCFullYear()}-${curr_date.getUTCMonth() + 1}-${curr_date.getUTCDate()} ${curr_date.getUTCHours()}:${curr_date.getUTCMinutes()}:${curr_date.getUTCSeconds()}`;
