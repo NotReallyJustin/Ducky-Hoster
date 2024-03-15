@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <windows.h>            // You must import this to interact with Windows API
+#include <windows.h>            // You must import this to interact with Windows API because Windows doesn't have <dirent.h> (fml)
 
 #pragma GCC diagnostic ignored "-Wimplicit-function-declaration"
 
@@ -14,6 +14,7 @@
 */
 char** enumerate_directory(char* directory, int* arr_size)
 {
+    
     // This tracks the current array size and the number of items that exists
     int num_items = 0;
 
