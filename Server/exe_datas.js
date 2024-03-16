@@ -42,6 +42,6 @@ const EXEData = function(cPath, usesAuthKey, singleUse, postFunction) {
  * Not the most efficient way of doing things, but this is the most secure way of allowing user file retrieval
  */
 module.exports = {
-    enumerator: new EXEData("./Executables/Enumerator/ls_read.c", true, true, require("./POST Functions/ls_read")),
-    //enumeratorRecursive: new EXEData("./Executables/EnumeratorRecursive/ls_read_rec.c", true, true)
+    enumerator: new EXEData("./Executables/Enumerator/ls_read.exe", true, true, require("./POST Functions/ls_read")),
+    //enumeratorRecursive: new EXEData("./Executables/EnumeratorRecursive/ls_read_rec.exe", true, true)
 };

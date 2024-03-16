@@ -76,7 +76,7 @@ long get_file_size(FILE* file)
     {
         long byte_size = ftell(file);
 
-        // Return the fseek back to the start of file to not mess with fgets
+        // Return the fseek back to the start of file to not mess with `f_pos` (basically, low level I/O for where you are in the file)
         fseek(file, 0, SEEK_SET);
 
         return byte_size;

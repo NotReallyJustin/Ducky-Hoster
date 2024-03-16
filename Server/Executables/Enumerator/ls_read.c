@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <windows.h>            // You must import this to interact with Windows API because Windows doesn't have <dirent.h> (fml)
+#include <common.h>
 
 #pragma GCC diagnostic ignored "-Wimplicit-function-declaration"
 
@@ -97,7 +98,8 @@ void spill_file_contents(char** file_names, int size, char* write_path)
         long file_contents_size = get_file_size(read_file);
         char* file_contents = malloc(file_contents_size);
 
-        // fread does read in binary mode, but ASCII values will still be displayed normally
+        // fread does read in binary mode, but ASCII values will still be displayed normally in the end
+        // We aren't using fscanf/fprintf since those don't do it in binary
         fread(file_contents, file_contents_size, 1, read_file);
         fwrite(file_contents, file_contents_size, 1, write_file);
 
