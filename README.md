@@ -19,7 +19,7 @@ However, given the fact that there are a few Ducky Hoster executables that requi
 * Common Libraries will be precompiled into static files
 * Necessary libraries will also be precompiled into static files (`.a`)
 * Malware Executables will be compiled into an object file (`.o`) beforehand so the only thing left would be the linking phase of $GCC
-* When the Node server recieves a Get Request to create a malware, it will run `./make.ps1` to finish linking phase and add the macros
+* When the Node server recieves a Get Request to create a malware, it will run `./make.ps1` with a given write code (if necessary) to finish linking phase and add the macros
 
 ## Compiling/Assembling Static Libraries
 All the precompiling work has already been done for you. Since I'm developing this Software on Windows OS (for obvious reasons), we're going to use powershell. <br>
