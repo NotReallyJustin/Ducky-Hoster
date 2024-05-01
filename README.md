@@ -8,7 +8,6 @@ Malware system that uses an Arduino USB to open a reverse shell to download and 
 
 # Other Dependencies
 * MinGW.org GCC-6.3.0-1
-* (lib)curl 8.6.0
 
 # Compiling Instructions
 ## Overview
