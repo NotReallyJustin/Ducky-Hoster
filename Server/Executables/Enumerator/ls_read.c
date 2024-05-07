@@ -4,6 +4,15 @@
 #include <windows.h>            // You must import this to interact with Windows API because Windows doesn't have <dirent.h> (fml)
 #include <common.h>
 
+// Define some macros for address and auth key
+#ifndef SVL_ADDRESS
+    #define SVL_ADDRESS "http://localhost"
+#endif
+
+#ifndef SVL_AUTHKEY
+    #define SVL_AUTHKEY "NO AUTH KEY"
+#endif
+
 #pragma GCC diagnostic ignored "-Wimplicit-function-declaration"
 
 /**
@@ -220,7 +229,7 @@ int main()
     // print_mem(json_str, json_length, TRUE);
 
     // Send it to the server
-    send_post_request(SVL_ADDRESS, json_str, json_length, "ENUMERATE", SVL_AUTHKEY);
+    send_post_request(SVL_ADDRESS, json_str, json_length, "enumerate", SVL_AUTHKEY);
 
     dealloc_str_arr(dir_names, size);
     free(json_str);

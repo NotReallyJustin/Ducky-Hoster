@@ -8,7 +8,7 @@ gcc -c ../Error/winerror.c -o ../Error/winerror.o
 ar -rcs libpost.a post.o ../Error/winerror.o
 
 # Uncomment this out if debug
-gcc post.o -o post.exe -L../Error/ -lwinerror -lwininet
+# gcc post.o -o post.exe -L../Error/ -lwinerror -lwininet
 
 rm post.o
 rm ../Error/winerror.o
