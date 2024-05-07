@@ -25,6 +25,12 @@ server.all("*", (request, response, next) => {
 server.use(malwareReqs);
 server.use(malwareData);
 
+// Error handling middleware. Just log the error code and send ASCII.
+server.use((err, request, response, next) => {
+    logging.error(err.stack);
+    response.status(401).send(util.genAsciiStr(64));
+});
+
 // Handle all invalid paths. Generate some random numbers to make it look less sus
 server.all("*", (request, response) => {
     response.send(util.genAsciiStr(64));

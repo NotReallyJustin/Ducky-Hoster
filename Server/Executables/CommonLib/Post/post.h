@@ -1,6 +1,13 @@
 #include <wininet.h>
 
 /**
+ * Frees everything we malloc's inside url_components.
+ * Usually, this is done after all fields inside `parse_url()` is processed
+ * @param url_components Poiner to url_components struct to free
+*/
+void free_url_components(URL_COMPONENTS* url_components);
+
+/**
  * Parses a HTTPS URL into its components.
  * It is your job to free all the fields inside url_components when done. We reccomend calling `free_url_components()`
  * @param address HTTP URL address string to parse
@@ -9,13 +16,6 @@
  * @returns 0 if successful, -1 otherwise
 */
 int parse_url(char* address, URL_COMPONENTS* url_components);
-
-/**
- * Frees everything we malloc's inside url_components.
- * Usually, this is done after all fields inside `parse_url()` is processed
- * @param url_components Poiner to url_components struct to free
-*/
-void free_url_components(URL_COMPONENTS* url_components);
 
 /**
  * Sends a POST request with the given text inside the body. The content type is text/plain.

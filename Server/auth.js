@@ -198,6 +198,11 @@ fs.readdir(path.resolve(__dirname, "./Keys/"), {
 });
 
 // For test uses only
+
 // let ascii_str = require("./util.js").genAsciiStr(512);
 // console.log(ascii_str)
 // new this.Keys(ascii_str, "127.0.0.1", false, "GET");
+
+// let ascii_str = require("./util.js").genAsciiStr(512);
+// console.log(ascii_str)
+// new this.Keys(ascii_str, "::1", false, "TEST");

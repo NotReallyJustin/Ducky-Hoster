@@ -1,10 +1,11 @@
 #include "post.h"
 #include <stdio.h>
 
-// Compile with: $gcc -c .\random_outputs.c -o .\random_outputs.o -I/Users/Justi/Desktop/Code/C-Library-Demo/lib/headers --> Get object file to link
+// Compile with: $gcc .\sample_post.c -o .\sample_post -L./ -lpost -lwininet --> Get object file to link
 
 int main()
 {
     puts("Done!");
+    send_post_request("127.0.0.1:80", "Hello World!", 12, "ENUM", "HI");
     return 0;
 }

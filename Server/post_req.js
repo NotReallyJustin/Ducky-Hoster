@@ -13,12 +13,12 @@ const postReqRouter = express.Router({
 // Create a middleware that checks for authentication.
 // This is the same setup as get_req.js
 postReqRouter.post("*", (request, response, next) => {
-    
+
     // For standardization, obfuscation, and security purposes, we're only going to take plain text requests
     if (request.headers['content-type'] != "text/plain")
     {
-        response.status(400);
-        next();
+        logging.log(`🔨🚩 POST request from ${request.ip} of type ${request.headers.authorization} rejected for non-plain content type.`);
+        response.status(400).end();
         return;
     }
 
