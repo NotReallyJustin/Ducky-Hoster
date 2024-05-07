@@ -17,6 +17,12 @@ const EXEData = function(cPath, usesAuthKey, singleUse, postFunction) {
     this.cPath = path.resolve(__dirname, cPath);
 
     /**
+     * Not to be confused with CDIR lol, but this contains the directory path that contains the EXE file
+     * @type {String}
+     */
+    this.cDir = path.dirname(this.cPath);
+
+    /**
      * Whether this EXE requires an POST request AuthKey to be generated (usually for exfiltration)
      * @type {Boolean}
      */
