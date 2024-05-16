@@ -8,6 +8,7 @@ Malware system that uses an Arduino USB to open a reverse shell to download and 
 
 # Other Dependencies
 * MinGW.org GCC-6.3.0-1
+* Windows OS (You don't need to do anything extra here. Some executables dynamically link `wininet` - which comes preinstalled in Windows OS)
 
 # Compiling Instructions
 ## Overview
@@ -37,5 +38,5 @@ gcc -c use_rand.c -o [OUTPUT NAME].o -I[Path to header file]
 ## [Runtime] Linking Malware Executabkle
 You should never be linking malware executables on your own. The Node server will automatically do that upon runtime after validating the GET request. For security reasons, the Node server do this via an already prepared `./make.ps1` file where the only parameter you could pass in is a Macro for the POST key.
 ```ps1
-powershell.exe -ExecutionPolicy Bypass -File ./make.ps1 [POST KEY]
+powershell.exe -ExecutionPolicy Bypass -File ./make.ps1 -SVL_ADDRESS [Server Address] -SVL_AUTHKEY [Auth Key]
 ```
