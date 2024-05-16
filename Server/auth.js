@@ -9,6 +9,7 @@ const fs = require("fs");
 const path = require("path");
 const EXEData = require("./exe_datas.js");
 const logging = require("./logging.js");
+const { genAsciiStr } = require("./util.js");
 
 /**
  * A class that structures the get and post keys.
@@ -21,6 +22,7 @@ module.exports.Keys = class
      * These hashes **will** be saved in a text file by their IP addresses when they're first created.
      * If you're modifying this code yourself, it might make more sense to use a SQL/noSQL database, but I feel it's unnecessary for the scope of this malware server and 
      * only creates more security vulnerabilities (also because MongoDB Atlas is lowkey kind of expensive to keep up and running).
+     * You are responsible for appending this into getKeys/setKeys/other relevant dictionaries
      * @param {String} key Intended Password/Key. Ideally, these have a length of 512
      * @param {String} ip Ideally, an IP address goes here so we can track who is generating (and hence, using) the key.
      * @param {Boolean} singleUse Whether or not the key is single use
@@ -197,12 +199,43 @@ fs.readdir(path.resolve(__dirname, "./Keys/"), {
     }
 });
 
-// For test uses only
+// 🚨 For test uses only
 
-// let ascii_str = require("./util.js").genAsciiStr(512);
-// console.log(ascii_str)
-// new this.Keys(ascii_str, "127.0.0.1", false, "GET");
+/**
+ * Generates a key. This should only be for testing purposes. This should never be called directly.
+ * Side Effect: This creates an auth file for the key
+ * @param {String} ip IP address to target for PostKey.
+ * @param {boolean} singleUse Whether PostKey should be single use
+ * @param {String} usage Usage of key
+ * @returns {this.Keys} Newly generated key object
+ */
+const genKey = (ip, singleUse, usage) => {
+    let ascii_str = genAsciiStr(512);
+    console.log(`${usage} Key: ${ascii_str}`);
+    
+    let key = new this.Keys(ascii_str, ip, singleUse, usage);
+    return key;
+}
 
-// let ascii_str = require("./util.js").genAsciiStr(512);
-// console.log(ascii_str)
-// new this.Keys(ascii_str, "::1", false, "TEST");
+/**
+ * Generates a key. This should NOT be used during deployment.
+ * @param {String} ip IP address to target for PostKey
+ * @param {boolean} singleUse Whether PostKey should be single use
+ * @param {String} usage Usage of key.
+ * @see `this.Key` Class object for Key
+ */
+const genPostKey = (ip, singleUse, usage) => {
+    let postKey = genKey(ip, singleUse, usage);
+    this.postKeys.set(postKey.hash, postKey);
+}
+
+/**
+ * Generates a GET key
+ * @param {String} ip IP address to target for GetKey
+ */
+const genGetKey = (ip) => {
+    let getKey = genKey(ip, false, "GET");
+    this.getKeys.set(getKey.hash, getKey);
+}
+
+// genGetKey("127.0.0.1");
