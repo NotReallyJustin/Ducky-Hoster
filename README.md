@@ -2,12 +2,16 @@
 Malware system that uses an Arduino USB to open a reverse shell to download and execute malicious scripts from the host Node server. <br />
 🚨 Server keys on Github are not up to date (for security reasons, and also because you could generate your own server keys)
 
-# Node Dependencies
+# Download Instructions
+All you really need is everything under the `./Server` directory. <br />
+It's reccomended you download files through stable release "versions" on Github rather than directly pulling from `$git clone` since the current code may very well be buggy.
+
+## Node Dependencies
 * Express 4.18.2
     * It's a bit unconventional for us to use Express without deploying a web app, but it's a good way to handle HTTP requests even if we're not serving files
 * Express Body Parser 1.20.2
 
-# Other Dependencies
+## Other Dependencies
 * MinGW.org GCC-6.3.0-1
 * Windows OS (You don't need to do anything extra here. Some executables dynamically link `wininet` - which comes preinstalled in Windows OS)
 
