@@ -8,7 +8,7 @@ const malwareData = require("./post_req.js");
 const bodyParser = require("body-parser");
 
 // Log incoming traffic info
-// server.use(bodyParser.text());
+server.use(bodyParser.text());
 
 server.all("*", (request, response, next) => {
     logging.log("");
@@ -20,8 +20,7 @@ server.all("*", (request, response, next) => {
     // logging.log(`Request Cookies: ${request.headers.cookie}`)
     // logging.log(`Request Location: ${request.headers.location}`)
     // logging.log(`Request Auth: ${request.headers.authorization}`)
-
-    console.dir(request.body);
+    
     next();
 });
 

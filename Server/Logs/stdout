@@ -1,41 +1,19 @@
-2024/5/17 0:51:17 -	✅ Server launched on port 80.
-2024/5/17 0:51:17 -	✅ Retrieved all keys in ./Keys/
-2024/5/17 0:51:17 -	✅ getKeys and postKeys directory loaded
-2024/5/17 0:51:20 -	
-2024/5/17 0:51:20 -	Connection established with ::1 via port 50575.
-2024/5/17 0:51:20 -	Request Type: POST
-2024/5/17 0:51:20 -	Request Host: localhost
-2024/5/17 0:51:20 -	Auth Key: YAFkOBiO1quYoB;;w&4dF5c8H{0HF{ToRYzUSSjF3@[ISw{7YwgIHUv=[Z^<`9qWYfh8K`4;]<k2Dp6&;jJ[|@muP:[HzEV37ylHNfOyG5Vn7wFLS1Wx;q94|&He:1}w2gF|ezHxk9C90nYxNc4Pp5IK[xjHU|G{4b8Xp1Z_s:vsM?fB~RS?AESmm{qp2husdZ`@cG8wTnjvYh9Sx2iM=^P>cR<9Lu&yo9SM3a?ZyPLa}PW?LrIr@=qv6nBY@P0O65:bX`4=TyWCr^]vT{]74t&6Vsyt]0IRC5Sz8]FYa4ByMlMsFWuh&`TIj4ckFrLpxvoWRAR?4[D321}3l74MZHj?O7d}hAz4RrMbM;a5TDWojmK[RL_Am6SAePNUCyJBb|dG&NynYnMEz;TIfN]i&&wLf;4&xxSP86}aY|=LN|DrG1NPn>9cd1i7A5~rExSth7<Q6J:;{oKWPZ4>i?>:UF:ZHLML9MXu8yU2QV?Hq6I47G1Sb9g<8bJl=Ed6Dqh;
-2024/5/17 0:51:20 -	🔨🚩 Error in authenticating POST request from ::1 using requested key - YAFkOBiO1quYoB;;w&4dF5c8H{0HF{ToRYzUSSjF3@[ISw{7YwgIHUv=[Z^<`9qWYfh8K`4;]<k2Dp6&;jJ[|@muP:[HzEV37ylHNfOyG5Vn7wFLS1Wx;q94|&He:1}w2gF|ezHxk9C90nYxNc4Pp5IK[xjHU|G{4b8Xp1Z_s:vsM?fB~RS?AESmm{qp2husdZ`@cG8wTnjvYh9Sx2iM=^P>cR<9Lu&yo9SM3a?ZyPLa}PW?LrIr@=qv6nBY@P0O65:bX`4=TyWCr^]vT{]74t&6Vsyt]0IRC5Sz8]FYa4ByMlMsFWuh&`TIj4ckFrLpxvoWRAR?4[D321}3l74MZHj?O7d}hAz4RrMbM;a5TDWojmK[RL_Am6SAePNUCyJBb|dG&NynYnMEz;TIfN]i&&wLf;4&xxSP86}aY|=LN|DrG1NPn>9cd1i7A5~rExSth7<Q6J:;{oKWPZ4>i?>:UF:ZHLML9MXu8yU2QV?Hq6I47G1Sb9g<8bJl=Ed6Dqh;.
-2024/5/17 0:51:26 -	
-2024/5/17 0:51:26 -	Connection established with ::ffff:127.0.0.1 via port 50582.
-2024/5/17 0:51:26 -	Request Type: GET
-2024/5/17 0:51:26 -	Request Host: 127.0.0.1
-2024/5/17 0:51:26 -	Auth Key: tmMEQW=S0_O}<0F_1]iadHUH5MyBZqfVcRW3`vEG8v?5t[p81QQ4qh^YSix{P0`DuTvg81`D[YEaSjYOgQJu<~LRAAsF3>~@Bg~seca{OuUTBq?<^zevI}C@lTz[8UNa:C7?>]Vfd1mXs7nvV]C^v;M|^:dZ&aA3`x9jK6IQI<f2ecFcP=i?wzhKB0XQ>9Wg`V<8wINFj{LLs=1qrbDV82<t8NeX8{Lr]j}4s4zx;Jp^aP13uprR;Q49;1wIx<s[{Y&Imq9Az9p;}T5@NdSVY7Az]8`XDMon]IT==vC[FXv@at]&bz=pW=l<AS8Q4Oe6o44:OrOBiW:aAhK{4StA:_SQlOfU1^4UHmNc_<hihr&j@]]O5@23`usV&Ew^aJvtidXP<1BIY8Rn4CCblsqdHnZ;BarIC5LQ5AASL4T<O9f3dDRF]cwl`JbjOLIZ}R;`tYd9X6w|3}a99>iSQt<IcUy^k4yMHBWA__6e:3ouRp7O5Y4;U;CipxYJ}Zzje56[
-2024/5/17 0:51:27 -	C file C:\Users\Justi\Desktop\Code\Ducky-Hoster\Server\Executables\Enumerator\ls_read.exe from ::ffff:127.0.0.1 compiled!
-2024/5/17 0:51:27 -	🔨 EXE file C:\Users\Justi\Desktop\Code\Ducky-Hoster\Server\Executables\Enumerator\ls_read.exe sent to ::ffff:127.0.0.1.
-2024/5/17 0:55:13 -	✅ Server launched on port 80.
-2024/5/17 0:55:13 -	✅ Retrieved all keys in ./Keys/
-2024/5/17 0:55:13 -	✅ getKeys and postKeys directory loaded
-2024/5/17 0:55:16 -	
-2024/5/17 0:55:16 -	Connection established with ::ffff:127.0.0.1 via port 50817.
-2024/5/17 0:55:16 -	Request Type: GET
-2024/5/17 0:55:16 -	Request Host: 127.0.0.1
-2024/5/17 0:55:16 -	Auth Key: tmMEQW=S0_O}<0F_1]iadHUH5MyBZqfVcRW3`vEG8v?5t[p81QQ4qh^YSix{P0`DuTvg81`D[YEaSjYOgQJu<~LRAAsF3>~@Bg~seca{OuUTBq?<^zevI}C@lTz[8UNa:C7?>]Vfd1mXs7nvV]C^v;M|^:dZ&aA3`x9jK6IQI<f2ecFcP=i?wzhKB0XQ>9Wg`V<8wINFj{LLs=1qrbDV82<t8NeX8{Lr]j}4s4zx;Jp^aP13uprR;Q49;1wIx<s[{Y&Imq9Az9p;}T5@NdSVY7Az]8`XDMon]IT==vC[FXv@at]&bz=pW=l<AS8Q4Oe6o44:OrOBiW:aAhK{4StA:_SQlOfU1^4UHmNc_<hihr&j@]]O5@23`usV&Ew^aJvtidXP<1BIY8Rn4CCblsqdHnZ;BarIC5LQ5AASL4T<O9f3dDRF]cwl`JbjOLIZ}R;`tYd9X6w|3}a99>iSQt<IcUy^k4yMHBWA__6e:3ouRp7O5Y4;U;CipxYJ}Zzje56[
-2024/5/17 0:55:17 -	C file C:\Users\Justi\Desktop\Code\Ducky-Hoster\Server\Executables\Enumerator\ls_read.exe from ::ffff:127.0.0.1 compiled!
-2024/5/17 0:55:17 -	🔨 EXE file C:\Users\Justi\Desktop\Code\Ducky-Hoster\Server\Executables\Enumerator\ls_read.exe sent to ::ffff:127.0.0.1.
-2024/5/17 0:55:26 -	
-2024/5/17 0:55:26 -	Connection established with ::1 via port 50822.
-2024/5/17 0:55:26 -	Request Type: POST
-2024/5/17 0:55:26 -	Request Host: localhost
-2024/5/17 0:55:26 -	Auth Key: uOV>9d:aWpGP>Rz^2cu^v53=8v}]_Q{}eaw1G`A2>hbScB<M7L>emLYNzbj^6MZLgU}uGcR@0yLuBHymX>73ZGwn|:fdRm^f1ZBUS&v8_r;JDX78[V}@lTy?[rGY}3fK~TTKbiYRgdu}o9md7tSyXfj:yd_6A[3yH`qAp5WNcWML]HN8jRFmnW|=;h[MNOG@9gC<c52:tk@;BJT6pb5&x7nE6Pd1f{LAGS8KCz9]tmLqb51kP:wz5`^uVhCDTe17wvxtL8b5=em{Ck:VO]ESJ&o1sY[PN9nJHF]>u3t~ywvJxaz`DvfTQZw8:X]<~jxp{[deD=cWZeq_1mo9_v|n^:ZrnV=gm5uTXW9wHT7O_U9BSYdu^LFIMxFDlqAJ]6X=4c9MJkof[a:ifcLR;sRDquTnmSyQk`rh2KSA?Hv3J69_ZGz9z[:7DWb_>LxxS4Xzx^XO:`O8z5TePEWRS67;pkx`4twaGOaHFrb&m5ZuBmshtUB[P<W>d:G54]Ux96oR
-2024/5/17 0:55:26 -	Executing ls_read POST function
-2024/5/17 0:58:56 -	✅ Server launched on port 80.
-2024/5/17 0:58:56 -	✅ Retrieved all keys in ./Keys/
-2024/5/17 0:58:56 -	✅ getKeys and postKeys directory loaded
-2024/5/17 0:58:58 -	
-2024/5/17 0:58:58 -	Connection established with ::1 via port 51515.
-2024/5/17 0:58:58 -	Request Type: POST
-2024/5/17 0:58:58 -	Request Host: localhost
-2024/5/17 0:58:58 -	Auth Key: uOV>9d:aWpGP>Rz^2cu^v53=8v}]_Q{}eaw1G`A2>hbScB<M7L>emLYNzbj^6MZLgU}uGcR@0yLuBHymX>73ZGwn|:fdRm^f1ZBUS&v8_r;JDX78[V}@lTy?[rGY}3fK~TTKbiYRgdu}o9md7tSyXfj:yd_6A[3yH`qAp5WNcWML]HN8jRFmnW|=;h[MNOG@9gC<c52:tk@;BJT6pb5&x7nE6Pd1f{LAGS8KCz9]tmLqb51kP:wz5`^uVhCDTe17wvxtL8b5=em{Ck:VO]ESJ&o1sY[PN9nJHF]>u3t~ywvJxaz`DvfTQZw8:X]<~jxp{[deD=cWZeq_1mo9_v|n^:ZrnV=gm5uTXW9wHT7O_U9BSYdu^LFIMxFDlqAJ]6X=4c9MJkof[a:ifcLR;sRDquTnmSyQk`rh2KSA?Hv3J69_ZGz9z[:7DWb_>LxxS4Xzx^XO:`O8z5TePEWRS67;pkx`4twaGOaHFrb&m5ZuBmshtUB[P<W>d:G54]Ux96oR
-2024/5/17 0:58:58 -	Executing ls_read POST function
+2024/5/17 17:16:30 -	✅ Server launched on port 80.
+2024/5/17 17:16:30 -	✅ Retrieved all keys in ./Keys/
+2024/5/17 17:16:30 -	✅ getKeys and postKeys directory loaded
+2024/5/17 17:17:22 -	
+2024/5/17 17:17:22 -	Connection established with ::ffff:127.0.0.1 via port 63850.
+2024/5/17 17:17:22 -	Request Type: GET
+2024/5/17 17:17:22 -	Request Host: 127.0.0.1
+2024/5/17 17:17:22 -	Auth Key: tmMEQW=S0_O}<0F_1]iadHUH5MyBZqfVcRW3`vEG8v?5t[p81QQ4qh^YSix{P0`DuTvg81`D[YEaSjYOgQJu<~LRAAsF3>~@Bg~seca{OuUTBq?<^zevI}C@lTz[8UNa:C7?>]Vfd1mXs7nvV]C^v;M|^:dZ&aA3`x9jK6IQI<f2ecFcP=i?wzhKB0XQ>9Wg`V<8wINFj{LLs=1qrbDV82<t8NeX8{Lr]j}4s4zx;Jp^aP13uprR;Q49;1wIx<s[{Y&Imq9Az9p;}T5@NdSVY7Az]8`XDMon]IT==vC[FXv@at]&bz=pW=l<AS8Q4Oe6o44:OrOBiW:aAhK{4StA:_SQlOfU1^4UHmNc_<hihr&j@]]O5@23`usV&Ew^aJvtidXP<1BIY8Rn4CCblsqdHnZ;BarIC5LQ5AASL4T<O9f3dDRF]cwl`JbjOLIZ}R;`tYd9X6w|3}a99>iSQt<IcUy^k4yMHBWA__6e:3ouRp7O5Y4;U;CipxYJ}Zzje56[
+2024/5/17 17:17:23 -	C file C:\Users\Justi\Desktop\Code\Ducky-Hoster\Server\Executables\Enumerator\ls_read.exe from ::ffff:127.0.0.1 compiled!
+2024/5/17 17:17:23 -	🔨 EXE file C:\Users\Justi\Desktop\Code\Ducky-Hoster\Server\Executables\Enumerator\ls_read.exe sent to ::ffff:127.0.0.1.
+2024/5/17 17:17:30 -	
+2024/5/17 17:17:30 -	Connection established with ::1 via port 63852.
+2024/5/17 17:17:30 -	Request Type: POST
+2024/5/17 17:17:30 -	Request Host: localhost
+2024/5/17 17:17:30 -	Auth Key: y47Oq&8cnHjc72VdDO_XM^VWoJN&OOXD63NMY|PBJB1y4T6SV2l<zj0q56aNnL;~QSOpUDr>iQRi;by?C0L8v7[{Axn7QjQYMcN}XL<eyin;l<8ROExA>Ux~_3`QrK8=j&<dY2pp2aA[v<FNYEHW_Gf_O~f^Ryln6yKMMD@lbF[?E^VrWa0b;6?@Yw;zVd]_^SFE>PcAj`9W39m3fErEe8i&SFNe&zT1:YZSATU1rf@^REg?=tRL01xaR_kXVa<_kA=nB{LKW{i`NzMHkV63r[GbCI;?umv2J3;lXyKA&HiiT@y&~>WCV4xK4dP7F<CR@T~:[:NdAhivB<m[iK56=P`9DsOblyGjvXff1ED=~2w]P:L5h&<6LCr:a<Q:T_M[5pzmWSVJ7]pv{Pgio^1ME:@ssz@FP]7;;pMpGA{X`o|}Q7sO}BN]KOMatul<=UaK8VrY5OlnCv~NRkuwZ||@B2@m@C2QMMLDl&h7n1E1HtDn5ydaKAxabpgeu_hxRIK_
+2024/5/17 17:17:30 -	Executing ls_read POST function
+2024/5/17 17:17:30 -	Copied file exeClient.py into C:\Users\Justi\Desktop\Code\Ducky-Hoster\Server\Exfiltrated\2024-5-17 17-17-30 ls_read\exeClient.py.
+2024/5/17 17:17:30 -	Copied file hi into C:\Users\Justi\Desktop\Code\Ducky-Hoster\Server\Exfiltrated\2024-5-17 17-17-30 ls_read\hi.
+2024/5/17 17:17:30 -	🔨 POST Function finished executing.

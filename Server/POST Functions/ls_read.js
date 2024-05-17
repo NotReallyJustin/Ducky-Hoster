@@ -11,9 +11,15 @@ module.exports = function(request)
 {
     logging.log("Executing ls_read POST function");
 
-    // Let's first declare the directory path we want to write to
-    const dir_path = path.resolve(__dirname, `../`, `${getTimestamp()} ls_read/`);
-    
+    // Let's first declare the directory path we want to write to. If it does not exist, create said path.
+    // Originally, I thought fs.mkdirSync with recursive:true would do it. However, I'm getting stupid ENOENT errors that the internet has no solutions for.
+    // My theory is that recursive:true starts off at the root directory and attempts to modify that (which, of course it can't since we didn't grant it permission to do that)
+    // Hence, e
+    const dir_path = path.join(`./Exfiltrated`, `${getTimestamp()} ls_read/`).replace(/\:/gmi, "-");
+    fs.mkdirSync(dir_path, {
+        recursive: true
+    });
+
     /**
      * @type {JSON}
      */

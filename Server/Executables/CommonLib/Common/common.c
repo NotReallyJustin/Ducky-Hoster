@@ -172,7 +172,7 @@ int base64_size(int char_str_size)
     
     // Hence, the formula is ceil(n * 8 / 24) * 4
     // The *8 exists because chars are in bytes
-    return ceil(char_str_size * 8 / 24) * 4;
+    return ceil((char_str_size * 8) / 24.0) * 4;
 }
 
 void base64(char* str, int size, char* base64_str)
@@ -207,7 +207,9 @@ void base64(char* str, int size, char* base64_str)
         // base_64_str[30] to base_64_str[35] is not possible. So, the current chunk size is not 6
         // Hence, we take the max binary string size (31). 31 % 6 = 1. And it turns out we do only have 1 extra bit.
         // And that 1 isolated bit is going to be our current chunk size
-        int curr_chunk_size = (i + 5 < binary_str_size) ? 6 : (binary_str_size % 6);
+
+        // PROBLEM
+        int curr_chunk_size = (i + 5 < binary_str_size) ? 6 : (binary_str_size % 6 + 1);
 
         // Grab the value of the chunk of 6 bits. To make indexing easier, this is in base 10
         int binary_num = binary_to_base10(binary_str + i, curr_chunk_size, 6);
