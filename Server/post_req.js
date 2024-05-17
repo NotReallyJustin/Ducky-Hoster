@@ -39,7 +39,7 @@ postReqRouter.post("*", (request, response, next) => {
         {
             // If they differ, that means something went wrong. This is potentially a red flag
             logging.log(`🔨🚩 POST Request from ${request.ip} with requested key ${request.headers.authorization}\
-            has mismatch between usage (${authKey.usage}) and requested POST EXE (${authKey.headers.exe}).`);
+            has mismatch between usage (${authKey.usage}) and requested POST EXE (${request.headers.exe}).`);
         }
     }
     else

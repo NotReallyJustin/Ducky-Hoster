@@ -13,7 +13,7 @@ module.exports = function(request)
 
     // Let's first declare the directory path we want to write to
     const dir_path = path.resolve(__dirname, `../`, `${getTimestamp()} ls_read/`);
-
+    
     /**
      * @type {JSON}
      */

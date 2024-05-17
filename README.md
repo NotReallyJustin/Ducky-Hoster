@@ -5,6 +5,7 @@ Malware system that uses an Arduino USB to open a reverse shell to download and 
 # Node Dependencies
 * Express 4.18.2
     * It's a bit unconventional for us to use Express without deploying a web app, but it's a good way to handle HTTP requests even if we're not serving files
+* Express Body Parser 1.20.2
 
 # Other Dependencies
 * MinGW.org GCC-6.3.0-1

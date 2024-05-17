@@ -5,8 +5,11 @@ const logging = require("./logging.js");
 const util = require("./util.js");
 const malwareReqs = require("./get_req.js");
 const malwareData = require("./post_req.js");
+const bodyParser = require("body-parser");
 
 // Log incoming traffic info
+// server.use(bodyParser.text());
+
 server.all("*", (request, response, next) => {
     logging.log("");
     logging.log(`Connection established with ${request.ip} via port ${request.socket.remotePort}.`);
@@ -18,6 +21,7 @@ server.all("*", (request, response, next) => {
     // logging.log(`Request Location: ${request.headers.location}`)
     // logging.log(`Request Auth: ${request.headers.authorization}`)
 
+    console.dir(request.body);
     next();
 });
 

