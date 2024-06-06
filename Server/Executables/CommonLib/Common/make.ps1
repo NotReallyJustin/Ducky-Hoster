@@ -1,4 +1,4 @@
-gcc -c ./common.c -o ./common.o -I./
+gcc -m32 -c ./common.c -o ./common.o -I./
 
 # Make this a static library
 # To use `libcommon.a`, just include common.h. For all intents and purposes, refer to this file as `common`. You will never need to write `libcommon`

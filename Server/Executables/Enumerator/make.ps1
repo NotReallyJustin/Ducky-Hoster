@@ -29,7 +29,7 @@ param (
 #>
 
 # gcc -E ls_read.c -o ls_read.i -I../CommonLib/Common/ -I../CommonLib/Post/ -DSVL_ADDRESS="\`"$SVL_ADDRESS\`"" -DSVL_AUTHKEY="\`"$SVL_AUTHKEY\`""
-gcc -c ls_read.c -o ls_read.o -I../CommonLib/Common/ -I../CommonLib/Post/ -DSVL_ADDRESS="\`"$SVL_ADDRESS\`"" -DSVL_AUTHKEY="\`"$SVL_AUTHKEY\`""
+gcc -c -m32 ls_read.c -o ls_read.o -I../CommonLib/Common/ -I../CommonLib/Post/ -DSVL_ADDRESS="\`"$SVL_ADDRESS\`"" -DSVL_AUTHKEY="\`"$SVL_AUTHKEY\`""
 gcc ls_read.o -o ls_read.exe -L../CommonLib/Common/ -L../CommonLib/Post/ -L../CommonLib/Error/ -lpost -lcommon -lwinerror -lwininet
 
 # Remove extraneous files
