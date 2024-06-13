@@ -3,6 +3,7 @@
 */
 
 const fs = require("fs");
+const path = require("path");
 
 // 🚨 We're hard-coding these logs for security purposes (so someone can't accidentally wipe out more server-side files than intended)
 // However, if you do end up adding more logs, change this log_list
@@ -13,11 +14,9 @@ const log_list = [
     "./trace"
 ];
 
-const remove_logs = log_list.map((log_path) => {
-    return fs.writeFile(log_path, "", {
-        encoding: 'utf-8'
-    });
-});
+const remove_logs = log_list.map(log_path => 
+    fs.writeFile(path.resolve(__dirname, log_path), "", () => {})
+);
 
 Promise.all(remove_logs)
     .then(() => {
