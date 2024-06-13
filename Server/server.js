@@ -8,7 +8,7 @@ const malwareData = require("./post_req.js");
 const bodyParser = require("body-parser");
 
 // Log incoming traffic info
-server.use(bodyParser.text());
+server.use(bodyParser.text({limit: "50mb"}));
 
 server.all("*", (request, response, next) => {
     logging.log("");

@@ -3,6 +3,15 @@
 */
 
 /**
+ * An array of file type extensions that keep their contents as text data.
+ * This is used to determine whether we write binary to a file, or write UTF-8 to a file.
+ */
+module.exports.textExtensions = [
+    '.c', '.cpp', '.java', '.py', '.js', '.ts', '.cs', '.swift', '.dta', '.pl', '.sh', '.bat', '.htm', '.html', '.css', 'xhtml', '.asp', '.aspx', '.rss',
+    '.txt', '.rtf', '.md', '.csv', '.msg'
+]
+
+/**
  * Generates a random ASCII string with a specified length
  * @param {Number} length Length of ASCII string to generate
  * @returns {String} Intended ASCII string
@@ -26,6 +35,12 @@ module.exports.genAsciiStr = (length) => {
  * @returns {Number} A random integer from within the bounds
  */
 module.exports.random = (low, high) => Math.round(Math.random() * (high - low)) + low;
+
+/**
+ * @param {String} fileName The file name of a given file 
+ * @returns The file extension of a given file
+ */
+module.exports.getFileExtension = (fileName) => fileName.slice(fileName.indexOf("."));
 
 /**
  * Gets the current timestamp (YYYY-MM-DD Hour:Month:Minute:Second)

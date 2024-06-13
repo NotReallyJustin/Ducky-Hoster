@@ -43,6 +43,8 @@ int parse_url(char* address, URL_COMPONENTS* url_components)
     int URL_PATH_LEN = 256;
     int EXTRA_INFO_LEN = 64;
 
+    // printf("Max hostname length: %d\n", HOSTNAME_LEN);
+
     url_components->lpszScheme = malloc(LPZ_SCHEME_LEN * wchar_t_size);
     url_components->dwSchemeLength = LPZ_SCHEME_LEN;
     url_components->lpszHostName = malloc(HOSTNAME_LEN * wchar_t_size);

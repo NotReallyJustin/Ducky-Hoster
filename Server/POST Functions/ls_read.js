@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const { getTimestamp } = require("../util.js");
+const { getTimestamp, getFileExtension, textExtensions } = require("../util.js");
 const logging = require("../logging.js");
 
 /**
@@ -28,14 +28,26 @@ module.exports = function(request)
     // Loop through all file names and contents returned in the ls_read JSON. Then, it writes the file inside dir_path
     Object.entries(reqJSON).forEach((jsonEntry) => {
         const [fileName, fileBase64] = jsonEntry;
-        
-        // The file contents are in base64. Convert that back to UTF-8.
-        // In JS, you need to convert the base64 into a binary buffer, and then re-encode it in UTF-8
-        let fileContent = Buffer.from(fileBase64, 'base64').toString("utf-8");
-
-        // might need to write w/ buffer lowkey
         let filePath = path.resolve(dir_path, fileName);
-        fs.writeFileSync(filePath, fileContent);
+        
+        // Classify the documents we get into text ones or binary ones. Most of the time, we'll be writing the bytes directly.
+        // If that doesn't go right, we'll UTF-8 this.
+
+        var fileExtension = getFileExtension(fileName).toLowerCase();
+        console.log(`${fileExtension} : ${textExtensions.indexOf(fileExtension) != -1}`)
+        if (textExtensions.indexOf(fileExtension) != -1)
+        {
+            // If it is a text file
+            // These files are in base64. In JS, you need to convert the base64 into a binary buffer, and then re-encode it in UTF-8
+            let fileContent = Buffer.from(fileBase64, 'base64').toString("utf-8");
+            fs.writeFileSync(filePath, fileContent, {encoding: "utf-8"});
+        }
+        else
+        {
+            // If there's binary
+            let fileContent = Buffer.from(fileBase64, 'base64');
+            fs.writeFileSync(filePath, fileContent, {encoding: "binary"});
+        }
 
         logging.log(`Copied file ${fileName} into ${filePath}.`);
     });

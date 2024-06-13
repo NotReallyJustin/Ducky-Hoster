@@ -192,6 +192,7 @@ void base64(char* str, int size, char* base64_str)
     {
         char_to_binary(str[i], binary_str + i * BYTE_SIZE);
     }
+    binary_str[binary_str_size] = '\0';
 
     // ⭐ Step 2: Split the binary string into chunks of 6 bits. Then, it would convert to them to a base64 string.
     char* base_64_table = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
