@@ -34,7 +34,6 @@ module.exports = function(request)
         // If that doesn't go right, we'll UTF-8 this.
 
         var fileExtension = getFileExtension(fileName).toLowerCase();
-        console.log(`${fileExtension} : ${textExtensions.indexOf(fileExtension) != -1}`)
         if (textExtensions.indexOf(fileExtension) != -1)
         {
             // If it is a text file
