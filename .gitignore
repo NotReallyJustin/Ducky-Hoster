@@ -1,2 +1,5 @@
 */node_modules/
 Server/Keys/
+
+# This is where the private key and the certificate .pem are kept
+Server/Crypto/

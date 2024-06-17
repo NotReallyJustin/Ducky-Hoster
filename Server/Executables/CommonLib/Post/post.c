@@ -86,40 +86,40 @@ int send_post_request(char* address, char* text, int text_size, char* exe_type, 
         return -1;
     }
 
-    // Create a windows HTTP session
-    HINTERNET http_session = InternetConnect(
+    // Create a windows HTTPS session
+    HINTERNET https_session = InternetConnect(
         internet_connection,
         url_components.lpszHostName,
-        INTERNET_DEFAULT_HTTP_PORT, // This is just 80, but I don't want to mess with a typedef so here we go
+        INTERNET_DEFAULT_HTTPS_PORT, // This is just 443, but I don't want to mess with a typedef so here we go
         NULL, NULL,
         INTERNET_SERVICE_HTTP,
         0, 0
     );
 
     // Error handle for the TCP handshake (or anything built on that) failing
-    if (http_session == NULL)
+    if (https_session == NULL)
     {
-        print_last_error("POST: Error when connecting to server's HTTP port");
+        print_last_error("POST: Error when connecting to server's HTTPS port");
         free_url_components(&url_components);
         return -1;
     }
 
     // Craft a request to that port's services. In this case, it's a POST request
-    HINTERNET http_request = HttpOpenRequest(
-        http_session,
+    HINTERNET https_request = HttpOpenRequest(
+        https_session,
         "POST",
         url_components.lpszUrlPath,
         NULL,
         NULL,
         NULL,                       // This is a POST request; we're not accepting types
-        INTERNET_FLAG_NO_UI | INTERNET_FLAG_NO_COOKIES | INTERNET_FLAG_NO_CACHE_WRITE,
+        INTERNET_FLAG_NO_UI | INTERNET_FLAG_NO_COOKIES | INTERNET_FLAG_NO_CACHE_WRITE | INTERNET_FLAG_SECURE | INTERNET_FLAG_IGNORE_CERT_CN_INVALID | INTERNET_FLAG_IGNORE_CERT_DATE_INVALID,
         0
     );
 
     // Error handling for malformed request crafting
-    if (http_request == NULL)
+    if (https_request == NULL)
     {
-        print_last_error("POST: Error when crafting HTTP Request");
+        print_last_error("POST: Error when crafting HTTPS Request");
         free_url_components(&url_components);
         return -1;
     }
@@ -136,7 +136,7 @@ int send_post_request(char* address, char* text, int text_size, char* exe_type, 
 
     // Ship the POST request
     BOOL request_status = HttpSendRequest(
-        http_request,
+        https_request,
         header,
         -1,         // Automatically calculate the length of the null terminated header string
         text,
@@ -146,7 +146,7 @@ int send_post_request(char* address, char* text, int text_size, char* exe_type, 
     // Error check POST request
     if (!request_status)
     {
-        print_last_error("POST: Error when sending HTTP Request");
+        print_last_error("POST: Error when sending HTTPS Request");
         free(header);
         free_url_components(&url_components);
         return -1;

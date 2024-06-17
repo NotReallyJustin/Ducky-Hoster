@@ -10,7 +10,7 @@ void free_url_components(URL_COMPONENTS* url_components);
 /**
  * Parses a HTTPS URL into its components.
  * It is your job to free all the fields inside url_components when done. We reccomend calling `free_url_components()`
- * @param address HTTP URL address string to parse
+ * @param address HTTPS URL address string to parse
  * @param url_components {Outbound} Pointer to a struct that will contain the URL components. This will be zero'd out.
  * @throw Error if there's an issue parsing URL
  * @returns 0 if successful, -1 otherwise

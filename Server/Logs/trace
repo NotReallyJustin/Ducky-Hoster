@@ -16,3 +16,6 @@
 2024/6/14 1:2:23 -	Copied file output.txt into C:\Users\Justi\Desktop\Code\Ducky-Hoster\Server\Exfiltrated\2024-6-14 1-2-23 ls_read\output.txt.
 2024/6/14 1:2:23 -	Copied file run_lsread.ps1 into C:\Users\Justi\Desktop\Code\Ducky-Hoster\Server\Exfiltrated\2024-6-14 1-2-23 ls_read\run_lsread.ps1.
 2024/6/14 1:2:23 -	🔨 POST Function finished executing.
+2024/6/17 18:33:0 -	✅ Server launched on port 443.
+2024/6/17 18:33:0 -	✅ Retrieved all keys in ./Keys/
+2024/6/17 18:33:0 -	✅ getKeys and postKeys directory loaded
