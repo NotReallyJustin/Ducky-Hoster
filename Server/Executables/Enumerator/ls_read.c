@@ -6,7 +6,7 @@
 
 // Define some macros for address and auth key
 #ifndef SVL_ADDRESS
-    #define SVL_ADDRESS "http://localhost"
+    #define SVL_ADDRESS "https://localhost"
 #endif
 
 #ifndef SVL_AUTHKEY

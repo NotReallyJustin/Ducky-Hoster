@@ -8,8 +8,8 @@ const logging = require("./logging.js");
 
 // Server IP we are hosting malware server on
 // 🚨 Make sure to insert either a port or http:// (to default to port 80). Otherwise, wininet.dll will give you URL parsing errors
-const IP = "http://localhost";
-// const IP = "http://192.168.0.156";
+const IP = "https://localhost";
+// const IP = "https://192.168.0.156";
 
 // This router will handle the GET requests that ask to retrieve a specified malware.
 // The routing is very simple here since GET requests simply act as a CDN for our malware packages
