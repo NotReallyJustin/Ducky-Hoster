@@ -9,6 +9,6 @@ AUTH_KEY = "tmMEQW=S0_O}<0F_1]iadHUH5MyBZqfVcRW3`vEG8v?5t[p81QQ4qh^YSix{P0`DuTvg
 # The EXE code we want to compile and fetch. See exe_data.js for how this is handled
 EXE_REQUESTED = "enumerator"
 
-response = requests.get('http://127.0.0.1', headers={"authorization": AUTH_KEY, "exe": EXE_REQUESTED})
+response = requests.get('https://127.0.0.1', headers={"authorization": AUTH_KEY, "exe": EXE_REQUESTED})
 with open("ls_read.exe", "wb") as exe_file:         # Use b flag for bytes
     exe_file.write(response.content)

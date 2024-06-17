@@ -124,6 +124,34 @@ int send_post_request(char* address, char* text, int text_size, char* exe_type, 
         return -1;
     }
 
+    // Add security flag to ignore unknown Certificate Authorities (we need this because our certs may or may not be self-signed)
+    // We need to do this seperately since apparently HttpOpenRequest does not support security flags for some weird reason even though it's all bitwise-or'd
+    DWORD lp_buffer;
+    DWORD dw_buffer_len;
+
+    BOOL query_internet_opts = InternetQueryOption(https_request, INTERNET_OPTION_SECURITY_FLAGS, &lp_buffer, &dw_buffer_len);
+    if (query_internet_opts)
+    {
+        // If we successfully queried the internet, try to set the CA flag
+        lp_buffer = lp_buffer | SECURITY_FLAG_IGNORE_UNKNOWN_CA;
+        BOOL set_internet_opts = InternetSetOption(https_request, INTERNET_OPTION_SECURITY_FLAGS, &lp_buffer, sizeof(lp_buffer));
+
+        // Error handling for not being able to set internet security flags
+        if (!set_internet_opts)
+        {
+            print_last_error("POST: Error when setting security flags");
+            free_url_components(&url_components);
+            return -1;
+        }
+    }
+    else
+    {
+        // Error during query_internet_opts
+        print_last_error("POST: Error when quering security flags");
+        free_url_components(&url_components);
+        return -1;
+    }
+
     // Future idea: Write a dynamic version of sprintf()
     // Form a header string
     char* oop = "Content-Type: text/plain\r\nAuthorization: ";
@@ -144,8 +172,10 @@ int send_post_request(char* address, char* text, int text_size, char* exe_type, 
     );
 
     // Error check POST request
-    if (!request_status)
+    if (request_status == FALSE)
     {
+        printf("%d\n", GetLastError());
+        fflush(stdout);
         print_last_error("POST: Error when sending HTTPS Request");
         free(header);
         free_url_components(&url_components);
