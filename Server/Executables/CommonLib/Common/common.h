@@ -72,3 +72,11 @@ int base64_size(int char_str_size);
  * @param base64_str {Outbound} String to store the base64 output. Malloc base64_size() + 1 null byte
 */
 void base64(char* str, int size, char* base64_str);
+
+/**
+ * Prints a string (including null bytes!) up to $size size
+ * @param str String to print
+ * @param size Size of String. Must be >= 0
+ * @param show_null Binary value (1 or 0). Show null bytes as "\0" instead of concealing it
+*/
+void print_mem(char* str, int size, int show_null);

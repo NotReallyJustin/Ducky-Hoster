@@ -120,36 +120,6 @@ void spill_file_contents(char** file_names, int size, char* write_path)
 }
 
 /**
- * Prints a string (including null bytes!) up to $size size
- * @param str String to print
- * @param size Size of String. Must be >= 0
- * @param show_null Show null bytes as "\0" instead of concealing it
-*/
-void print_mem(char* str, int size, boolean show_null)
-{
-    if (size < 0)
-    {
-        return;
-    }
-
-    for (int i = 0; i < size; i++)
-    {
-        if (str[i] == '\0' && show_null)
-        {
-            printf("\\0");
-        }
-        else
-        {
-            printf("%c", str[i]);
-        }
-    }
-
-    // Stdout is buffered
-    fflush(stdout);
-    puts("");
-}
-
-/**
  * Read all the files given in $file_names, and outputs their content in JSON
  * @param file_names An array of file names to read
  * @param size The size of the file_names array

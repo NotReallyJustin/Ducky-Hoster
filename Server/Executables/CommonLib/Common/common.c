@@ -157,6 +157,30 @@ int binary_to_base10(char* binary_str, int size, int intended_size)
     return value;
 }
 
+void print_mem(char* str, int size, int show_null)
+{
+    if (size < 0)
+    {
+        return;
+    }
+
+    for (int i = 0; i < size; i++)
+    {
+        if (str[i] == '\0' && show_null)
+        {
+            printf("\\0");
+        }
+        else
+        {
+            printf("%c", str[i]);
+        }
+    }
+
+    // Stdout is buffered
+    fflush(stdout);
+    puts("");
+}
+
 void print_str_arr(char** str_arr, int size)
 {
     for (int i = 0; i < size; i++)
