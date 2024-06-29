@@ -32,7 +32,8 @@ All the precompiling work has already been done for you. Since I'm developing th
 # This assumes you are in the current working directory
 powershell.exe -ExecutionPolicy Bypass -File ./make.ps1
 ```
-ExecutionPolicy is not a Windows security feature. Hence, this script simply bypasses it.
+ExecutionPolicy is not a Windows security feature. Hence, this script simply bypasses it. <br>
+There are some `.exe` and library files that are precompiled. However, these are for 64-bit Windows 11 machines. It's reccomended you recompile them for your own system.
 
 ## Compiling/Assembling Malware Executables
 You can just use $gcc for this. Remember to use -I to link necessary header files.

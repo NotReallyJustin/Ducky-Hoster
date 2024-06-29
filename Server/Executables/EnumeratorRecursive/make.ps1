@@ -15,13 +15,16 @@ param (
 
     Linking components for ls_read:
     - wininet   (Should be universal across all Windows systems)
+    - shlwapi   (Should also be across all Windows systems)
     - ../CommonLib/Common/libcommon.a
     - ../CommonLib/Post/libpost.a
     - ../CommonLib/Error/libwinerror.a
 #>
 
 gcc -c -m32 enumerator.c -o enumerator.o -I../CommonLib/Common/ -I../CommonLib/Post/ -DSVL_ADDRESS="\`"$SVL_ADDRESS\`"" -DSVL_AUTHKEY="\`"$SVL_AUTHKEY\`""
-gcc enumerator.o -o enumerator.exe -L../CommonLib/Common/ -L../CommonLib/Post/ -L../CommonLib/Error/ -lpost -lcommon -lwinerror -lwininet
+gcc enumerator.o -o enumerator.exe -L../CommonLib/Common/ -L../CommonLib/Post/ -L../CommonLib/Error/ -lpost -lcommon -lwinerror -lwininet -lshlwapi
+
+
 
 # Remove extraneous files
 rm enumerator.o
