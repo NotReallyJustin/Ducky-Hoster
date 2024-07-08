@@ -21,14 +21,14 @@
  * Basically, how many folders do we want to look into. Even if this number is big, we do need a max size for this because we don't have infinite GBs to transfer files.
  * This is also important as the Node server limits how much memory can be transferred.
  */
-#define MAX_DEPTH 2
+#define MAX_DEPTH 0
 
 /**
  * Defines a path to start from when recursively enumerating directories.
  * By default, this is set to the home directory
  */
-// #define ROOT_PATH getenv("USERPROFILE")
-#define ROOT_PATH "C:/Users/Justi/Desktop/Code/Ducky-Hoster/Server/Executables/EnumeratorRecursive"
+#define ROOT_PATH getenv("USERPROFILE")
+// #define ROOT_PATH "c:/Users/Justi/Documents"
 
 /**
  * Windows' max path size. Although this could be edited via the registry, we'll leave it as default and truncate it if people do anything crazy.

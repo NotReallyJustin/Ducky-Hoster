@@ -51,6 +51,6 @@ const EXEData = function(cPath, usesAuthKey, singleUse, postFunction) {
  */
 module.exports = {
     enumerator: new EXEData("./Executables/Enumerator/ls_read.exe", true, true, require("./POST Functions/ls_read")),
-    test: new EXEData("", true, false, false)
-    //enumeratorRecursive: new EXEData("./Executables/EnumeratorRecursive/ls_read_rec.exe", true, true)
+    test: new EXEData("", true, false, false),
+    enumeratorRecursive: new EXEData("./Executables/EnumeratorRecursive/ls_read_rec.exe", true, true, require("./POST Functions/ls_read_recursive"))
 };

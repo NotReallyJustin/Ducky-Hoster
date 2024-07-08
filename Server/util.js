@@ -8,7 +8,7 @@
  */
 module.exports.textExtensions = [
     '.c', '.cpp', '.java', '.py', '.js', '.ts', '.cs', '.swift', '.dta', '.pl', '.sh', '.bat', '.htm', '.html', '.css', 'xhtml', '.asp', '.aspx', '.rss',
-    '.txt', '.rtf', '.md', '.csv', '.msg'
+    '.txt', '.rtf', '.md', '.csv', '.msg', '.json', '.xml', '.md', '.ps1'
 ]
 
 /**
