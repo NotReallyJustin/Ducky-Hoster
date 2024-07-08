@@ -1,7 +1,6 @@
 const express = require('express');
 const EXE_DATAS = require("./exe_datas.js");
 const Auth = require("./auth.js");
-const { genAsciiStr } = require("./util.js");
 const logging = require("./logging.js");
 
 // This router will handle the POST requests that are usually used to exfiltrate data from a server
