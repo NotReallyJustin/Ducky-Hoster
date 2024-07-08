@@ -5,6 +5,7 @@
 */
 const path = require("path");
 const fs = require("fs");
+const { getTimestamp } = require("./util.js");
 
 
 // Declare path of log files
@@ -12,15 +13,6 @@ TRACE_PATH = path.resolve(__dirname, "./Logs/trace");
 INFO_PATH = path.resolve(__dirname, "./Logs/info");             // To do: traffic info
 STDOUT_PATH = path.resolve(__dirname, "./Logs/stdout");
 STDERR_PATH = path.resolve(__dirname, "./Logs/stderr");
-
-/**
- * Gets the current date and time in `YYYY/MM/DD 24HR:Minute:Second format`
- */
-const getDateTime = () => {
-    let curr_date = new Date();
-
-    return `${curr_date.getUTCFullYear()}/${curr_date.getUTCMonth() + 1}/${curr_date.getUTCDate()} ${curr_date.getUTCHours()}:${curr_date.getUTCMinutes()}:${curr_date.getUTCSeconds()}`;
-}
 
 /**
  * Logs a given information in `./Logs/trace`.
@@ -32,8 +24,8 @@ module.exports.log = function(text, print2Console) {
 
     try
     {
-        fs.appendFileSync(TRACE_PATH, `${getDateTime()} -\t${text}\n`, {encoding: "utf-8"});
-        fs.appendFileSync(STDOUT_PATH, `${getDateTime()} -\t${text}\n`, {encoding: "utf-8"});
+        fs.appendFileSync(TRACE_PATH, `${getTimestamp()} -\t${text}\n`, {encoding: "utf-8"});
+        fs.appendFileSync(STDOUT_PATH, `${getTimestamp()} -\t${text}\n`, {encoding: "utf-8"});
     }
     catch(err)
     {
@@ -49,8 +41,8 @@ module.exports.log = function(text, print2Console) {
 module.exports.error = function(text) {
     try
     {
-        fs.appendFileSync(TRACE_PATH, `${getDateTime()} -\t${text}\n`, {encoding: "utf-8"});
-        fs.appendFileSync(STDERR_PATH, `${getDateTime()} -\t${text}\n`, {encoding: "utf-8"});
+        fs.appendFileSync(TRACE_PATH, `${getTimestamp()} -\t${text}\n`, {encoding: "utf-8"});
+        fs.appendFileSync(STDERR_PATH, `${getTimestamp()} -\t${text}\n`, {encoding: "utf-8"});
     }
     catch(err)
     {
