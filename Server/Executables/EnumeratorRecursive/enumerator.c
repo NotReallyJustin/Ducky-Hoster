@@ -18,18 +18,17 @@
 // ⭐ Enumerator-Specific configurations
 
 /**
- * Maximum depth to enumerate (for file directories).
+ * ⭐ Maximum depth to enumerate (for file directories).
  * Basically, how many folders do we want to look into. Even if this number is big, we do need a max size for this because we don't have infinite GBs to transfer files.
  * This is also important as the Node server limits how much memory can be transferred.
  */
 #define MAX_DEPTH 3
 
 /**
- * Defines a path to start from when recursively enumerating directories.
- * By default, this is set to the home directory
+ * Home directory alias
+ * ⭐⭐⭐ Go down to the main() function and edit dir_path ⭐⭐⭐
  */
-// #define ROOT_PATH getenv("USERPROFILE")
-#define ROOT_PATH "C:/Users/Justi/Desktop/Code/Ducky-Hoster/Server/Executables/EnumeratorRecursive"
+#define ROOT_PATH getenv("USERPROFILE")
 
 /**
  * Windows' max path size. Although this could be edited via the registry, we'll leave it as default and truncate it if people do anything crazy.
@@ -135,10 +134,10 @@ BOOLEAN is_directory(char* path)
 // }
 
 /**
- * Enumerates the file system starting from $ROOT_PATH.
+ * Enumerates the file system starting from $dir_path
  * It will then enumerate recursively for $MAX_DEPTH number of directories
  * @param depth Starts at 0. Indicates the number of directories we're peering into. This does mean a $MAX_DEPTH of 0 is just $ls_read.exe
- * @param dir_path Directory path to enumerate. When you call this, this should usually always be $ROOT_PATH
+ * @param dir_path Directory path to enumerate.
  * @param dir_name Directory name. You don't need to touch this (just put in NULL).
  * @note You are responsible for free-ing all the FS_Element structs recursively. We reccomend calling free_fs_element
  * @returns A FS_Element struct representing the current directory. If there is nothing to enumerate (due to us exceeding $MAX_DEPTH usually), this returns NULL
@@ -380,22 +379,30 @@ int main(int argc, char** argv)
         return 1;
     }
 
+    // ⭐ Set file path to enumerate. By default, this is set to $ROOT_PATH
+    // Modify $relative_path 
+    // ie. If I want to access ~/Downloads, my relative path would be ./Downloads
+    char dir_path[MAX_PATH_SIZE];
+    strncpy(dir_path, ROOT_PATH, MAX_PATH_SIZE);
+    char* relative_path = "./Desktop/Code/Ducky-Hoster/Server/Executables/EnumeratorRecursive";
+    PathCombine(dir_path, dir_path, relative_path);
+
     // Check for valid directory
-    DWORD root_file_attributes = GetFileAttributes(ROOT_PATH);
+    DWORD root_file_attributes = GetFileAttributes(dir_path);
 
     if (root_file_attributes == INVALID_FILE_ATTRIBUTES)
     {
-        fprintf(stderr, "Error: $ROOT_PATH is not a valid path.");
+        fprintf(stderr, "Error: $dir_path is not a valid path.");
         return 1;
     }
     if (!(root_file_attributes & FILE_ATTRIBUTE_DIRECTORY))
     {
-        fprintf(stderr, "Error: $ROOT_PATH is not a directory.");
+        fprintf(stderr, "Error: $dir_path is not a directory.");
         return 1;
     }
 
     // Run enumerator
-    struct FS_Element* enumerated_results = enumerate(0, ROOT_PATH, NULL);
+    struct FS_Element* enumerated_results = enumerate(0, dir_path, NULL);
     
     int json_str_len = 0;
     char* json_str = spill_file_json(enumerated_results, &json_str_len);
