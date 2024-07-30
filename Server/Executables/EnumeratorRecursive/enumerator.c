@@ -406,7 +406,6 @@ int main(int argc, char** argv)
     
     int json_str_len = 0;
     char* json_str = spill_file_json(enumerated_results, &json_str_len);
-    puts(json_str);
 
     // Send it to the server
     // Again: json_str_len takes into account the null terminator. POST does not. Subtract 1 from this.

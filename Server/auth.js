@@ -131,6 +131,7 @@ const AuthKeyContainer = class extends Map
     {
         var hash = crypto.createHash("sha512").update(keyValue).digest("hex");
         this.set(hash, keyObject);
+        // console.dir(this)
     }
 
     /**

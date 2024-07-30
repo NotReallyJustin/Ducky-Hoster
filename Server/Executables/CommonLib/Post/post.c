@@ -127,14 +127,14 @@ int send_post_request(char* address, char* text, int text_size, char* exe_type, 
     // Add security flag to ignore unknown Certificate Authorities (we need this because our certs may or may not be self-signed)
     // We need to do this seperately since apparently HttpOpenRequest does not support security flags for some weird reason even though it's all bitwise-or'd
     DWORD lp_buffer;
-    DWORD dw_buffer_len;
+    DWORD dw_buffer_len = sizeof(lp_buffer);
 
     BOOL query_internet_opts = InternetQueryOption(https_request, INTERNET_OPTION_SECURITY_FLAGS, &lp_buffer, &dw_buffer_len);
     if (query_internet_opts)
     {
         // If we successfully queried the internet, try to set the CA flag
         lp_buffer = lp_buffer | SECURITY_FLAG_IGNORE_UNKNOWN_CA;
-        BOOL set_internet_opts = InternetSetOption(https_request, INTERNET_OPTION_SECURITY_FLAGS, &lp_buffer, sizeof(lp_buffer));
+        BOOL set_internet_opts = InternetSetOption(https_request, INTERNET_OPTION_SECURITY_FLAGS, &lp_buffer, dw_buffer_len);
 
         // Error handling for not being able to set internet security flags
         if (!set_internet_opts)
