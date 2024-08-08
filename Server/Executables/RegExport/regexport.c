@@ -23,9 +23,11 @@
 #define HKUD "C:/Windows/System32/config/default"
 
 /**
- * Array of Registry files to export. Use absolute pathing or one of the typedefs
+ * ⭐ Array of Registry files to export. Use absolute pathing or one of the typedefs.
+ * ⭐ You are responsible for setting the array size
  */
-char* REG_EXPORTS[1] = {HKLM_SAM};
+#define REG_EXPORTS_SIZE 1
+char* REG_EXPORTS[REG_EXPORTS_SIZE] = {HKLM_SAM};
 
 /**
  * Read all the files given in $file_names, and outputs their content in JSON
@@ -90,7 +92,15 @@ char* spill_file_json(char** file_names, int size, int* json_length)
     }
 }
 
-int main(int argc, char** argv)
-{
+int main() {
+    if (is_admin()) 
+    {
+        puts("admin perms");
+    }
+    else 
+    {
+        puts("no admin perms");
+    }
+
     return 0;
 }

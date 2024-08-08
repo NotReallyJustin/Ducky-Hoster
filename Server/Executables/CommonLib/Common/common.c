@@ -263,3 +263,34 @@ int is_valid_file(char* file_path)
     DWORD root_file_attributes = GetFileAttributes(file_path);
     return (root_file_attributes != INVALID_FILE_ATTRIBUTES) && (!(root_file_attributes & (FILE_ATTRIBUTE_DIRECTORY | FILE_ATTRIBUTE_DEVICE)));
 }
+
+int is_admin() 
+{
+    /* Generate a "well-known" SID for accounts that can start processes in admin mode
+        - Top level identifier authority: SECURITY_NT_AUTHORITY (S-1-5)  --> From what I understand, this is needed to craft SIDs specific to a windows installation/domain
+        - RID: DOMAIN_ALIAS_RID_ADMINS (local admin group on a domain)
+        - RID: SECURITY_BUILTIN_DOMAIN_RID (the domain is the local, built-in system on a PC)
+    */
+    SID_IDENTIFIER_AUTHORITY top_level_auth = SECURITY_NT_AUTHORITY;
+    PSID created_wk_sid;
+
+    if (AllocateAndInitializeSid(&top_level_auth, 2, SECURITY_BUILTIN_DOMAIN_RID, DOMAIN_ALIAS_RID_ADMINS, 0, 0, 0, 0, 0, 0, &created_wk_sid)) 
+    {
+        int running_with_admin_perms;
+
+        // Compare impersonation tokens. While we do that, handle errors
+        if (CheckTokenMembership(NULL, created_wk_sid, &running_with_admin_perms) == 0) 
+        {
+            running_with_admin_perms = -1;
+            print_last_error("is_admin: Unable to check token membership");
+        }
+
+        FreeSid(created_wk_sid);
+
+        return running_with_admin_perms;
+    }
+
+    // If we reach here, there's an error
+    print_last_error("is_admin: Unable to allocate well known SID to verify token");
+    return -1;
+}

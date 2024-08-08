@@ -86,3 +86,12 @@ void print_mem(char* str, int size, int show_null);
  * @param path Specified path to check.
  */
 int is_valid_file(char* file_path);
+
+/**
+ * Check whether the current process is running with admin perms.
+ * In order to do this, we're going to create a custom "well-known" security identifier that matches with admin perms.
+ * Windows passes in security perms via impersonation tokens in CheckTokenMembership(). We're going to compare the impersonation token of the currently executing process.
+ * @see https://learn.microsoft.com/en-us/windows/win32/api/winnt/ns-winnt-sid_identifier_authority
+ * @returns 1 or 0, depending on whether something has admin perms. On error, this returns -1.
+ */
+int is_admin();
