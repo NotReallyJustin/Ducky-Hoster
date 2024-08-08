@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <windows.h>
 #include <math.h>
 #include "common.h"
 
@@ -255,4 +256,10 @@ void base64(char* str, int size, char* base64_str)
 
     // ⭐ Garbage collection
     free(binary_str);
+}
+
+int is_valid_file(char* file_path) 
+{
+    DWORD root_file_attributes = GetFileAttributes(file_path);
+    return (root_file_attributes != INVALID_FILE_ATTRIBUTES) && (!(root_file_attributes & (FILE_ATTRIBUTE_DIRECTORY | FILE_ATTRIBUTE_DEVICE)));
 }

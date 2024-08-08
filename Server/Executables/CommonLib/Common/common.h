@@ -80,3 +80,9 @@ void base64(char* str, int size, char* base64_str);
  * @param show_null Binary value (1 or 0). Show null bytes as "\0" instead of concealing it
 */
 void print_mem(char* str, int size, int show_null);
+
+/**
+ * Checks to see if a file path exists AND is a non-directory/non-device file.
+ * @param path Specified path to check.
+ */
+int is_valid_file(char* file_path);

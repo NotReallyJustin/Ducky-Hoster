@@ -22,7 +22,7 @@
  * Basically, how many folders do we want to look into. Even if this number is big, we do need a max size for this because we don't have infinite GBs to transfer files.
  * This is also important as the Node server limits how much memory can be transferred.
  */
-#define MAX_DEPTH 3
+#define MAX_DEPTH 0
 
 /**
  * Home directory alias
@@ -384,8 +384,8 @@ int main(int argc, char** argv)
     // ie. If I want to access ~/Downloads, my relative path would be ./Downloads
     char dir_path[MAX_PATH_SIZE];
     strncpy(dir_path, ROOT_PATH, MAX_PATH_SIZE);
-    char* relative_path = "./Desktop/Code/Ducky-Hoster/Server/Executables/EnumeratorRecursive";
-    PathCombine(dir_path, dir_path, relative_path);
+    // char* relative_path = "./Desktop/Code/Ducky-Hoster/Server/Executables/EnumeratorRecursive";
+    // PathCombine(dir_path, dir_path, relative_path);
 
     // Check for valid directory
     DWORD root_file_attributes = GetFileAttributes(dir_path);

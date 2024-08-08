@@ -6,7 +6,7 @@ const { execFileSync } = require("child_process");
 const path = require("path");
 const logging = require("./logging.js");
 
-// Server IP we are hosting malware server on
+// 🚨 Server IP we are hosting malware server on
 // 🚨 Make sure to insert either a port or http:// (to default to port 80). Otherwise, wininet.dll will give you URL parsing errors
 const IP = "https://localhost";
 // const IP = "https://192.168.0.156";
