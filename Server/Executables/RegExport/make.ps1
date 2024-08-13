@@ -20,7 +20,7 @@ param (
     - ../CommonLib/Error/libwinerror.a
 #>
 
-gcc -c -m32 regexport.c -o regexport.o -I../CommonLib/Common/ -I../CommonLib/Post/ -DSVL_ADDRESS="\`"$SVL_ADDRESS\`"" -DSVL_AUTHKEY="\`"$SVL_AUTHKEY\`""
+gcc -m32 -c regexport.c -o regexport.o -I../CommonLib/Common/ -I../CommonLib/Post/ -DSVL_ADDRESS="\`"$SVL_ADDRESS\`"" -DSVL_AUTHKEY="\`"$SVL_AUTHKEY\`""
 gcc regexport.o -o regexport.exe -L../CommonLib/Common/ -L../CommonLib/Post/ -L../CommonLib/Error/ -lpost -lcommon -lwinerror -lwininet
 
 rm regexport.o

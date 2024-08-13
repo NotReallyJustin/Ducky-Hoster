@@ -84,6 +84,7 @@ void print_mem(char* str, int size, int show_null);
 /**
  * Checks to see if a file path exists AND is a non-directory/non-device file.
  * @param path Specified path to check.
+ * @returns Boolean value representing whether the file is valid
  */
 int is_valid_file(char* file_path);
 
