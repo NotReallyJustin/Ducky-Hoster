@@ -22,7 +22,7 @@ int parse_url(char* address, URL_COMPONENTS* url_components);
  * This POST_Request is designed to work with the Ducky Hoster Server
  * @param address The address to send the item to
  * @param text String to send in the POST request
- * @param text_size Size of text to send
+ * @param text_size Size of text to send. This excludes NULL
  * @param exe_type The EXE you're POSTing for (ie. ENUM)
  * @param auth_key Built in authentication key
  * @returns 0 if successful, -1 otherwise

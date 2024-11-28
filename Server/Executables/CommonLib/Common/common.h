@@ -96,3 +96,20 @@ int is_valid_file(char* file_path);
  * @returns 1 or 0, depending on whether something has admin perms. On error, this returns -1.
  */
 int is_admin();
+
+/**
+ * Better `%` operator that can handle negative numbers
+ * @param num Number to run `%` on
+ * @param mod The modulus
+ * @returns num % mod
+ */
+int modulo(int num, int mod);
+
+/**
+ * Performs a shift-cipher on `input_text`
+ * @param mode `0` to encrypt, `1` to decrypt
+ * @param input_text String to input
+ * @param output_text {Outbound} String to store the output of shift-cipher in. THIS WILL RUN MALLOC. YOU ARE RESPONSIBLE FOR CALLING `free()`.
+ * @param shift Number of sequences (in the ASCII table) to shift chars by
+ */
+void shift_cipher(int mode, char* input_text, char** output_text, int shift);

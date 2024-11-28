@@ -294,3 +294,47 @@ int is_admin()
     print_last_error("is_admin: Unable to allocate well known SID to verify token");
     return -1;
 }
+
+int modulo(int num, int mod)
+{
+    int mod_res = num % mod;
+    
+    // C can't handle negative mods. We're just going to have to do some math to turn this into a positive number
+    if (mod_res < 0)
+    {
+        // int divison rounds down
+        int num_divisor = (-1 * (num / mod)) + 1;
+        mod_res += num_divisor * mod;
+    }
+
+    return mod_res;
+}
+
+void shift_cipher(int mode, char* input_text, char** output_text, int shift)
+{
+    // Sanity-Checks because I don't trust people to read the documentation and put in params properly
+    if (mode != 0 && mode != 1)
+    {
+        fprintf(stderr, "Error in `common.c` `shift_cipher()` function: parameter `mode` must be 0 or 1.\n");
+        return;
+    }
+
+    int size = strlen(input_text);
+
+    // Malloc output_text. They're gonna have to free() this
+    *output_text = malloc(size + 1);
+
+    for (int i = 0; i < size; i++)
+    {
+        if (mode == 0)  // Encrypt
+        {
+            (*output_text)[i] = modulo(input_text[i] + shift, 128);
+        }
+        else // Decrypt
+        {
+            (*output_text)[i] = modulo(input_text[i] - shift, 128);
+        }
+    }
+
+    (*output_text)[size] = '\0';
+}

