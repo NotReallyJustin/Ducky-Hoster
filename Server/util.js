@@ -40,7 +40,7 @@ module.exports.random = (low, high) => Math.round(Math.random() * (high - low)) 
  * @param {String} fileName The file name of a given file 
  * @returns The file extension of a given file
  */
-module.exports.getFileExtension = (fileName) => fileName.slice(fileName.indexOf("."));
+module.exports.getFileExtension = (fileName) => fileName.indexOf(".") == -1 ? "" : fileName.slice(fileName.indexOf("."));
 
 /**
  * Gets the current timestamp (YYYY-MM-DD Hour:Month:Minute:Second)

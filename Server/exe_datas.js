@@ -45,12 +45,10 @@ const EXEData = function(cPath, usesAuthKey, singleUse, postFunction) {
 /**
  * A JSON that maps EXE parameters we recieve from the Router to server-side paths.
  * Our server will then compile the C file in the server-side path, and then return it.
- * Not the most efficient way of doing things, but this is the most secure way of allowing user file retrieval
- * 
- * Note: `test` is not intended to be used - it's just a test
+ * Will probably get yelled at by the Leetcode crowd because this is very "unoptimized" but I'm a Cybersecurity guy so this is gonna stay bc I don't trust user input
  */
 module.exports = {
     enumerator: new EXEData("./Executables/Enumerator/ls_read.exe", true, true, require("./POST Functions/ls_read")),
-    test: new EXEData("", true, false, false),
-    enumeratorRecursive: new EXEData("./Executables/EnumeratorRecursive/enumerator.exe", true, true, require("./POST Functions/ls_read_recursive"))
+    enumeratorRecursive: new EXEData("./Executables/EnumeratorRecursive/enumerator.exe", true, true, require("./POST Functions/ls_read_recursive")),
+    regexport: new EXEData("./Executables/RegExport/regexport.exe", true, true, require("./POST Functions/regexport"))
 };

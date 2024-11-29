@@ -11,6 +11,12 @@ It's reccomended you download files through stable release "versions" on Github 
     * It's a bit unconventional for us to use Express without deploying a web app, but it's a good way to handle HTTP requests even if we're not serving files
 * Express Body Parser 1.20.2
 
+To install the `node_modules`:
+```ps1
+cd ./Server/
+npm install 
+```
+
 ## Other Dependencies
 * MinGW.org GCC-6.3.0-1
 * Windows OS (You don't need to do anything extra here. Some executables dynamically link `wininet` - which comes preinstalled in Windows OS)
