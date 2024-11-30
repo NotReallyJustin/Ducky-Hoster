@@ -7,9 +7,9 @@ All you really need is everything under the `./Server` directory. <br />
 It's reccomended you download files through stable release "versions" on Github rather than directly pulling from `$git clone` since the current code may very well be buggy.
 
 ## Node Dependencies
-* Express 4.18.2
+* Express 4.21.1
     * It's a bit unconventional for us to use Express without deploying a web app, but it's a good way to handle HTTP requests even if we're not serving files
-* Express Body Parser 1.20.2
+* Express Body Parser 1.20.3
 
 To install the `node_modules`:
 ```ps1
