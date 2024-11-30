@@ -8,10 +8,10 @@ const path = require("path");
 // 🚨 We're hard-coding these logs for security purposes (so someone can't accidentally wipe out more server-side files than intended)
 // However, if you do end up adding more logs, change this log_list
 const log_list = [
-    "./info",
-    "./stderr",
-    "./stdout",
-    "./trace"
+    "./info.log",
+    "./stderr.log",
+    "./stdout.log",
+    "./trace.log"
 ];
 
 const remove_logs = log_list.map(log_path => 

@@ -9,10 +9,10 @@ const { getTimestamp } = require("./util.js");
 
 
 // Declare path of log files
-TRACE_PATH = path.resolve(__dirname, "./Logs/trace");
-INFO_PATH = path.resolve(__dirname, "./Logs/info");             // To do: traffic info
-STDOUT_PATH = path.resolve(__dirname, "./Logs/stdout");
-STDERR_PATH = path.resolve(__dirname, "./Logs/stderr");
+TRACE_PATH = path.resolve(__dirname, "./Logs/trace.log");
+INFO_PATH = path.resolve(__dirname, "./Logs/info.log");             // To do: traffic info
+STDOUT_PATH = path.resolve(__dirname, "./Logs/stdout.log");
+STDERR_PATH = path.resolve(__dirname, "./Logs/stderr.log");
 
 /**
  * Logs a given information in `./Logs/trace`.
